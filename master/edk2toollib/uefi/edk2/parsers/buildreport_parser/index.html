@@ -1,0 +1,3111 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Project Mu Documentation">
+      
+      
+        <link rel="canonical" href="https://matthewc.dev/edk2-pytool-library/master/edk2toollib/uefi/edk2/parsers/buildreport_parser/">
+      
+      
+      <link rel="shortcut icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Buildreport parser - EDK2 Pytool Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../../../css/version-select.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-edk2toollibuefiedk2parsersbuildreport_parser" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://matthewc.dev/edk2-pytool-library/master/" title="EDK2 Pytool Library" class="md-header-nav__button md-logo" aria-label="EDK2 Pytool Library">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            EDK2 Pytool Library
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Buildreport parser
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/matthewfcarlson/edk2-pytool-library/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://matthewc.dev/edk2-pytool-library/master/" title="EDK2 Pytool Library" class="md-nav__button md-logo" aria-label="EDK2 Pytool Library">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    EDK2 Pytool Library
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/matthewfcarlson/edk2-pytool-library/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../../developing/" class="md-nav__link">
+      Developing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../../publishing/" class="md-nav__link">
+      Publishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../../using/" class="md-nav__link">
+      Using
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../../features/logging.ansi_handler/" class="md-nav__link">
+      Logging.ansi handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../../features/utility_functions.GetHostInfo/" class="md-nav__link">
+      Utility functions.get host info
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../../features/windows_firmware_policy/" class="md-nav__link">
+      Windows firmware policy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../bin/" class="md-nav__link">
+      Bin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../gitignore_parser/" class="md-nav__link">
+      Gitignore parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../utility_functions/" class="md-nav__link">
+      Utility functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
+    
+    <label class="md-nav__link" for="nav-6-5">
+      Acpi
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Acpi" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-5">
+        <span class="md-nav__icon md-icon"></span>
+        Acpi
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../acpi/dmar_parser/" class="md-nav__link">
+      Dmar parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../acpi/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../acpi/ivrs_parser/" class="md-nav__link">
+      Ivrs parser
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-6" type="checkbox" id="nav-6-6">
+    
+    <label class="md-nav__link" for="nav-6-6">
+      Log
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Log" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-6">
+        <span class="md-nav__icon md-icon"></span>
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../log/ansi_handler/" class="md-nav__link">
+      Ansi handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../log/file_handler/" class="md-nav__link">
+      File handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../log/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../log/junit_report_format/" class="md-nav__link">
+      Junit report format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../log/markdown_handler/" class="md-nav__link">
+      Markdown handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../log/string_handler/" class="md-nav__link">
+      String handler
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-7" type="checkbox" id="nav-6-7">
+    
+    <label class="md-nav__link" for="nav-6-7">
+      Tpm
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tpm" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-7">
+        <span class="md-nav__icon md-icon"></span>
+        Tpm
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../tpm/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../tpm/tpm2_defs/" class="md-nav__link">
+      Tpm2 defs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../tpm/tpm2_policy_calc/" class="md-nav__link">
+      Tpm2 policy calc
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../tpm/tpm2_simulator/" class="md-nav__link">
+      Tpm2 simulator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../tpm/tpm2_stream/" class="md-nav__link">
+      Tpm2 stream
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8" type="checkbox" id="nav-6-8" checked>
+    
+    <label class="md-nav__link" for="nav-6-8">
+      Uefi
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Uefi" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-8">
+        <span class="md-nav__icon md-icon"></span>
+        Uefi
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../authenticated_variables_structure_support/" class="md-nav__link">
+      Authenticated variables structure support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../bmp_object/" class="md-nav__link">
+      Bmp object
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../fmp_auth_header/" class="md-nav__link">
+      Fmp auth header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../fmp_capsule_header/" class="md-nav__link">
+      Fmp capsule header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pi_firmware_file/" class="md-nav__link">
+      Pi firmware file
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../pi_firmware_volume/" class="md-nav__link">
+      Pi firmware volume
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../status_codes/" class="md-nav__link">
+      Status codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../uefi_capsule_header/" class="md-nav__link">
+      Uefi capsule header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../uefi_multi_phase/" class="md-nav__link">
+      Uefi multi phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../wincert/" class="md-nav__link">
+      Wincert
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12" type="checkbox" id="nav-6-8-12" checked>
+    
+    <label class="md-nav__link" for="nav-6-8-12">
+      Edk2
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Edk2" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-8-12">
+        <span class="md-nav__icon md-icon"></span>
+        Edk2
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../fmp_payload_header/" class="md-nav__link">
+      Fmp payload header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ftw_working_block_format/" class="md-nav__link">
+      Ftw working block format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guid_list/" class="md-nav__link">
+      Guid list
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../path_utilities/" class="md-nav__link">
+      Path utilities
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../variablestore_manulipulations/" class="md-nav__link">
+      Variablestore manulipulations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../variable_format/" class="md-nav__link">
+      Variable format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12-8" type="checkbox" id="nav-6-8-12-8">
+    
+    <label class="md-nav__link" for="nav-6-8-12-8">
+      Build objects
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Build objects" data-md-level="4">
+      <label class="md-nav__title" for="nav-6-8-12-8">
+        <span class="md-nav__icon md-icon"></span>
+        Build objects
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../build_objects/dsc/" class="md-nav__link">
+      Dsc
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../build_objects/dsc_translator/" class="md-nav__link">
+      Dsc translator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../build_objects/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12-9" type="checkbox" id="nav-6-8-12-9" checked>
+    
+    <label class="md-nav__link" for="nav-6-8-12-9">
+      Parsers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Parsers" data-md-level="4">
+      <label class="md-nav__title" for="nav-6-8-12-9">
+        <span class="md-nav__icon md-icon"></span>
+        Parsers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../base_parser/" class="md-nav__link">
+      Base parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Buildreport parser
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Buildreport parser
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#buildreport" class="md-nav__link">
+    BuildReport
+  </a>
+  
+    <nav class="md-nav" aria-label="BuildReport">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basicparse" class="md-nav__link">
+    BasicParse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findcomponentbyinfpath" class="md-nav__link">
+    FindComponentByInfPath
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modulesummary" class="md-nav__link">
+    ModuleSummary
+  </a>
+  
+    <nav class="md-nav" aria-label="ModuleSummary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse" class="md-nav__link">
+    Parse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dec_parser/" class="md-nav__link">
+      Dec parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dsc_parser/" class="md-nav__link">
+      Dsc parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fdf_parser/" class="md-nav__link">
+      Fdf parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guid_parser/" class="md-nav__link">
+      Guid parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../inf_parser/" class="md-nav__link">
+      Inf parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../override_parser/" class="md-nav__link">
+      Override parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../targettxt_parser/" class="md-nav__link">
+      Targettxt parser
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9" type="checkbox" id="nav-6-9">
+    
+    <label class="md-nav__link" for="nav-6-9">
+      Windows
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Windows" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-9">
+        <span class="md-nav__icon md-icon"></span>
+        Windows
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../windows/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../windows/locate_tools/" class="md-nav__link">
+      Locate tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9-3" type="checkbox" id="nav-6-9-3">
+    
+    <label class="md-nav__link" for="nav-6-9-3">
+      Capsule
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Capsule" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-9-3">
+        <span class="md-nav__icon md-icon"></span>
+        Capsule
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../windows/capsule/cat_generator/" class="md-nav__link">
+      Cat generator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../windows/capsule/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../windows/capsule/inf_generator/" class="md-nav__link">
+      Inf generator
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9-4" type="checkbox" id="nav-6-9-4">
+    
+    <label class="md-nav__link" for="nav-6-9-4">
+      Policy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Policy" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-9-4">
+        <span class="md-nav__icon md-icon"></span>
+        Policy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../windows/policy/firmware_policy/" class="md-nav__link">
+      Firmware policy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../windows/policy/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#buildreport" class="md-nav__link">
+    BuildReport
+  </a>
+  
+    <nav class="md-nav" aria-label="BuildReport">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basicparse" class="md-nav__link">
+    BasicParse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findcomponentbyinfpath" class="md-nav__link">
+    FindComponentByInfPath
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modulesummary" class="md-nav__link">
+    ModuleSummary
+  </a>
+  
+    <nav class="md-nav" aria-label="ModuleSummary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse" class="md-nav__link">
+    Parse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/matthewfcarlson/edk2-pytool-library/edit/master/docs/edk2toollib/uefi/edk2/parsers/buildreport_parser.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-edk2toollibuefiedk2parsersbuildreport_parser">Module edk2toollib.uefi.edk2.parsers.buildreport_parser</h1>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="s s-Atom">#</span> <span class="s s-Atom">@file</span> <span class="s s-Atom">buildreport_parser</span><span class="p">.</span><span class="s s-Atom">py</span>
+
+<span class="s s-Atom">#</span> <span class="nv">Code</span> <span class="s s-Atom">to</span> <span class="s s-Atom">help</span> <span class="s s-Atom">parse</span> <span class="s s-Atom">an</span> <span class="nv">EDk2</span> <span class="nv">Build</span> <span class="nv">Report</span>
+
+<span class="s s-Atom">#</span>
+
+<span class="s s-Atom">#</span> <span class="nv">Copyright</span> <span class="p">(</span><span class="s s-Atom">c</span><span class="p">)</span> <span class="nv">Microsoft</span> <span class="nv">Corporation</span>
+
+<span class="s s-Atom">#</span>
+
+<span class="s s-Atom">#</span> <span class="nv">SPDX</span><span class="o">-</span><span class="nv">License</span><span class="o">-</span><span class="nv">Identifier</span><span class="s s-Atom">:</span> <span class="nv">BSD</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="nv">Clause</span><span class="o">-</span><span class="nv">Patent</span>
+
+<span class="s s-Atom">##</span>
+
+<span class="s s-Atom">import</span> <span class="s s-Atom">os</span>
+
+<span class="s s-Atom">import</span> <span class="s s-Atom">logging</span>
+
+<span class="s s-Atom">from</span> <span class="s s-Atom">enum</span> <span class="s s-Atom">import</span> <span class="nv">Enum</span>
+
+<span class="s s-Atom">import</span> <span class="s s-Atom">edk2toollib</span><span class="p">.</span><span class="s s-Atom">uefi</span><span class="p">.</span><span class="s s-Atom">edk2</span><span class="p">.</span><span class="s s-Atom">path_utilities</span> <span class="s s-Atom">as</span> <span class="s s-Atom">pu</span>
+
+<span class="s s-Atom">#</span>
+
+<span class="s s-Atom">#</span> <span class="nv">Class</span> <span class="s s-Atom">to</span> <span class="s s-Atom">represent</span> <span class="s s-Atom">a</span> <span class="s s-Atom">module</span> <span class="s s-Atom">within</span> <span class="s s-Atom">the</span> <span class="nv">Build</span> <span class="nv">Report</span>
+
+<span class="s s-Atom">#</span>
+
+<span class="s s-Atom">class</span> <span class="nv">ModuleSummary</span><span class="p">(</span><span class="s s-Atom">object</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+    <span class="s s-Atom">def</span> <span class="k">__</span><span class="nf">init__</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">,</span> <span class="s s-Atom">content</span><span class="p">,</span> <span class="s s-Atom">ws</span><span class="p">,</span> <span class="s s-Atom">packagepatahlist</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span> <span class="o">=</span> <span class="s s-Atom">content</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Guid</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">InfPath</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Type</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PCDs</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Libraries</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Depex</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">WorkspacePath</span> <span class="o">=</span> <span class="s s-Atom">ws</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PackagePathList</span> <span class="o">=</span> <span class="s s-Atom">packagepatahlist</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">FvName</span> <span class="o">=</span> <span class="nv">None</span>
+
+    <span class="s s-Atom">def</span> <span class="nv">Parse</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">tokenspace</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">pathConverter</span> <span class="o">=</span> <span class="s s-Atom">pu</span><span class="p">.</span><span class="nv">Edk2Path</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="nv">WorkspacePath</span><span class="p">,</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PackagePathList</span><span class="p">)</span>
+
+        <span class="s s-Atom">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="nn">try</span><span class="p">:</span>
+
+            <span class="s s-Atom">while</span> <span class="s s-Atom">i</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">line</span> <span class="o">=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                <span class="s s-Atom">#</span> <span class="s s-Atom">parse</span> <span class="s s-Atom">start</span> <span class="s s-Atom">and</span> <span class="s s-Atom">end</span>
+
+                <span class="s s-Atom">if</span> <span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;&gt;----------------------------------------------------------------------------------------------------------------------&lt;&quot;</span><span class="s s-Atom">:</span>      <span class="s s-Atom">#</span> <span class="nn">noqa</span><span class="p">:</span> <span class="nv">E501</span>
+
+                    <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                <span class="s s-Atom">elif</span> <span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;&lt;----------------------------------------------------------------------------------------------------------------------&gt;&quot;</span><span class="s s-Atom">:</span>    <span class="s s-Atom">#</span> <span class="nn">noqa</span><span class="p">:</span> <span class="nv">E501</span>
+
+                    <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                <span class="s s-Atom">#</span> <span class="s s-Atom">parse</span> <span class="s s-Atom">section</span> <span class="s s-Atom">header</span>
+
+                <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">nextLineSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                    <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;Library&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">add</span> <span class="s s-Atom">additional</span> <span class="s s-Atom">line</span> <span class="s s-Atom">to</span> <span class="s s-Atom">skip</span> <span class="s s-Atom">the</span> <span class="s s-Atom">dashed</span> <span class="s s-Atom">line</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;PCD&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">add</span> <span class="s s-Atom">additional</span> <span class="s s-Atom">line</span> <span class="s s-Atom">to</span> <span class="s s-Atom">skip</span> <span class="s s-Atom">the</span> <span class="s s-Atom">dashed</span> <span class="s s-Atom">line</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;Final Dependency Expression (DEPEX) Instructions&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">add</span> <span class="s s-Atom">additional</span> <span class="s s-Atom">line</span> <span class="s s-Atom">to</span> <span class="s s-Atom">skip</span> <span class="s s-Atom">the</span> <span class="s s-Atom">dashed</span> <span class="s s-Atom">line</span>
+
+                    <span class="nn">else</span><span class="p">:</span>
+
+                        <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;Unsupported Section: &quot;</span> <span class="o">+</span> <span class="s s-Atom">line</span><span class="p">)</span>
+
+                        <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                        <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                        <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                <span class="s s-Atom">#</span> <span class="nv">Normal</span> <span class="s s-Atom">section</span> <span class="s s-Atom">parsing</span>
+
+                <span class="nn">else</span><span class="p">:</span>
+
+                    <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">inLibSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;InLibSection: %s&quot;</span> <span class="c1">% line)</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">get</span> <span class="s s-Atom">the</span> <span class="s s-Atom">whole</span> <span class="s s-Atom">statement</span> <span class="s s-Atom">library</span> <span class="s s-Atom">class</span> <span class="s s-Atom">statement</span>
+
+                        <span class="s s-Atom">templine</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">&#39;}&#39;</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">templine</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                            <span class="s s-Atom">templine</span> <span class="s s-Atom">+=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">have</span> <span class="s s-Atom">good</span> <span class="s s-Atom">complete</span> <span class="s s-Atom">line</span> <span class="s s-Atom">with</span> <span class="s s-Atom">no</span> <span class="s s-Atom">whitespace</span><span class="o">/</span><span class="s s-Atom">newline</span> <span class="s s-Atom">chars</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">first</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">library</span> <span class="s s-Atom">instance</span> <span class="nv">INF</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">second</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">library</span> <span class="s s-Atom">class</span>
+
+                        <span class="s s-Atom">lib_class</span> <span class="o">=</span> <span class="s s-Atom">templine</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;{&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">].</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;}&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">lib_instance</span> <span class="o">=</span> <span class="s s-Atom">templine</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;{&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">#</span> <span class="nv">Take</span> <span class="s s-Atom">absolute</span> <span class="s s-Atom">path</span> <span class="s s-Atom">and</span> <span class="s s-Atom">convert</span> <span class="s s-Atom">to</span> <span class="nv">EDK</span> <span class="s s-Atom">build</span> <span class="s s-Atom">path</span>
+
+                        <span class="nv">RelativePath</span> <span class="o">=</span> <span class="s s-Atom">pathConverter</span><span class="p">.</span><span class="nv">GetEdk2RelativePathFromAbsolutePath</span><span class="p">(</span><span class="s s-Atom">lib_instance</span><span class="p">)</span>
+
+                        <span class="nf">if</span><span class="p">(</span><span class="nv">RelativePath</span> <span class="o">is</span> <span class="o">not</span> <span class="nv">None</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Libraries</span><span class="p">[</span><span class="s s-Atom">lib_class</span><span class="p">]</span> <span class="o">=</span> <span class="nv">RelativePath</span>
+
+                        <span class="nn">else</span><span class="p">:</span>
+
+                            <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Libraries</span><span class="p">[</span><span class="s s-Atom">lib_class</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">lib_instance</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                        <span class="s s-Atom">continue</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">inPcdSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">namespace</span> <span class="s s-Atom">token</span> <span class="s s-Atom">line</span>
+
+                        <span class="nf">if</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">split</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">tokenspace</span> <span class="o">=</span> <span class="s s-Atom">line</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">main</span> <span class="s s-Atom">line</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="nv">PCD</span> <span class="s s-Atom">value</span>
+
+                        <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="s s-Atom">and</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;\&quot;&quot;</span><span class="p">)</span> <span class="c1">% 2) != 0:</span>
+
+                                <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                                <span class="s s-Atom">line</span> <span class="s s-Atom">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">rstrip</span><span class="p">()</span>
+
+                            <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s s-Atom">&#39;{&#39;</span><span class="p">)</span> <span class="p">!</span><span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s s-Atom">&#39;}&#39;</span><span class="p">))</span><span class="s s-Atom">:</span>
+
+                                <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                                <span class="s s-Atom">line</span> <span class="s s-Atom">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">rstrip</span><span class="p">()</span>
+
+                            <span class="s s-Atom">token</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;=&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+
+                            <span class="s s-Atom">token2</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+                            <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PCDs</span><span class="p">[</span><span class="s s-Atom">tokenspace</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="s s-Atom">token2</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">token</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">secondary</span> <span class="s s-Atom">lines</span> <span class="s s-Atom">of</span> <span class="nv">PCD</span> <span class="s s-Atom">values</span> <span class="s s-Atom">showing</span> <span class="nv">Defaults</span>
+
+                        <span class="s s-Atom">elif</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="s s-Atom">and</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="s s-Atom">:</span>
+
+                            <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;\&quot;&quot;</span><span class="p">)</span> <span class="c1">% 2) != 0:</span>
+
+                                <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                                <span class="s s-Atom">line</span> <span class="s s-Atom">+=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">rstrip</span><span class="p">()</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">inDepSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">pass</span>
+
+                        <span class="s s-Atom">#</span> <span class="o">not</span> <span class="s s-Atom">implemented</span> <span class="s s-Atom">right</span> <span class="s s-Atom">now</span>
+
+                    <span class="nn">else</span><span class="p">:</span>
+
+                        <span class="s s-Atom">#</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">section</span><span class="p">...</span><span class="nv">Must</span> <span class="s s-Atom">be</span> <span class="s s-Atom">header</span> <span class="s s-Atom">section</span>
+
+                        <span class="s s-Atom">line_partitioned</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;:&#39;</span><span class="p">)</span>
+
+                        <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">line_partitioned</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">pass</span>  <span class="s s-Atom">#</span> <span class="o">not</span> <span class="s s-Atom">a</span> <span class="nn">name</span><span class="p">:</span> <span class="s s-Atom">value</span> <span class="s s-Atom">pair</span>
+
+                        <span class="nn">else</span><span class="p">:</span>
+
+                            <span class="s s-Atom">key</span> <span class="o">=</span> <span class="s s-Atom">line_partitioned</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">strip</span><span class="p">().</span><span class="nf">lower</span><span class="p">()</span>
+
+                            <span class="s s-Atom">value</span> <span class="o">=</span> <span class="s s-Atom">line_partitioned</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                            <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">key</span> <span class="o">==</span> <span class="s2">&quot;module name&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                                <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;Parsing Mod: %s&quot;</span> <span class="c1">% value)</span>
+
+                                <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Name</span> <span class="o">=</span> <span class="s s-Atom">value</span>
+
+                            <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">key</span> <span class="o">==</span> <span class="s2">&quot;module inf path&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                                <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">InfPath</span> <span class="o">=</span> <span class="s s-Atom">value</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="err">&quot;</span><span class="s s-Atom">\\</span><span class="s2">&quot;, &quot;</span><span class="s s-Atom">/</span><span class="s2">&quot;)</span>
+
+<span class="s2">                            elif(key == &quot;</span><span class="s s-Atom">file</span> <span class="s s-Atom">guid</span><span class="s2">&quot;):</span>
+
+<span class="s2">                                self.Guid = value</span>
+
+<span class="s2">                            elif(key == &quot;</span><span class="s s-Atom">driver</span> <span class="s s-Atom">type</span><span class="s2">&quot;):</span>
+
+<span class="s2">                                value = value.strip()</span>
+
+<span class="s2">                                self.Type = value[value.index(&#39;(&#39;) + 1:-1]</span>
+
+<span class="s2">                i += 1</span>
+
+<span class="s2">        except Exception:</span>
+
+<span class="s2">            logging.debug(&quot;</span><span class="nv">Exception</span> <span class="s s-Atom">in</span> <span class="nv">Parsing</span><span class="s s-Atom">:</span> <span class="c1">%d&quot; % i)</span>
+
+            <span class="s s-Atom">raise</span>
+
+<span class="s s-Atom">#</span>
+
+<span class="s s-Atom">#</span> <span class="nv">Class</span> <span class="s s-Atom">to</span> <span class="s s-Atom">parse</span> <span class="s s-Atom">and</span> <span class="s s-Atom">objectify</span> <span class="s s-Atom">the</span> <span class="nv">Build</span> <span class="s s-Atom">report</span> <span class="s s-Atom">so</span> <span class="s s-Atom">that</span>
+
+<span class="s s-Atom">#</span> <span class="s s-Atom">tools</span> <span class="s s-Atom">can</span> <span class="s s-Atom">interact</span> <span class="s s-Atom">with</span> <span class="s s-Atom">the</span> <span class="nv">Build</span> <span class="nv">Report</span><span class="p">.</span>
+
+<span class="s s-Atom">#</span> <span class="nv">This</span> <span class="s s-Atom">should</span> <span class="s s-Atom">simplify</span> <span class="s s-Atom">the</span> <span class="nv">Build</span> <span class="nv">Report</span> <span class="s s-Atom">based</span> <span class="s s-Atom">interactions</span>
+
+<span class="s s-Atom">#</span> <span class="s s-Atom">but</span> <span class="s s-Atom">should</span> <span class="o">not</span> <span class="s s-Atom">contain</span> <span class="s s-Atom">tool</span> <span class="s s-Atom">specific</span> <span class="s s-Atom">logic</span> <span class="s s-Atom">or</span> <span class="s s-Atom">tests</span><span class="p">.</span>
+
+<span class="s s-Atom">#</span>
+
+<span class="s s-Atom">class</span> <span class="nv">BuildReport</span><span class="p">(</span><span class="s s-Atom">object</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+    <span class="s s-Atom">class</span> <span class="nv">RegionTypes</span><span class="p">(</span><span class="nv">Enum</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="nv">PCD</span> <span class="o">=</span> <span class="s s-Atom">&#39;PCD&#39;</span>
+
+        <span class="nv">FD</span> <span class="o">=</span> <span class="s s-Atom">&#39;FD&#39;</span>
+
+        <span class="nv">MODULE</span> <span class="o">=</span> <span class="s s-Atom">&#39;MODULE&#39;</span>
+
+        <span class="nv">UNKNOWN</span> <span class="o">=</span> <span class="s s-Atom">&#39;UNKNOWN&#39;</span>
+
+    <span class="s s-Atom">def</span> <span class="k">__</span><span class="nf">init__</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">,</span> <span class="s s-Atom">filepath</span><span class="p">,</span> <span class="s s-Atom">ws</span><span class="p">,</span> <span class="s s-Atom">packagepathcsv</span><span class="p">,</span> <span class="s s-Atom">protectedWordsDict</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PlatformName</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">DscPath</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">FdfPath</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">BuildOutputDir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">ReportFile</span> <span class="o">=</span> <span class="s s-Atom">filepath</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Modules</span> <span class="o">=</span> <span class="p">{}</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">fill</span> <span class="s s-Atom">this</span> <span class="s s-Atom">in</span> <span class="s s-Atom">with</span> <span class="s s-Atom">objects</span> <span class="s s-Atom">of</span> <span class="nv">ModuleSummary</span> <span class="s s-Atom">type</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">ReportContents</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">Regions</span> <span class="o">=</span> <span class="p">[]</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">fill</span> <span class="s s-Atom">this</span> <span class="s s-Atom">in</span> <span class="s s-Atom">with</span> <span class="nf">tuple</span> <span class="p">(</span><span class="s s-Atom">type</span><span class="p">,</span> <span class="s s-Atom">start</span><span class="p">,</span> <span class="s s-Atom">end</span><span class="p">)</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Workspace</span> <span class="o">=</span> <span class="s s-Atom">ws</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">needs</span> <span class="s s-Atom">to</span> <span class="s s-Atom">contain</span> <span class="s s-Atom">the</span> <span class="s s-Atom">trailing</span> <span class="s s-Atom">slash</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PackagePathList</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">a</span> <span class="s s-Atom">in</span> <span class="s s-Atom">packagepathcsv</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">a</span> <span class="o">=</span> <span class="s s-Atom">a</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+
+            <span class="nf">if</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="s s-Atom">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PackagePathList</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="s s-Atom">a</span><span class="p">)</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">ProtectedWords</span> <span class="o">=</span> <span class="s s-Atom">protectedWordsDict</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PathConverter</span> <span class="o">=</span> <span class="s s-Atom">pu</span><span class="p">.</span><span class="nv">Edk2Path</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Workspace</span><span class="p">,</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PackagePathList</span><span class="p">)</span>
+
+    <span class="s s-Atom">#</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">do</span> <span class="s s-Atom">region</span> <span class="s s-Atom">level</span> <span class="s s-Atom">parsing</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">to</span> <span class="s s-Atom">get</span> <span class="s s-Atom">the</span> <span class="s s-Atom">layout</span><span class="p">,</span> <span class="s s-Atom">lists</span><span class="p">,</span> <span class="s s-Atom">and</span> <span class="s s-Atom">dictionaries</span> <span class="s s-Atom">setup</span><span class="p">.</span>
+
+    <span class="s s-Atom">#</span>
+
+    <span class="s s-Atom">def</span> <span class="nv">BasicParse</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="nf">if</span><span class="p">(</span><span class="o">not</span> <span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span><span class="p">.</span><span class="nf">isfile</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="nv">ReportFile</span><span class="p">))</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">raise</span> <span class="nv">Exception</span><span class="p">(</span><span class="s2">&quot;Report File path invalid!&quot;</span><span class="p">)</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">read</span> <span class="s s-Atom">report</span>
+
+        <span class="s s-Atom">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="nv">ReportFile</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">ReportContents</span> <span class="o">=</span> <span class="p">[</span><span class="s s-Atom">x</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span> <span class="s s-Atom">for</span> <span class="s s-Atom">x</span> <span class="s s-Atom">in</span> <span class="s s-Atom">f</span><span class="p">.</span><span class="nf">readlines</span><span class="p">()]</span>
+
+        <span class="s s-Atom">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+
+        <span class="s s-Atom">#</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">replace</span> <span class="s s-Atom">protected</span> <span class="s s-Atom">words</span>
+
+        <span class="s s-Atom">#</span>
+
+        <span class="nf">for</span> <span class="p">(</span><span class="s s-Atom">k</span><span class="p">,</span> <span class="s s-Atom">v</span><span class="p">)</span> <span class="s s-Atom">in</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">ProtectedWords</span><span class="p">.</span><span class="nf">items</span><span class="p">()</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">ReportContents</span> <span class="o">=</span> <span class="p">[</span><span class="s s-Atom">x</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="s s-Atom">k</span><span class="p">,</span> <span class="s s-Atom">v</span><span class="p">)</span> <span class="s s-Atom">for</span> <span class="s s-Atom">x</span> <span class="s s-Atom">in</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">ReportContents</span><span class="p">]</span>
+
+        <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;Report File is: %s&quot;</span> <span class="c1">% self.ReportFile)</span>
+
+        <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;Input report had %d lines of content&quot;</span> <span class="c1">% len(self._ReportContents))</span>
+
+        <span class="s s-Atom">#</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">parse</span> <span class="s s-Atom">thru</span> <span class="s s-Atom">and</span> <span class="s s-Atom">find</span> <span class="s s-Atom">the</span> <span class="s s-Atom">regions</span> <span class="s s-Atom">and</span> <span class="s s-Atom">basic</span> <span class="s s-Atom">info</span> <span class="s s-Atom">at</span> <span class="s s-Atom">top</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="o">is</span> <span class="s s-Atom">a</span> <span class="s s-Atom">little</span> <span class="s s-Atom">hacky</span> <span class="s s-Atom">in</span> <span class="s s-Atom">that</span> <span class="s s-Atom">internal</span> <span class="s s-Atom">operations</span> <span class="s s-Atom">could</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">fail</span> <span class="s s-Atom">but</span> <span class="s s-Atom">it</span> <span class="s s-Atom">doesn&#39;t seem critical</span>
+
+<span class="s s-Atom">        #</span>
+
+<span class="s s-Atom">        linenum = self._GetNextRegionStart(0)</span>
+
+<span class="s s-Atom">        while(linenum is not None):</span>
+
+<span class="s s-Atom">            start = linenum</span>
+
+<span class="s s-Atom">            end = self._GetEndOfRegion(start)</span>
+
+<span class="s s-Atom">            type = self._GetRegionType(start)</span>
+
+<span class="s s-Atom">            self._Regions.append((type, start, end))</span>
+
+<span class="s s-Atom">            linenum = self._GetNextRegionStart(linenum)</span>
+
+<span class="s s-Atom">            logging.debug(&quot;Found a region of type: %s start: %d end: %d&quot; % (type, start, end))</span>
+
+<span class="s s-Atom">        #</span>
+
+<span class="s s-Atom">        # Parse the basic header of the report.</span>
+
+<span class="s s-Atom">        # we do it after parsing region because we</span>
+
+<span class="s s-Atom">        # can limit scope to 0 - first start</span>
+
+<span class="s s-Atom">        #</span>
+
+<span class="s s-Atom">        for n in range(0, self._Regions[0][1]):  # loop thru from 0 to start of first region</span>
+
+<span class="s s-Atom">            line = self._ReportContents[n].strip()</span>
+
+<span class="s s-Atom">            line_partitioned = line.partition(&#39;:&#39;)</span>
+
+<span class="s s-Atom">            if(line_partitioned[2] == &quot;&quot;):</span>
+
+<span class="s s-Atom">                continue</span>
+
+<span class="s s-Atom">            key = line_partitioned[0].strip().lower()</span>
+
+<span class="s s-Atom">            value = line_partitioned[2].strip()</span>
+
+<span class="s s-Atom">            if(key == &quot;platform name&quot;):</span>
+
+<span class="s s-Atom">                self.PlatformName = value</span>
+
+<span class="s s-Atom">            elif(key == &quot;platform dsc path&quot;):</span>
+
+<span class="s s-Atom">                self.DscPath = value</span>
+
+<span class="s s-Atom">            elif(key == &quot;output path&quot;):</span>
+
+<span class="s s-Atom">                self.BuildOutputDir = value</span>
+
+<span class="s s-Atom">        #</span>
+
+<span class="s s-Atom">        # now for each module summary</span>
+
+<span class="s s-Atom">        # parse it</span>
+
+<span class="s s-Atom">        for r in self._Regions:</span>
+
+<span class="s s-Atom">            if(r[0] == BuildReport.RegionTypes.MODULE):</span>
+
+<span class="s s-Atom">                mod = ModuleSummary(self._ReportContents[r[1]:r[2]], self.Workspace, self.PackagePathList)</span>
+
+<span class="s s-Atom">                mod.Parse()</span>
+
+<span class="s s-Atom">                self.Modules[mod.Guid] = mod</span>
+
+<span class="s s-Atom">        # now that all modules are parsed lets parse the FD region so we can get the FV name for each module</span>
+
+<span class="s s-Atom">        for r in self._Regions:</span>
+
+<span class="s s-Atom">            # if FD region parse out all INFs in the all of the flash</span>
+
+<span class="s s-Atom">            if(r[0] == BuildReport.RegionTypes.FD):</span>
+
+<span class="s s-Atom">                self._ParseFdRegionForModules(self._ReportContents[r[1]:r[2]])</span>
+
+<span class="s s-Atom">    def FindComponentByInfPath(self, InfPath):</span>
+
+<span class="s s-Atom">        for (k, v) in self.Modules.items():</span>
+
+<span class="s s-Atom">            if(v.InfPath.lower() == InfPath.lower()):</span>
+
+<span class="s s-Atom">                logging.debug(&quot;Found Module by InfPath: %s&quot; % InfPath)</span>
+
+<span class="s s-Atom">                return v</span>
+
+<span class="s s-Atom">        logging.error(&quot;Failed to find Module by InfPath %s&quot; % InfPath)</span>
+
+<span class="s s-Atom">        return None</span>
+
+<span class="s s-Atom">    def _ParseFdRegionForModules(self, rawcontents):</span>
+
+<span class="s s-Atom">        FvName = None</span>
+
+<span class="s s-Atom">        index = 0</span>
+
+<span class="s s-Atom">        WorkspaceAndPPList = [self.Workspace]</span>
+
+<span class="s s-Atom">        WorkspaceAndPPList.extend(self.PackagePathList)</span>
+
+<span class="s s-Atom">        while index &lt; len(rawcontents):</span>
+
+<span class="s s-Atom">            a = rawcontents[index]</span>
+
+<span class="s s-Atom">            tokens = a.split()</span>
+
+<span class="s s-Atom">            if a.startswith(&quot;0x&quot;) and (len(tokens) == 3) and (a.count(&#39;</span><span class="p">(</span><span class="s s-Atom">&#39;) == 1):</span>
+
+<span class="s s-Atom">                if &quot;.inf&quot; not in a.lower() or (a.count(&#39;</span><span class="p">(</span><span class="s s-Atom">&#39;) != a.count(&quot;)&quot;)):</span>
+
+<span class="s s-Atom">                    a = a + rawcontents[index + 1].strip()</span>
+
+<span class="s s-Atom">                    index += 1</span>
+
+<span class="s s-Atom">                    tokens = a.split()</span>
+
+<span class="s s-Atom">                i = a.split()[2].strip().strip(&#39;</span><span class="p">()</span><span class="s s-Atom">&#39;)</span>
+
+<span class="s s-Atom">                logging.debug(&quot;Found INF in FV Region: &quot; + i)</span>
+
+<span class="s s-Atom">                # Take absolute path and convert to EDK build path</span>
+
+<span class="s s-Atom">                RelativePath = self.PathConverter.GetEdk2RelativePathFromAbsolutePath(i)</span>
+
+<span class="s s-Atom">                if(RelativePath is not None):</span>
+
+<span class="s s-Atom">                    comp = self.FindComponentByInfPath(RelativePath)</span>
+
+<span class="s s-Atom">                    if comp is not None:</span>
+
+<span class="s s-Atom">                        comp.FvName = FvName</span>
+
+<span class="s s-Atom">                    else:</span>
+
+<span class="s s-Atom">                        logging.error(&quot;Failed to find component for INF path %a&quot; % RelativePath)</span>
+
+<span class="s s-Atom">            elif a.startswith(&quot;Fv Name:&quot;):</span>
+
+<span class="s s-Atom">                # Fv Name:            FV_DXE (99.5% Full)</span>
+
+<span class="s s-Atom">                FvName = a.partition(&quot;:&quot;)[2].strip().split()[0]</span>
+
+<span class="s s-Atom">                logging.debug(&quot;Found FvName. RAW: %s  Name: %s&quot; % (a, FvName))</span>
+
+<span class="s s-Atom">            else:</span>
+
+<span class="s s-Atom">                logging.debug(&quot;ignored line in FD parsing: %s&quot; % a)</span>
+
+<span class="s s-Atom">            index += 1</span>
+
+<span class="s s-Atom">        return</span>
+
+<span class="s s-Atom">    #</span>
+
+<span class="s s-Atom">    # Get the start of region</span>
+
+<span class="s s-Atom">    #</span>
+
+<span class="s s-Atom">    def _GetNextRegionStart(self, number):</span>
+
+<span class="s s-Atom">        lineNumber = number</span>
+
+<span class="s s-Atom">        while(lineNumber &lt; len(self._ReportContents)):</span>
+
+<span class="s s-Atom">            if self._ReportContents[lineNumber] == &quot;&gt;======================================================================================================================&lt;&quot;:  # noqa: E501</span>
+
+<span class="s s-Atom">                return lineNumber + 1</span>
+
+<span class="s s-Atom">            lineNumber += 1</span>
+
+<span class="s s-Atom">        logging.debug(&quot;Failed to find a Start Next Region after lineNumber: %d&quot; % number)</span>
+
+<span class="s s-Atom">        # didn&#39;t</span> <span class="s s-Atom">find</span> <span class="s s-Atom">new</span> <span class="s s-Atom">region</span>
+
+        <span class="s s-Atom">return</span> <span class="nv">None</span>
+
+    <span class="s s-Atom">#</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Get</span> <span class="s s-Atom">the</span> <span class="s s-Atom">end</span> <span class="s s-Atom">of</span> <span class="s s-Atom">region</span>
+
+    <span class="s s-Atom">#</span>
+
+    <span class="s s-Atom">def</span> <span class="k">_</span><span class="nv">GetEndOfRegion</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">,</span> <span class="s s-Atom">number</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">lineNumber</span> <span class="o">=</span> <span class="s s-Atom">number</span>
+
+        <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">lineNumber</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">ReportContents</span><span class="p">))</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">if</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">ReportContents</span><span class="p">[</span><span class="s s-Atom">lineNumber</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&lt;======================================================================================================================&gt;&quot;</span><span class="s s-Atom">:</span>  <span class="s s-Atom">#</span> <span class="nn">noqa</span><span class="p">:</span> <span class="nv">E501</span>
+
+                <span class="s s-Atom">return</span> <span class="s s-Atom">lineNumber</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="s s-Atom">lineNumber</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+        <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;Failed to find a End Region after lineNumber: %d&quot;</span> <span class="c1">% number)</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">didn</span><span class="err">&#39;</span><span class="s s-Atom">t</span> <span class="s s-Atom">find</span> <span class="s s-Atom">new</span> <span class="s s-Atom">region</span>
+
+        <span class="s s-Atom">return</span> <span class="nv">None</span>
+
+    <span class="s s-Atom">def</span> <span class="k">_</span><span class="nv">GetRegionType</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">,</span> <span class="s s-Atom">lineNumber</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">line</span> <span class="o">=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">ReportContents</span><span class="p">[</span><span class="s s-Atom">lineNumber</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+        <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;Firmware Device (FD)&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">return</span> <span class="nv">BuildReport</span><span class="p">.</span><span class="nv">RegionTypes</span><span class="p">.</span><span class="nv">FD</span>
+
+        <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;Platform Configuration Database Report&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">return</span> <span class="nv">BuildReport</span><span class="p">.</span><span class="nv">RegionTypes</span><span class="p">.</span><span class="nv">PCD</span>
+
+        <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;Module Summary&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">return</span> <span class="nv">BuildReport</span><span class="p">.</span><span class="nv">RegionTypes</span><span class="p">.</span><span class="nv">MODULE</span>
+
+        <span class="nn">else</span><span class="p">:</span>
+
+            <span class="s s-Atom">return</span> <span class="nv">BuildReport</span><span class="p">.</span><span class="nv">RegionTypes</span><span class="p">.</span><span class="nv">UNKNOWN</span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="buildreport">BuildReport</h3>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BuildReport</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="p">,</span>
+    <span class="n">ws</span><span class="p">,</span>
+    <span class="n">packagepathcsv</span><span class="p">,</span>
+    <span class="n">protectedWordsDict</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="n">BuildReport</span><span class="p">(</span><span class="k">object</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="n">RegionTypes</span><span class="p">(</span><span class="n">Enum</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">PCD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PCD&#39;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">FD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;FD&#39;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">MODULE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MODULE&#39;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">UNKNOWN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;UNKNOWN&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">filepath</span><span class="p">,</span><span class="w"> </span><span class="n">ws</span><span class="p">,</span><span class="w"> </span><span class="n">packagepathcsv</span><span class="p">,</span><span class="w"> </span><span class="n">protectedWordsDict</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">PlatformName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">DscPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">FdfPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">BuildOutputDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">ReportFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filepath</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">Modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{}</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">objects</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">ModuleSummary</span><span class="w"> </span><span class="n">type</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_Regions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">tuple</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="k">start</span><span class="p">,</span><span class="w"> </span><span class="k">end</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">Workspace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ws</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">needs</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">contain</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">trailing</span><span class="w"> </span><span class="n">slash</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">PackagePathList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">packagepathcsv</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="ss">&quot;,&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">self</span><span class="p">.</span><span class="n">PackagePathList</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">ProtectedWords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">protectedWordsDict</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">PathConverter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pu</span><span class="p">.</span><span class="n">Edk2Path</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">Workspace</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">PackagePathList</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">region</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="n">parsing</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w"> </span><span class="n">lists</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">dictionaries</span><span class="w"> </span><span class="n">setup</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">BasicParse</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="k">path</span><span class="p">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">ReportFile</span><span class="p">))</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="k">Exception</span><span class="p">(</span><span class="ss">&quot;Report File path invalid!&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="n">report</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">open</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">ReportFile</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;r&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">x.strip() for x in f.readlines()</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">f</span><span class="p">.</span><span class="k">close</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">replace</span><span class="w"> </span><span class="n">protected</span><span class="w"> </span><span class="n">words</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">ProtectedWords</span><span class="p">.</span><span class="n">items</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">x.replace(k, v) for x in self._ReportContents</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Report File is: %s&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">ReportFile</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Input report had %d lines of content&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">parse</span><span class="w"> </span><span class="n">thru</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">regions</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">basic</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="k">top</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">little</span><span class="w"> </span><span class="n">hacky</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">operations</span><span class="w"> </span><span class="n">could</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">fail</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">doesn</span><span class="s1">&#39;t seem critical</span>
+
+<span class="s1">        #</span>
+
+<span class="s1">        linenum = self._GetNextRegionStart(0)</span>
+
+<span class="s1">        while(linenum is not None):</span>
+
+<span class="s1">            start = linenum</span>
+
+<span class="s1">            end = self._GetEndOfRegion(start)</span>
+
+<span class="s1">            type = self._GetRegionType(start)</span>
+
+<span class="s1">            self._Regions.append((type, start, end))</span>
+
+<span class="s1">            linenum = self._GetNextRegionStart(linenum)</span>
+
+<span class="s1">            logging.debug(&quot;Found a region of type: %s start: %d end: %d&quot; % (type, start, end))</span>
+
+<span class="s1">        #</span>
+
+<span class="s1">        # Parse the basic header of the report.</span>
+
+<span class="s1">        # we do it after parsing region because we</span>
+
+<span class="s1">        # can limit scope to 0 - first start</span>
+
+<span class="s1">        #</span>
+
+<span class="s1">        for n in range(0, self._Regions[0][1]):  # loop thru from 0 to start of first region</span>
+
+<span class="s1">            line = self._ReportContents[n].strip()</span>
+
+<span class="s1">            line_partitioned = line.partition(&#39;</span><span class="err">:</span><span class="s1">&#39;)</span>
+
+<span class="s1">            if(line_partitioned[2] == &quot;&quot;):</span>
+
+<span class="s1">                continue</span>
+
+<span class="s1">            key = line_partitioned[0].strip().lower()</span>
+
+<span class="s1">            value = line_partitioned[2].strip()</span>
+
+<span class="s1">            if(key == &quot;platform name&quot;):</span>
+
+<span class="s1">                self.PlatformName = value</span>
+
+<span class="s1">            elif(key == &quot;platform dsc path&quot;):</span>
+
+<span class="s1">                self.DscPath = value</span>
+
+<span class="s1">            elif(key == &quot;output path&quot;):</span>
+
+<span class="s1">                self.BuildOutputDir = value</span>
+
+<span class="s1">        #</span>
+
+<span class="s1">        # now for each module summary</span>
+
+<span class="s1">        # parse it</span>
+
+<span class="s1">        for r in self._Regions:</span>
+
+<span class="s1">            if(r[0] == BuildReport.RegionTypes.MODULE):</span>
+
+<span class="s1">                mod = ModuleSummary(self._ReportContents[r[1]:r[2]], self.Workspace, self.PackagePathList)</span>
+
+<span class="s1">                mod.Parse()</span>
+
+<span class="s1">                self.Modules[mod.Guid] = mod</span>
+
+<span class="s1">        # now that all modules are parsed lets parse the FD region so we can get the FV name for each module</span>
+
+<span class="s1">        for r in self._Regions:</span>
+
+<span class="s1">            # if FD region parse out all INFs in the all of the flash</span>
+
+<span class="s1">            if(r[0] == BuildReport.RegionTypes.FD):</span>
+
+<span class="s1">                self._ParseFdRegionForModules(self._ReportContents[r[1]:r[2]])</span>
+
+<span class="s1">    def FindComponentByInfPath(self, InfPath):</span>
+
+<span class="s1">        for (k, v) in self.Modules.items():</span>
+
+<span class="s1">            if(v.InfPath.lower() == InfPath.lower()):</span>
+
+<span class="s1">                logging.debug(&quot;Found Module by InfPath: %s&quot; % InfPath)</span>
+
+<span class="s1">                return v</span>
+
+<span class="s1">        logging.error(&quot;Failed to find Module by InfPath %s&quot; % InfPath)</span>
+
+<span class="s1">        return None</span>
+
+<span class="s1">    def _ParseFdRegionForModules(self, rawcontents):</span>
+
+<span class="s1">        FvName = None</span>
+
+<span class="s1">        index = 0</span>
+
+<span class="s1">        WorkspaceAndPPList = [self.Workspace]</span>
+
+<span class="s1">        WorkspaceAndPPList.extend(self.PackagePathList)</span>
+
+<span class="s1">        while index &lt; len(rawcontents):</span>
+
+<span class="s1">            a = rawcontents[index]</span>
+
+<span class="s1">            tokens = a.split()</span>
+
+<span class="s1">            if a.startswith(&quot;0x&quot;) and (len(tokens) == 3) and (a.count(&#39;</span><span class="p">(</span><span class="s1">&#39;) == 1):</span>
+
+<span class="s1">                if &quot;.inf&quot; not in a.lower() or (a.count(&#39;</span><span class="p">(</span><span class="s1">&#39;) != a.count(&quot;)&quot;)):</span>
+
+<span class="s1">                    a = a + rawcontents[index + 1].strip()</span>
+
+<span class="s1">                    index += 1</span>
+
+<span class="s1">                    tokens = a.split()</span>
+
+<span class="s1">                i = a.split()[2].strip().strip(&#39;</span><span class="p">()</span><span class="s1">&#39;)</span>
+
+<span class="s1">                logging.debug(&quot;Found INF in FV Region: &quot; + i)</span>
+
+<span class="s1">                # Take absolute path and convert to EDK build path</span>
+
+<span class="s1">                RelativePath = self.PathConverter.GetEdk2RelativePathFromAbsolutePath(i)</span>
+
+<span class="s1">                if(RelativePath is not None):</span>
+
+<span class="s1">                    comp = self.FindComponentByInfPath(RelativePath)</span>
+
+<span class="s1">                    if comp is not None:</span>
+
+<span class="s1">                        comp.FvName = FvName</span>
+
+<span class="s1">                    else:</span>
+
+<span class="s1">                        logging.error(&quot;Failed to find component for INF path %a&quot; % RelativePath)</span>
+
+<span class="s1">            elif a.startswith(&quot;Fv Name:&quot;):</span>
+
+<span class="s1">                # Fv Name:            FV_DXE (99.5% Full)</span>
+
+<span class="s1">                FvName = a.partition(&quot;:&quot;)[2].strip().split()[0]</span>
+
+<span class="s1">                logging.debug(&quot;Found FvName. RAW: %s  Name: %s&quot; % (a, FvName))</span>
+
+<span class="s1">            else:</span>
+
+<span class="s1">                logging.debug(&quot;ignored line in FD parsing: %s&quot; % a)</span>
+
+<span class="s1">            index += 1</span>
+
+<span class="s1">        return</span>
+
+<span class="s1">    #</span>
+
+<span class="s1">    # Get the start of region</span>
+
+<span class="s1">    #</span>
+
+<span class="s1">    def _GetNextRegionStart(self, number):</span>
+
+<span class="s1">        lineNumber = number</span>
+
+<span class="s1">        while(lineNumber &lt; len(self._ReportContents)):</span>
+
+<span class="s1">            if self._ReportContents[lineNumber] == &quot;&gt;======================================================================================================================&lt;&quot;:  # noqa: E501</span>
+
+<span class="s1">                return lineNumber + 1</span>
+
+<span class="s1">            lineNumber += 1</span>
+
+<span class="s1">        logging.debug(&quot;Failed to find a Start Next Region after lineNumber: %d&quot; % number)</span>
+
+<span class="s1">        # didn&#39;</span><span class="n">t</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">region</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">None</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">Get</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">region</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">_GetEndOfRegion</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">lineNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">lineNumber</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="p">))</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="o">[</span><span class="n">lineNumber</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;&lt;======================================================================================================================&gt;&quot;</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nl">noqa</span><span class="p">:</span><span class="w"> </span><span class="n">E501</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">lineNumber</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">lineNumber</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Failed to find a End Region after lineNumber: %d&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">number</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">didn</span><span class="err">&#39;</span><span class="n">t</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">region</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">None</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">_GetRegionType</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">lineNumber</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="o">[</span><span class="n">lineNumber</span><span class="o">]</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">line</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;Firmware Device (FD)&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">BuildReport</span><span class="p">.</span><span class="n">RegionTypes</span><span class="p">.</span><span class="n">FD</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">elif</span><span class="p">(</span><span class="n">line</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;Platform Configuration Database Report&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">BuildReport</span><span class="p">.</span><span class="n">RegionTypes</span><span class="p">.</span><span class="n">PCD</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">elif</span><span class="p">(</span><span class="n">line</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;Module Summary&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">BuildReport</span><span class="p">.</span><span class="n">RegionTypes</span><span class="p">.</span><span class="k">MODULE</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">BuildReport</span><span class="p">.</span><span class="n">RegionTypes</span><span class="p">.</span><span class="k">UNKNOWN</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="class-variables">Class variables</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="n">RegionTypes</span>
+</code></pre></div>
+
+<h4 id="methods">Methods</h4>
+<h4 id="basicparse">BasicParse</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">BasicParse</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">BasicParse</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="k">path</span><span class="p">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">ReportFile</span><span class="p">))</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="k">Exception</span><span class="p">(</span><span class="ss">&quot;Report File path invalid!&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="n">report</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">open</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">ReportFile</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;r&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">x.strip() for x in f.readlines()</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">f</span><span class="p">.</span><span class="k">close</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">replace</span><span class="w"> </span><span class="n">protected</span><span class="w"> </span><span class="n">words</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">ProtectedWords</span><span class="p">.</span><span class="n">items</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">x.replace(k, v) for x in self._ReportContents</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Report File is: %s&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">ReportFile</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">logging</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Input report had %d lines of content&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">parse</span><span class="w"> </span><span class="n">thru</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">regions</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">basic</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="k">top</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">little</span><span class="w"> </span><span class="n">hacky</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">internal</span><span class="w"> </span><span class="n">operations</span><span class="w"> </span><span class="n">could</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">fail</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">doesn</span><span class="s1">&#39;t seem critical</span>
+
+<span class="s1">        #</span>
+
+<span class="s1">        linenum = self._GetNextRegionStart(0)</span>
+
+<span class="s1">        while(linenum is not None):</span>
+
+<span class="s1">            start = linenum</span>
+
+<span class="s1">            end = self._GetEndOfRegion(start)</span>
+
+<span class="s1">            type = self._GetRegionType(start)</span>
+
+<span class="s1">            self._Regions.append((type, start, end))</span>
+
+<span class="s1">            linenum = self._GetNextRegionStart(linenum)</span>
+
+<span class="s1">            logging.debug(&quot;Found a region of type: %s start: %d end: %d&quot; % (type, start, end))</span>
+
+<span class="s1">        #</span>
+
+<span class="s1">        # Parse the basic header of the report.</span>
+
+<span class="s1">        # we do it after parsing region because we</span>
+
+<span class="s1">        # can limit scope to 0 - first start</span>
+
+<span class="s1">        #</span>
+
+<span class="s1">        for n in range(0, self._Regions[0][1]):  # loop thru from 0 to start of first region</span>
+
+<span class="s1">            line = self._ReportContents[n].strip()</span>
+
+<span class="s1">            line_partitioned = line.partition(&#39;</span><span class="err">:&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">line_partitioned</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">continue</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line_partitioned</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="nf">lower</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line_partitioned</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="k">key</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;platform name&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">self</span><span class="p">.</span><span class="n">PlatformName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">value</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">elif</span><span class="p">(</span><span class="k">key</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;platform dsc path&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">self</span><span class="p">.</span><span class="n">DscPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">value</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">elif</span><span class="p">(</span><span class="k">key</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;output path&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">self</span><span class="p">.</span><span class="n">BuildOutputDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">value</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">module</span><span class="w"> </span><span class="n">summary</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">parse</span><span class="w"> </span><span class="n">it</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">_Regions</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BuildReport</span><span class="p">.</span><span class="n">RegionTypes</span><span class="p">.</span><span class="k">MODULE</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ModuleSummary</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="o">[</span><span class="n">r[1</span><span class="o">]</span><span class="err">:</span><span class="n">r</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="err">]</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">Workspace</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">PackagePathList</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">mod</span><span class="p">.</span><span class="nf">Parse</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">self</span><span class="p">.</span><span class="n">Modules</span><span class="o">[</span><span class="n">mod.Guid</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">mod</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">modules</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">parsed</span><span class="w"> </span><span class="n">lets</span><span class="w"> </span><span class="nf">parse</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">FD</span><span class="w"> </span><span class="n">region</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">FV</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">module</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">_Regions</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">FD</span><span class="w"> </span><span class="n">region</span><span class="w"> </span><span class="nf">parse</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">INFs</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">flash</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BuildReport</span><span class="p">.</span><span class="n">RegionTypes</span><span class="p">.</span><span class="n">FD</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">self</span><span class="p">.</span><span class="n">_ParseFdRegionForModules</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">_ReportContents</span><span class="o">[</span><span class="n">r[1</span><span class="o">]</span><span class="err">:</span><span class="n">r</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="err">]</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h4 id="findcomponentbyinfpath">FindComponentByInfPath</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">FindComponentByInfPath</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">InfPath</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">FindComponentByInfPath</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">InfPath</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="n">Modules</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">InfPath</span><span class="p">.</span><span class="k">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">InfPath</span><span class="p">.</span><span class="k">lower</span><span class="p">()):</span>
+
+                <span class="n">logging</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="ss">&quot;Found Module by InfPath: %s&quot;</span> <span class="o">%</span> <span class="n">InfPath</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">v</span>
+
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="ss">&quot;Failed to find Module by InfPath %s&quot;</span> <span class="o">%</span> <span class="n">InfPath</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="k">None</span>
+</code></pre></div>
+
+</details>
+<h3 id="modulesummary">ModuleSummary</h3>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">ModuleSummary</span><span class="p">(</span>
+    <span class="n">content</span><span class="p">,</span>
+    <span class="n">ws</span><span class="p">,</span>
+    <span class="n">packagepatahlist</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="s s-Atom">class</span> <span class="nv">ModuleSummary</span><span class="p">(</span><span class="s s-Atom">object</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+    <span class="s s-Atom">def</span> <span class="k">__</span><span class="nf">init__</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">,</span> <span class="s s-Atom">content</span><span class="p">,</span> <span class="s s-Atom">ws</span><span class="p">,</span> <span class="s s-Atom">packagepatahlist</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span> <span class="o">=</span> <span class="s s-Atom">content</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Guid</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">InfPath</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Type</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PCDs</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Libraries</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Depex</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">WorkspacePath</span> <span class="o">=</span> <span class="s s-Atom">ws</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PackagePathList</span> <span class="o">=</span> <span class="s s-Atom">packagepatahlist</span>
+
+        <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">FvName</span> <span class="o">=</span> <span class="nv">None</span>
+
+    <span class="s s-Atom">def</span> <span class="nv">Parse</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">tokenspace</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">pathConverter</span> <span class="o">=</span> <span class="s s-Atom">pu</span><span class="p">.</span><span class="nv">Edk2Path</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="nv">WorkspacePath</span><span class="p">,</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PackagePathList</span><span class="p">)</span>
+
+        <span class="s s-Atom">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="nn">try</span><span class="p">:</span>
+
+            <span class="s s-Atom">while</span> <span class="s s-Atom">i</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">line</span> <span class="o">=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                <span class="s s-Atom">#</span> <span class="s s-Atom">parse</span> <span class="s s-Atom">start</span> <span class="s s-Atom">and</span> <span class="s s-Atom">end</span>
+
+                <span class="s s-Atom">if</span> <span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;&gt;----------------------------------------------------------------------------------------------------------------------&lt;&quot;</span><span class="s s-Atom">:</span>      <span class="s s-Atom">#</span> <span class="nn">noqa</span><span class="p">:</span> <span class="nv">E501</span>
+
+                    <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                <span class="s s-Atom">elif</span> <span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;&lt;----------------------------------------------------------------------------------------------------------------------&gt;&quot;</span><span class="s s-Atom">:</span>    <span class="s s-Atom">#</span> <span class="nn">noqa</span><span class="p">:</span> <span class="nv">E501</span>
+
+                    <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                <span class="s s-Atom">#</span> <span class="s s-Atom">parse</span> <span class="s s-Atom">section</span> <span class="s s-Atom">header</span>
+
+                <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">nextLineSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                    <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;Library&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">add</span> <span class="s s-Atom">additional</span> <span class="s s-Atom">line</span> <span class="s s-Atom">to</span> <span class="s s-Atom">skip</span> <span class="s s-Atom">the</span> <span class="s s-Atom">dashed</span> <span class="s s-Atom">line</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;PCD&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">add</span> <span class="s s-Atom">additional</span> <span class="s s-Atom">line</span> <span class="s s-Atom">to</span> <span class="s s-Atom">skip</span> <span class="s s-Atom">the</span> <span class="s s-Atom">dashed</span> <span class="s s-Atom">line</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;Final Dependency Expression (DEPEX) Instructions&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">add</span> <span class="s s-Atom">additional</span> <span class="s s-Atom">line</span> <span class="s s-Atom">to</span> <span class="s s-Atom">skip</span> <span class="s s-Atom">the</span> <span class="s s-Atom">dashed</span> <span class="s s-Atom">line</span>
+
+                    <span class="nn">else</span><span class="p">:</span>
+
+                        <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;Unsupported Section: &quot;</span> <span class="o">+</span> <span class="s s-Atom">line</span><span class="p">)</span>
+
+                        <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                        <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                        <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                <span class="s s-Atom">#</span> <span class="nv">Normal</span> <span class="s s-Atom">section</span> <span class="s s-Atom">parsing</span>
+
+                <span class="nn">else</span><span class="p">:</span>
+
+                    <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">inLibSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;InLibSection: %s&quot;</span> <span class="c1">% line)</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">get</span> <span class="s s-Atom">the</span> <span class="s s-Atom">whole</span> <span class="s s-Atom">statement</span> <span class="s s-Atom">library</span> <span class="s s-Atom">class</span> <span class="s s-Atom">statement</span>
+
+                        <span class="s s-Atom">templine</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">&#39;}&#39;</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">templine</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                            <span class="s s-Atom">templine</span> <span class="s s-Atom">+=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">have</span> <span class="s s-Atom">good</span> <span class="s s-Atom">complete</span> <span class="s s-Atom">line</span> <span class="s s-Atom">with</span> <span class="s s-Atom">no</span> <span class="s s-Atom">whitespace</span><span class="o">/</span><span class="s s-Atom">newline</span> <span class="s s-Atom">chars</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">first</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">library</span> <span class="s s-Atom">instance</span> <span class="nv">INF</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">second</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">library</span> <span class="s s-Atom">class</span>
+
+                        <span class="s s-Atom">lib_class</span> <span class="o">=</span> <span class="s s-Atom">templine</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;{&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">].</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;}&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">lib_instance</span> <span class="o">=</span> <span class="s s-Atom">templine</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;{&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">#</span> <span class="nv">Take</span> <span class="s s-Atom">absolute</span> <span class="s s-Atom">path</span> <span class="s s-Atom">and</span> <span class="s s-Atom">convert</span> <span class="s s-Atom">to</span> <span class="nv">EDK</span> <span class="s s-Atom">build</span> <span class="s s-Atom">path</span>
+
+                        <span class="nv">RelativePath</span> <span class="o">=</span> <span class="s s-Atom">pathConverter</span><span class="p">.</span><span class="nv">GetEdk2RelativePathFromAbsolutePath</span><span class="p">(</span><span class="s s-Atom">lib_instance</span><span class="p">)</span>
+
+                        <span class="nf">if</span><span class="p">(</span><span class="nv">RelativePath</span> <span class="o">is</span> <span class="o">not</span> <span class="nv">None</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Libraries</span><span class="p">[</span><span class="s s-Atom">lib_class</span><span class="p">]</span> <span class="o">=</span> <span class="nv">RelativePath</span>
+
+                        <span class="nn">else</span><span class="p">:</span>
+
+                            <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Libraries</span><span class="p">[</span><span class="s s-Atom">lib_class</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">lib_instance</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                        <span class="s s-Atom">continue</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">inPcdSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">namespace</span> <span class="s s-Atom">token</span> <span class="s s-Atom">line</span>
+
+                        <span class="nf">if</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">split</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">tokenspace</span> <span class="o">=</span> <span class="s s-Atom">line</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">main</span> <span class="s s-Atom">line</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="nv">PCD</span> <span class="s s-Atom">value</span>
+
+                        <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="s s-Atom">and</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;\&quot;&quot;</span><span class="p">)</span> <span class="c1">% 2) != 0:</span>
+
+                                <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                                <span class="s s-Atom">line</span> <span class="s s-Atom">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">rstrip</span><span class="p">()</span>
+
+                            <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s s-Atom">&#39;{&#39;</span><span class="p">)</span> <span class="p">!</span><span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s s-Atom">&#39;}&#39;</span><span class="p">))</span><span class="s s-Atom">:</span>
+
+                                <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                                <span class="s s-Atom">line</span> <span class="s s-Atom">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">rstrip</span><span class="p">()</span>
+
+                            <span class="s s-Atom">token</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;=&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+
+                            <span class="s s-Atom">token2</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+                            <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PCDs</span><span class="p">[</span><span class="s s-Atom">tokenspace</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="s s-Atom">token2</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">token</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">secondary</span> <span class="s s-Atom">lines</span> <span class="s s-Atom">of</span> <span class="nv">PCD</span> <span class="s s-Atom">values</span> <span class="s s-Atom">showing</span> <span class="nv">Defaults</span>
+
+                        <span class="s s-Atom">elif</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="s s-Atom">and</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="s s-Atom">:</span>
+
+                            <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;\&quot;&quot;</span><span class="p">)</span> <span class="c1">% 2) != 0:</span>
+
+                                <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                                <span class="s s-Atom">line</span> <span class="s s-Atom">+=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">rstrip</span><span class="p">()</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">inDepSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">pass</span>
+
+                        <span class="s s-Atom">#</span> <span class="o">not</span> <span class="s s-Atom">implemented</span> <span class="s s-Atom">right</span> <span class="s s-Atom">now</span>
+
+                    <span class="nn">else</span><span class="p">:</span>
+
+                        <span class="s s-Atom">#</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">section</span><span class="p">...</span><span class="nv">Must</span> <span class="s s-Atom">be</span> <span class="s s-Atom">header</span> <span class="s s-Atom">section</span>
+
+                        <span class="s s-Atom">line_partitioned</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;:&#39;</span><span class="p">)</span>
+
+                        <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">line_partitioned</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">pass</span>  <span class="s s-Atom">#</span> <span class="o">not</span> <span class="s s-Atom">a</span> <span class="nn">name</span><span class="p">:</span> <span class="s s-Atom">value</span> <span class="s s-Atom">pair</span>
+
+                        <span class="nn">else</span><span class="p">:</span>
+
+                            <span class="s s-Atom">key</span> <span class="o">=</span> <span class="s s-Atom">line_partitioned</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">strip</span><span class="p">().</span><span class="nf">lower</span><span class="p">()</span>
+
+                            <span class="s s-Atom">value</span> <span class="o">=</span> <span class="s s-Atom">line_partitioned</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                            <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">key</span> <span class="o">==</span> <span class="s2">&quot;module name&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                                <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;Parsing Mod: %s&quot;</span> <span class="c1">% value)</span>
+
+                                <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Name</span> <span class="o">=</span> <span class="s s-Atom">value</span>
+
+                            <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">key</span> <span class="o">==</span> <span class="s2">&quot;module inf path&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                                <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">InfPath</span> <span class="o">=</span> <span class="s s-Atom">value</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="err">&quot;</span><span class="s s-Atom">\\</span><span class="s2">&quot;, &quot;</span><span class="s s-Atom">/</span><span class="s2">&quot;)</span>
+
+<span class="s2">                            elif(key == &quot;</span><span class="s s-Atom">file</span> <span class="s s-Atom">guid</span><span class="s2">&quot;):</span>
+
+<span class="s2">                                self.Guid = value</span>
+
+<span class="s2">                            elif(key == &quot;</span><span class="s s-Atom">driver</span> <span class="s s-Atom">type</span><span class="s2">&quot;):</span>
+
+<span class="s2">                                value = value.strip()</span>
+
+<span class="s2">                                self.Type = value[value.index(&#39;(&#39;) + 1:-1]</span>
+
+<span class="s2">                i += 1</span>
+
+<span class="s2">        except Exception:</span>
+
+<span class="s2">            logging.debug(&quot;</span><span class="nv">Exception</span> <span class="s s-Atom">in</span> <span class="nv">Parsing</span><span class="s s-Atom">:</span> <span class="c1">%d&quot; % i)</span>
+
+            <span class="s s-Atom">raise</span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="methods_1">Methods</h4>
+<h4 id="parse">Parse</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">Parse</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="s s-Atom">def</span> <span class="nv">Parse</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">tokenspace</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="s s-Atom">pathConverter</span> <span class="o">=</span> <span class="s s-Atom">pu</span><span class="p">.</span><span class="nv">Edk2Path</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="nv">WorkspacePath</span><span class="p">,</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PackagePathList</span><span class="p">)</span>
+
+        <span class="s s-Atom">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="nn">try</span><span class="p">:</span>
+
+            <span class="s s-Atom">while</span> <span class="s s-Atom">i</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">line</span> <span class="o">=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                <span class="s s-Atom">#</span> <span class="s s-Atom">parse</span> <span class="s s-Atom">start</span> <span class="s s-Atom">and</span> <span class="s s-Atom">end</span>
+
+                <span class="s s-Atom">if</span> <span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;&gt;----------------------------------------------------------------------------------------------------------------------&lt;&quot;</span><span class="s s-Atom">:</span>      <span class="s s-Atom">#</span> <span class="nn">noqa</span><span class="p">:</span> <span class="nv">E501</span>
+
+                    <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                <span class="s s-Atom">elif</span> <span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;&lt;----------------------------------------------------------------------------------------------------------------------&gt;&quot;</span><span class="s s-Atom">:</span>    <span class="s s-Atom">#</span> <span class="nn">noqa</span><span class="p">:</span> <span class="nv">E501</span>
+
+                    <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                <span class="s s-Atom">#</span> <span class="s s-Atom">parse</span> <span class="s s-Atom">section</span> <span class="s s-Atom">header</span>
+
+                <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">nextLineSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                    <span class="s s-Atom">nextLineSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                    <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;Library&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">add</span> <span class="s s-Atom">additional</span> <span class="s s-Atom">line</span> <span class="s s-Atom">to</span> <span class="s s-Atom">skip</span> <span class="s s-Atom">the</span> <span class="s s-Atom">dashed</span> <span class="s s-Atom">line</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;PCD&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">add</span> <span class="s s-Atom">additional</span> <span class="s s-Atom">line</span> <span class="s s-Atom">to</span> <span class="s s-Atom">skip</span> <span class="s s-Atom">the</span> <span class="s s-Atom">dashed</span> <span class="s s-Atom">line</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span> <span class="o">==</span> <span class="s2">&quot;Final Dependency Expression (DEPEX) Instructions&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">True</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">add</span> <span class="s s-Atom">additional</span> <span class="s s-Atom">line</span> <span class="s s-Atom">to</span> <span class="s s-Atom">skip</span> <span class="s s-Atom">the</span> <span class="s s-Atom">dashed</span> <span class="s s-Atom">line</span>
+
+                    <span class="nn">else</span><span class="p">:</span>
+
+                        <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;Unsupported Section: &quot;</span> <span class="o">+</span> <span class="s s-Atom">line</span><span class="p">)</span>
+
+                        <span class="s s-Atom">inPcdSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                        <span class="s s-Atom">inLibSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                        <span class="s s-Atom">inDepSection</span> <span class="o">=</span> <span class="nv">False</span>
+
+                <span class="s s-Atom">#</span> <span class="nv">Normal</span> <span class="s s-Atom">section</span> <span class="s s-Atom">parsing</span>
+
+                <span class="nn">else</span><span class="p">:</span>
+
+                    <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">inLibSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;InLibSection: %s&quot;</span> <span class="c1">% line)</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">get</span> <span class="s s-Atom">the</span> <span class="s s-Atom">whole</span> <span class="s s-Atom">statement</span> <span class="s s-Atom">library</span> <span class="s s-Atom">class</span> <span class="s s-Atom">statement</span>
+
+                        <span class="s s-Atom">templine</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">&#39;}&#39;</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">templine</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                            <span class="s s-Atom">templine</span> <span class="s s-Atom">+=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">have</span> <span class="s s-Atom">good</span> <span class="s s-Atom">complete</span> <span class="s s-Atom">line</span> <span class="s s-Atom">with</span> <span class="s s-Atom">no</span> <span class="s s-Atom">whitespace</span><span class="o">/</span><span class="s s-Atom">newline</span> <span class="s s-Atom">chars</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">first</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">library</span> <span class="s s-Atom">instance</span> <span class="nv">INF</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">second</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">library</span> <span class="s s-Atom">class</span>
+
+                        <span class="s s-Atom">lib_class</span> <span class="o">=</span> <span class="s s-Atom">templine</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;{&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">].</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;}&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">lib_instance</span> <span class="o">=</span> <span class="s s-Atom">templine</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;{&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">#</span> <span class="nv">Take</span> <span class="s s-Atom">absolute</span> <span class="s s-Atom">path</span> <span class="s s-Atom">and</span> <span class="s s-Atom">convert</span> <span class="s s-Atom">to</span> <span class="nv">EDK</span> <span class="s s-Atom">build</span> <span class="s s-Atom">path</span>
+
+                        <span class="nv">RelativePath</span> <span class="o">=</span> <span class="s s-Atom">pathConverter</span><span class="p">.</span><span class="nv">GetEdk2RelativePathFromAbsolutePath</span><span class="p">(</span><span class="s s-Atom">lib_instance</span><span class="p">)</span>
+
+                        <span class="nf">if</span><span class="p">(</span><span class="nv">RelativePath</span> <span class="o">is</span> <span class="o">not</span> <span class="nv">None</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Libraries</span><span class="p">[</span><span class="s s-Atom">lib_class</span><span class="p">]</span> <span class="o">=</span> <span class="nv">RelativePath</span>
+
+                        <span class="nn">else</span><span class="p">:</span>
+
+                            <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Libraries</span><span class="p">[</span><span class="s s-Atom">lib_class</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">lib_instance</span>
+
+                        <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                        <span class="s s-Atom">continue</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">inPcdSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">namespace</span> <span class="s s-Atom">token</span> <span class="s s-Atom">line</span>
+
+                        <span class="nf">if</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">split</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">tokenspace</span> <span class="o">=</span> <span class="s s-Atom">line</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">main</span> <span class="s s-Atom">line</span> <span class="s s-Atom">of</span> <span class="s s-Atom">the</span> <span class="nv">PCD</span> <span class="s s-Atom">value</span>
+
+                        <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="s s-Atom">and</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;\&quot;&quot;</span><span class="p">)</span> <span class="c1">% 2) != 0:</span>
+
+                                <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                                <span class="s s-Atom">line</span> <span class="s s-Atom">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">rstrip</span><span class="p">()</span>
+
+                            <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s s-Atom">&#39;{&#39;</span><span class="p">)</span> <span class="p">!</span><span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s s-Atom">&#39;}&#39;</span><span class="p">))</span><span class="s s-Atom">:</span>
+
+                                <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                                <span class="s s-Atom">line</span> <span class="s s-Atom">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">rstrip</span><span class="p">()</span>
+
+                            <span class="s s-Atom">token</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;=&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+
+                            <span class="s s-Atom">token2</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nf">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+                            <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">PCDs</span><span class="p">[</span><span class="s s-Atom">tokenspace</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="s s-Atom">token2</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">token</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+
+                        <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">secondary</span> <span class="s s-Atom">lines</span> <span class="s s-Atom">of</span> <span class="nv">PCD</span> <span class="s s-Atom">values</span> <span class="s s-Atom">showing</span> <span class="nv">Defaults</span>
+
+                        <span class="s s-Atom">elif</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="s s-Atom">and</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="s s-Atom">:</span>
+
+                            <span class="nf">while</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s2">&quot;\&quot;&quot;</span><span class="p">)</span> <span class="c1">% 2) != 0:</span>
+
+                                <span class="s s-Atom">i</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+                                <span class="s s-Atom">line</span> <span class="s s-Atom">+=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="k">_</span><span class="nv">RawContent</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">].</span><span class="nf">rstrip</span><span class="p">()</span>
+
+                    <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">inDepSection</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                        <span class="s s-Atom">pass</span>
+
+                        <span class="s s-Atom">#</span> <span class="o">not</span> <span class="s s-Atom">implemented</span> <span class="s s-Atom">right</span> <span class="s s-Atom">now</span>
+
+                    <span class="nn">else</span><span class="p">:</span>
+
+                        <span class="s s-Atom">#</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">section</span><span class="p">...</span><span class="nv">Must</span> <span class="s s-Atom">be</span> <span class="s s-Atom">header</span> <span class="s s-Atom">section</span>
+
+                        <span class="s s-Atom">line_partitioned</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">partition</span><span class="p">(</span><span class="s s-Atom">&#39;:&#39;</span><span class="p">)</span>
+
+                        <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">line_partitioned</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                            <span class="s s-Atom">pass</span>  <span class="s s-Atom">#</span> <span class="o">not</span> <span class="s s-Atom">a</span> <span class="nn">name</span><span class="p">:</span> <span class="s s-Atom">value</span> <span class="s s-Atom">pair</span>
+
+                        <span class="nn">else</span><span class="p">:</span>
+
+                            <span class="s s-Atom">key</span> <span class="o">=</span> <span class="s s-Atom">line_partitioned</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">strip</span><span class="p">().</span><span class="nf">lower</span><span class="p">()</span>
+
+                            <span class="s s-Atom">value</span> <span class="o">=</span> <span class="s s-Atom">line_partitioned</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
+
+                            <span class="nf">if</span><span class="p">(</span><span class="s s-Atom">key</span> <span class="o">==</span> <span class="s2">&quot;module name&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                                <span class="s s-Atom">logging</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">&quot;Parsing Mod: %s&quot;</span> <span class="c1">% value)</span>
+
+                                <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">Name</span> <span class="o">=</span> <span class="s s-Atom">value</span>
+
+                            <span class="nf">elif</span><span class="p">(</span><span class="s s-Atom">key</span> <span class="o">==</span> <span class="s2">&quot;module inf path&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                                <span class="s s-Atom">self</span><span class="p">.</span><span class="nv">InfPath</span> <span class="o">=</span> <span class="s s-Atom">value</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="err">&quot;</span><span class="s s-Atom">\\</span><span class="s2">&quot;, &quot;</span><span class="s s-Atom">/</span><span class="s2">&quot;)</span>
+
+<span class="s2">                            elif(key == &quot;</span><span class="s s-Atom">file</span> <span class="s s-Atom">guid</span><span class="s2">&quot;):</span>
+
+<span class="s2">                                self.Guid = value</span>
+
+<span class="s2">                            elif(key == &quot;</span><span class="s s-Atom">driver</span> <span class="s s-Atom">type</span><span class="s2">&quot;):</span>
+
+<span class="s2">                                value = value.strip()</span>
+
+<span class="s2">                                self.Type = value[value.index(&#39;(&#39;) + 1:-1]</span>
+
+<span class="s2">                i += 1</span>
+
+<span class="s2">        except Exception:</span>
+
+<span class="s2">            logging.debug(&quot;</span><span class="nv">Exception</span> <span class="s s-Atom">in</span> <span class="nv">Parsing</span><span class="s s-Atom">:</span> <span class="c1">%d&quot; % i)</span>
+
+            <span class="s s-Atom">raise</span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../base_parser/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Base parser
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../dec_parser/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Dec parser
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright (c) Microsoft.  All rights reserved
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../../../../js/version-select.js"></script>
+      
+    
+  </body>
+</html>

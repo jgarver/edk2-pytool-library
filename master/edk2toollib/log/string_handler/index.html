@@ -1,0 +1,2642 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Project Mu Documentation">
+      
+      
+        <link rel="canonical" href="https://matthewc.dev/edk2-pytool-library/master/edk2toollib/log/string_handler/">
+      
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>String handler - EDK2 Pytool Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../css/version-select.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-edk2toolliblogstring_handler" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://matthewc.dev/edk2-pytool-library/master/" title="EDK2 Pytool Library" class="md-header-nav__button md-logo" aria-label="EDK2 Pytool Library">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            EDK2 Pytool Library
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              String handler
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/matthewfcarlson/edk2-pytool-library/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://matthewc.dev/edk2-pytool-library/master/" title="EDK2 Pytool Library" class="md-nav__button md-logo" aria-label="EDK2 Pytool Library">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    EDK2 Pytool Library
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/matthewfcarlson/edk2-pytool-library/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../developing/" class="md-nav__link">
+      Developing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../publishing/" class="md-nav__link">
+      Publishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../using/" class="md-nav__link">
+      Using
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../features/logging.ansi_handler/" class="md-nav__link">
+      Logging.ansi handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../features/utility_functions.GetHostInfo/" class="md-nav__link">
+      Utility functions.get host info
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../features/windows_firmware_policy/" class="md-nav__link">
+      Windows firmware policy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../bin/" class="md-nav__link">
+      Bin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gitignore_parser/" class="md-nav__link">
+      Gitignore parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utility_functions/" class="md-nav__link">
+      Utility functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
+    
+    <label class="md-nav__link" for="nav-6-5">
+      Acpi
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Acpi" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-5">
+        <span class="md-nav__icon md-icon"></span>
+        Acpi
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../acpi/dmar_parser/" class="md-nav__link">
+      Dmar parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../acpi/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../acpi/ivrs_parser/" class="md-nav__link">
+      Ivrs parser
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-6" type="checkbox" id="nav-6-6" checked>
+    
+    <label class="md-nav__link" for="nav-6-6">
+      Log
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Log" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-6">
+        <span class="md-nav__icon md-icon"></span>
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ansi_handler/" class="md-nav__link">
+      Ansi handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../file_handler/" class="md-nav__link">
+      File handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../junit_report_format/" class="md-nav__link">
+      Junit report format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../markdown_handler/" class="md-nav__link">
+      Markdown handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        String handler
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      String handler
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stringstreamhandler" class="md-nav__link">
+    StringStreamHandler
+  </a>
+  
+    <nav class="md-nav" aria-label="StringStreamHandler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acquire" class="md-nav__link">
+    acquire
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addfilter" class="md-nav__link">
+    addFilter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close" class="md-nav__link">
+    close
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createlock" class="md-nav__link">
+    createLock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emit" class="md-nav__link">
+    emit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    filter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flush" class="md-nav__link">
+    flush
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format" class="md-nav__link">
+    format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_name" class="md-nav__link">
+    get_name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle" class="md-nav__link">
+    handle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handleerror" class="md-nav__link">
+    handleError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readlines" class="md-nav__link">
+    readlines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    release
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removefilter" class="md-nav__link">
+    removeFilter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seek" class="md-nav__link">
+    seek
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seek_end" class="md-nav__link">
+    seek_end
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seek_start" class="md-nav__link">
+    seek_start
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setformatter" class="md-nav__link">
+    setFormatter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setlevel" class="md-nav__link">
+    setLevel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setstream" class="md-nav__link">
+    setStream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_name" class="md-nav__link">
+    set_name
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-7" type="checkbox" id="nav-6-7">
+    
+    <label class="md-nav__link" for="nav-6-7">
+      Tpm
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tpm" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-7">
+        <span class="md-nav__icon md-icon"></span>
+        Tpm
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tpm/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tpm/tpm2_defs/" class="md-nav__link">
+      Tpm2 defs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tpm/tpm2_policy_calc/" class="md-nav__link">
+      Tpm2 policy calc
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tpm/tpm2_simulator/" class="md-nav__link">
+      Tpm2 simulator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tpm/tpm2_stream/" class="md-nav__link">
+      Tpm2 stream
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8" type="checkbox" id="nav-6-8">
+    
+    <label class="md-nav__link" for="nav-6-8">
+      Uefi
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Uefi" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-8">
+        <span class="md-nav__icon md-icon"></span>
+        Uefi
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/authenticated_variables_structure_support/" class="md-nav__link">
+      Authenticated variables structure support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/bmp_object/" class="md-nav__link">
+      Bmp object
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/fmp_auth_header/" class="md-nav__link">
+      Fmp auth header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/fmp_capsule_header/" class="md-nav__link">
+      Fmp capsule header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/pi_firmware_file/" class="md-nav__link">
+      Pi firmware file
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/pi_firmware_volume/" class="md-nav__link">
+      Pi firmware volume
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/status_codes/" class="md-nav__link">
+      Status codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/uefi_capsule_header/" class="md-nav__link">
+      Uefi capsule header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/uefi_multi_phase/" class="md-nav__link">
+      Uefi multi phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/wincert/" class="md-nav__link">
+      Wincert
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12" type="checkbox" id="nav-6-8-12">
+    
+    <label class="md-nav__link" for="nav-6-8-12">
+      Edk2
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Edk2" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-8-12">
+        <span class="md-nav__icon md-icon"></span>
+        Edk2
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/fmp_payload_header/" class="md-nav__link">
+      Fmp payload header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/ftw_working_block_format/" class="md-nav__link">
+      Ftw working block format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/guid_list/" class="md-nav__link">
+      Guid list
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/path_utilities/" class="md-nav__link">
+      Path utilities
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/variablestore_manulipulations/" class="md-nav__link">
+      Variablestore manulipulations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/variable_format/" class="md-nav__link">
+      Variable format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12-8" type="checkbox" id="nav-6-8-12-8">
+    
+    <label class="md-nav__link" for="nav-6-8-12-8">
+      Build objects
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Build objects" data-md-level="4">
+      <label class="md-nav__title" for="nav-6-8-12-8">
+        <span class="md-nav__icon md-icon"></span>
+        Build objects
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/build_objects/dsc/" class="md-nav__link">
+      Dsc
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/build_objects/dsc_translator/" class="md-nav__link">
+      Dsc translator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/build_objects/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12-9" type="checkbox" id="nav-6-8-12-9">
+    
+    <label class="md-nav__link" for="nav-6-8-12-9">
+      Parsers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Parsers" data-md-level="4">
+      <label class="md-nav__title" for="nav-6-8-12-9">
+        <span class="md-nav__icon md-icon"></span>
+        Parsers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/parsers/base_parser/" class="md-nav__link">
+      Base parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/parsers/buildreport_parser/" class="md-nav__link">
+      Buildreport parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/parsers/dec_parser/" class="md-nav__link">
+      Dec parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/parsers/dsc_parser/" class="md-nav__link">
+      Dsc parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/parsers/fdf_parser/" class="md-nav__link">
+      Fdf parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/parsers/guid_parser/" class="md-nav__link">
+      Guid parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/parsers/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/parsers/inf_parser/" class="md-nav__link">
+      Inf parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/parsers/override_parser/" class="md-nav__link">
+      Override parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../uefi/edk2/parsers/targettxt_parser/" class="md-nav__link">
+      Targettxt parser
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9" type="checkbox" id="nav-6-9">
+    
+    <label class="md-nav__link" for="nav-6-9">
+      Windows
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Windows" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-9">
+        <span class="md-nav__icon md-icon"></span>
+        Windows
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/locate_tools/" class="md-nav__link">
+      Locate tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9-3" type="checkbox" id="nav-6-9-3">
+    
+    <label class="md-nav__link" for="nav-6-9-3">
+      Capsule
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Capsule" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-9-3">
+        <span class="md-nav__icon md-icon"></span>
+        Capsule
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/capsule/cat_generator/" class="md-nav__link">
+      Cat generator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/capsule/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/capsule/inf_generator/" class="md-nav__link">
+      Inf generator
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9-4" type="checkbox" id="nav-6-9-4">
+    
+    <label class="md-nav__link" for="nav-6-9-4">
+      Policy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Policy" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-9-4">
+        <span class="md-nav__icon md-icon"></span>
+        Policy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/policy/firmware_policy/" class="md-nav__link">
+      Firmware policy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/policy/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stringstreamhandler" class="md-nav__link">
+    StringStreamHandler
+  </a>
+  
+    <nav class="md-nav" aria-label="StringStreamHandler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acquire" class="md-nav__link">
+    acquire
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addfilter" class="md-nav__link">
+    addFilter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close" class="md-nav__link">
+    close
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createlock" class="md-nav__link">
+    createLock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emit" class="md-nav__link">
+    emit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    filter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flush" class="md-nav__link">
+    flush
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format" class="md-nav__link">
+    format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_name" class="md-nav__link">
+    get_name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle" class="md-nav__link">
+    handle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handleerror" class="md-nav__link">
+    handleError
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readlines" class="md-nav__link">
+    readlines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    release
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removefilter" class="md-nav__link">
+    removeFilter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seek" class="md-nav__link">
+    seek
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seek_end" class="md-nav__link">
+    seek_end
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seek_start" class="md-nav__link">
+    seek_start
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setformatter" class="md-nav__link">
+    setFormatter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setlevel" class="md-nav__link">
+    setLevel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setstream" class="md-nav__link">
+    setStream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_name" class="md-nav__link">
+    set_name
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/matthewfcarlson/edk2-pytool-library/edit/master/docs/edk2toollib/log/string_handler.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-edk2toolliblogstring_handler">Module edk2toollib.log.string_handler</h1>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="c1">##</span>
+
+<span class="c1"># Handle basic logging by streaming into stringIO</span>
+
+<span class="c1">#</span>
+
+<span class="c1"># Copyright (c) Microsoft Corporation</span>
+
+<span class="c1">#</span>
+
+<span class="c1"># SPDX-License-Identifier: BSD-2-Clause-Patent</span>
+
+<span class="c1">##</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
+
+<span class="k">class</span> <span class="nc">StringStreamHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">):</span>
+
+    <span class="n">terminator</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Conditionally emit the specified logging record.</span>
+
+<span class="sd">        Emission depends on filters which may have been added to the handler.</span>
+
+<span class="sd">        Wrap the actual emission of the record with acquisition/release of</span>
+
+<span class="sd">        the I/O thread lock. Returns whether the filter passed the record for</span>
+
+<span class="sd">        emission.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">rv</span> <span class="ow">and</span> <span class="n">record</span><span class="o">.</span><span class="n">levelno</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+
+            <span class="k">try</span><span class="p">:</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+            <span class="k">finally</span><span class="p">:</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">rv</span>
+
+    <span class="k">def</span> <span class="nf">readlines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hint</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="n">hint</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">seek_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">seek_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">io</span><span class="o">.</span><span class="n">SEEK_END</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">seek</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">whence</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">whence</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="stringstreamhandler">StringStreamHandler</h3>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">StringStreamHandler</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+
+<p>A handler class which writes logging records, appropriately formatted,
+to a stream. Note that this class does not close the stream, as
+sys.stdout or sys.stderr may be used.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">StringStreamHandler</span>(<span class="n">logging</span>.<span class="n">StreamHandler</span>):
+
+    <span class="n">terminator</span> = <span class="s">&#39;\n&#39;</span>
+
+    <span class="n">def</span> <span class="n">__init__</span>(<span class="nb">self</span>):
+
+        <span class="n">logging</span>.<span class="n">Handler</span>.<span class="n">__init__</span>(<span class="nb">self</span>)
+
+        <span class="nb">self</span>.<span class="n">stream</span> = <span class="n">io</span>.<span class="n">StringIO</span>()
+
+    <span class="n">def</span> <span class="nb">handle</span>(<span class="nb">self</span>, <span class="n">record</span>):
+
+        <span class="s">&quot;&quot;&quot;</span>
+
+<span class="s">        Conditionally emit the specified logging record.</span>
+
+<span class="s">        Emission depends on filters which may have been added to the handler.</span>
+
+<span class="s">        Wrap the actual emission of the record with acquisition/release of</span>
+
+<span class="s">        the I/O thread lock. Returns whether the filter passed the record for</span>
+
+<span class="s">        emission.</span>
+
+<span class="s">        &quot;&quot;&quot;</span>
+
+        <span class="n">rv</span> = <span class="nb">self</span>.<span class="n">filter</span>(<span class="n">record</span>)
+
+        <span class="k">if</span> <span class="n">rv</span> <span class="o">and</span> <span class="n">record</span>.<span class="n">levelno</span> &gt;= <span class="nb">self</span>.<span class="n">level:</span>
+
+            <span class="nb">self</span>.<span class="nb">acquire</span>()
+
+            <span class="n">try:</span>
+
+                <span class="nb">self</span>.<span class="nb">emit</span>(<span class="n">record</span>)
+
+            <span class="n">finally:</span>
+
+                <span class="nb">self</span>.<span class="nb">release</span>()
+
+        <span class="k">return</span> <span class="n">rv</span>
+
+    <span class="n">def</span> <span class="n">readlines</span>(<span class="nb">self</span>, <span class="n">hint</span>=-<span class="mi">1</span>):
+
+        <span class="k">return</span> <span class="nb">self</span>.<span class="n">stream</span>.<span class="n">readlines</span>(<span class="n">hint</span>)
+
+    <span class="n">def</span> <span class="n">seek_start</span>(<span class="nb">self</span>):
+
+        <span class="nb">self</span>.<span class="n">stream</span>.<span class="nb">seek</span>(<span class="mi">0</span>, <span class="mi">0</span>)
+
+    <span class="n">def</span> <span class="n">seek_end</span>(<span class="nb">self</span>):
+
+        <span class="nb">self</span>.<span class="n">stream</span>.<span class="nb">seek</span>(<span class="mi">0</span>, <span class="n">io</span>.<span class="n">SEEK_END</span>)
+
+    <span class="n">def</span> <span class="nb">seek</span>(<span class="nb">self</span>, <span class="nb">offset</span>, <span class="n">whence</span>):
+
+        <span class="k">return</span> <span class="nb">self</span>.<span class="n">stream</span>.<span class="nb">seek</span>(<span class="nb">offset</span>, <span class="n">whence</span>)
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="ancestors-in-mro">Ancestors (in MRO)</h4>
+<ul>
+<li>logging.StreamHandler</li>
+<li>logging.Handler</li>
+<li>logging.Filterer</li>
+</ul>
+<h4 id="class-variables">Class variables</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="n">terminator</span>
+</code></pre></div>
+
+<h4 id="instance-variables">Instance variables</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="n">name</span>
+</code></pre></div>
+
+<h4 id="methods">Methods</h4>
+<h4 id="acquire">acquire</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Acquire the I/O thread lock.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">acquire</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Acquire the I/O thread lock.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="k">self</span><span class="p">.</span><span class="k">lock</span><span class="p">:</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="k">lock</span><span class="p">.</span><span class="n">acquire</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h4 id="addfilter">addFilter</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">addFilter</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="nb">filter</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Add the specified filter to this handler.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">addFilter</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">filter</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Add the specified filter to this handler.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="k">not</span> <span class="p">(</span><span class="n">filter</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="n">filters</span><span class="p">):</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="n">filters</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">filter</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="close">close</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">close</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Tidy up any resources used by the handler.</p>
+<p>This version removes the handler from an internal map of handlers,
+_handlers, which is used for handler lookup by name. Subclasses
+should ensure that this gets called from overridden close()
+methods.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="k">close</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Tidy up any resources used by the handler.</span>
+
+<span class="ss">        This version removes the handler from an internal map of handlers,</span>
+
+<span class="ss">        _handlers, which is used for handler lookup by name. Subclasses</span>
+
+<span class="ss">        should ensure that this gets called from overridden close()</span>
+
+<span class="ss">        methods.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="o">#</span><span class="k">get</span> <span class="n">the</span> <span class="n">module</span> <span class="k">data</span> <span class="k">lock</span><span class="p">,</span> <span class="k">as</span> <span class="n">we</span><span class="err">&#39;</span><span class="n">re</span> <span class="n">updating</span> <span class="n">a</span> <span class="n">shared</span> <span class="k">structure</span><span class="p">.</span>
+
+        <span class="n">_acquireLock</span><span class="p">()</span>
+
+        <span class="n">try</span><span class="p">:</span>    <span class="o">#</span><span class="n">unlikely</span> <span class="k">to</span> <span class="n">raise</span> <span class="n">an</span> <span class="k">exception</span><span class="p">,</span> <span class="n">but</span> <span class="n">you</span> <span class="n">never</span> <span class="n">know</span><span class="p">...</span>
+
+            <span class="k">if</span> <span class="k">self</span><span class="p">.</span><span class="n">_name</span> <span class="k">and</span> <span class="k">self</span><span class="p">.</span><span class="n">_name</span> <span class="k">in</span> <span class="n">_handlers</span><span class="p">:</span>
+
+                <span class="n">del</span> <span class="n">_handlers</span><span class="p">[</span><span class="k">self</span><span class="p">.</span><span class="n">_name</span><span class="p">]</span>
+
+        <span class="n">finally</span><span class="p">:</span>
+
+            <span class="n">_releaseLock</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h4 id="createlock">createLock</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">createLock</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Acquire a thread lock for serializing access to the underlying I/O.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">createLock</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Acquire a thread lock for serializing access to the underlying I/O.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="k">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="n">RLock</span><span class="p">()</span>
+
+        <span class="n">_register_at_fork_reinit_lock</span><span class="p">(</span><span class="k">self</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="emit">emit</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">emit</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">record</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Emit a record.</p>
+<p>If a formatter is specified, it is used to format the record.
+The record is then written to the stream with a trailing newline.  If
+exception information is present, it is formatted using
+traceback.print_exception and appended to the stream.  If the stream
+has an &lsquo;encoding&rsquo; attribute, it is used to determine how to do the
+output to the stream.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">emit</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Emit a record.</span>
+
+<span class="ss">        If a formatter is specified, it is used to format the record.</span>
+
+<span class="ss">        The record is then written to the stream with a trailing newline.  If</span>
+
+<span class="ss">        exception information is present, it is formatted using</span>
+
+<span class="ss">        traceback.print_exception and appended to the stream.  If the stream</span>
+
+<span class="ss">        has an &#39;encoding&#39; attribute, it is used to determine how to do the</span>
+
+<span class="ss">        output to the stream.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="n">try</span><span class="p">:</span>
+
+            <span class="n">msg</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+            <span class="n">stream</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">stream</span>
+
+            <span class="o">#</span> <span class="n">issue</span> <span class="mi">35046</span><span class="p">:</span> <span class="n">merged</span> <span class="n">two</span> <span class="n">stream</span><span class="p">.</span><span class="n">writes</span> <span class="k">into</span> <span class="n">one</span><span class="p">.</span>
+
+            <span class="n">stream</span><span class="p">.</span><span class="k">write</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="k">self</span><span class="p">.</span><span class="n">terminator</span><span class="p">)</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="n">RecursionError</span><span class="p">:</span>  <span class="o">#</span> <span class="n">See</span> <span class="n">issue</span> <span class="mi">36272</span>
+
+            <span class="n">raise</span>
+
+        <span class="k">except</span> <span class="k">Exception</span><span class="p">:</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="n">handleError</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="filter">filter</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">filter</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">record</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Determine if a record is loggable by consulting all the filters.</p>
+<p>The default is to allow the record to be logged; any filter can veto
+this and the record is then dropped. Returns a zero value if a record
+is to be dropped, else non-zero.</p>
+<p>.. versionchanged:: 3.2</p>
+<p>Allow filters to be just callables.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">filter</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Determine if a record is loggable by consulting all the filters.</span>
+
+<span class="ss">        The default is to allow the record to be logged; any filter can veto</span>
+
+<span class="ss">        this and the record is then dropped. Returns a zero value if a record</span>
+
+<span class="ss">        is to be dropped, else non-zero.</span>
+
+<span class="ss">        .. versionchanged:: 3.2</span>
+
+<span class="ss">           Allow filters to be just callables.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="n">rv</span> <span class="o">=</span> <span class="k">True</span>
+
+        <span class="k">for</span> <span class="n">f</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="n">filters</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s1">&#39;filter&#39;</span><span class="p">):</span>
+
+                <span class="k">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">filter</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="k">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="o">#</span> <span class="n">assume</span> <span class="n">callable</span> <span class="o">-</span> <span class="n">will</span> <span class="n">raise</span> <span class="k">if</span> <span class="k">not</span>
+
+            <span class="k">if</span> <span class="k">not</span> <span class="k">result</span><span class="p">:</span>
+
+                <span class="n">rv</span> <span class="o">=</span> <span class="k">False</span>
+
+                <span class="n">break</span>
+
+        <span class="k">return</span> <span class="n">rv</span>
+</code></pre></div>
+
+</details>
+<h4 id="flush">flush</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">flush</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Flushes the stream.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">flush</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Flushes the stream.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">acquire</span><span class="p">()</span>
+
+        <span class="n">try</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="k">self</span><span class="p">.</span><span class="n">stream</span> <span class="k">and</span> <span class="n">hasattr</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">stream</span><span class="p">,</span> <span class="ss">&quot;flush&quot;</span><span class="p">):</span>
+
+                <span class="k">self</span><span class="p">.</span><span class="n">stream</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
+
+        <span class="n">finally</span><span class="p">:</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h4 id="format">format</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">format</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">record</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Format the specified record.</p>
+<p>If a formatter is set, use it. Otherwise, use the default formatter
+for the module.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">format</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Format the specified record.</span>
+
+<span class="ss">        If a formatter is set, use it. Otherwise, use the default formatter</span>
+
+<span class="ss">        for the module.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="k">self</span><span class="p">.</span><span class="n">formatter</span><span class="p">:</span>
+
+            <span class="n">fmt</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">formatter</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">fmt</span> <span class="o">=</span> <span class="n">_defaultFormatter</span>
+
+        <span class="k">return</span> <span class="n">fmt</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="get_name">get_name</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">get_name</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="k">self</span><span class="p">.</span><span class="n">_name</span>
+</code></pre></div>
+
+</details>
+<h4 id="handle">handle</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">handle</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">record</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Conditionally emit the specified logging record.
+Emission depends on filters which may have been added to the handler.
+Wrap the actual emission of the record with acquisition/release of
+the I/O thread lock. Returns whether the filter passed the record for
+emission.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">handle</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Conditionally emit the specified logging record.</span>
+
+<span class="ss">        Emission depends on filters which may have been added to the handler.</span>
+
+<span class="ss">        Wrap the actual emission of the record with acquisition/release of</span>
+
+<span class="ss">        the I/O thread lock. Returns whether the filter passed the record for</span>
+
+<span class="ss">        emission.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="n">rv</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">filter</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">rv</span> <span class="k">and</span> <span class="n">record</span><span class="p">.</span><span class="n">levelno</span> <span class="o">&gt;=</span> <span class="k">self</span><span class="p">.</span><span class="k">level</span><span class="p">:</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="n">acquire</span><span class="p">()</span>
+
+            <span class="n">try</span><span class="p">:</span>
+
+                <span class="k">self</span><span class="p">.</span><span class="n">emit</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+            <span class="n">finally</span><span class="p">:</span>
+
+                <span class="k">self</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">rv</span>
+</code></pre></div>
+
+</details>
+<h4 id="handleerror">handleError</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">handleError</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">record</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Handle errors which occur during an emit() call.</p>
+<p>This method should be called from handlers when an exception is
+encountered during an emit() call. If raiseExceptions is false,
+exceptions get silently ignored. This is what is mostly wanted
+for a logging system - most users will not care about errors in
+the logging system, they are more interested in application errors.
+You could, however, replace this with a custom handler if you wish.
+The record which was being processed is passed in to this method.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">handleError</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Handle errors which occur during an emit() call.</span>
+
+<span class="ss">        This method should be called from handlers when an exception is</span>
+
+<span class="ss">        encountered during an emit() call. If raiseExceptions is false,</span>
+
+<span class="ss">        exceptions get silently ignored. This is what is mostly wanted</span>
+
+<span class="ss">        for a logging system - most users will not care about errors in</span>
+
+<span class="ss">        the logging system, they are more interested in application errors.</span>
+
+<span class="ss">        You could, however, replace this with a custom handler if you wish.</span>
+
+<span class="ss">        The record which was being processed is passed in to this method.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">raiseExceptions</span> <span class="k">and</span> <span class="n">sys</span><span class="p">.</span><span class="n">stderr</span><span class="p">:</span>  <span class="o">#</span> <span class="n">see</span> <span class="n">issue</span> <span class="mi">13807</span>
+
+            <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">exc_info</span><span class="p">()</span>
+
+            <span class="n">try</span><span class="p">:</span>
+
+                <span class="n">sys</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="k">write</span><span class="p">(</span><span class="s1">&#39;--- Logging error ---\n&#39;</span><span class="p">)</span>
+
+                <span class="n">traceback</span><span class="p">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="k">None</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">stderr</span><span class="p">)</span>
+
+                <span class="n">sys</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="k">write</span><span class="p">(</span><span class="s1">&#39;Call stack:\n&#39;</span><span class="p">)</span>
+
+                <span class="o">#</span> <span class="n">Walk</span> <span class="n">the</span> <span class="n">stack</span> <span class="n">frame</span> <span class="n">up</span> <span class="k">until</span> <span class="n">we</span><span class="s1">&#39;re out of logging,</span>
+
+<span class="s1">                # so as to print the calling context.</span>
+
+<span class="s1">                frame = tb.tb_frame</span>
+
+<span class="s1">                while (frame and os.path.dirname(frame.f_code.co_filename) ==</span>
+
+<span class="s1">                       __path__[0]):</span>
+
+<span class="s1">                    frame = frame.f_back</span>
+
+<span class="s1">                if frame:</span>
+
+<span class="s1">                    traceback.print_stack(frame, file=sys.stderr)</span>
+
+<span class="s1">                else:</span>
+
+<span class="s1">                    # couldn&#39;</span><span class="n">t</span> <span class="n">find</span> <span class="n">the</span> <span class="k">right</span> <span class="n">stack</span> <span class="n">frame</span><span class="p">,</span> <span class="k">for</span> <span class="k">some</span> <span class="n">reason</span>
+
+                    <span class="n">sys</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="k">write</span><span class="p">(</span><span class="s1">&#39;Logged from file %s, line %s\n&#39;</span> <span class="o">%</span> <span class="p">(</span>
+
+                                     <span class="n">record</span><span class="p">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">record</span><span class="p">.</span><span class="n">lineno</span><span class="p">))</span>
+
+                <span class="o">#</span> <span class="n">Issue</span> <span class="mi">18671</span><span class="p">:</span> <span class="k">output</span> <span class="n">logging</span> <span class="n">message</span> <span class="k">and</span> <span class="n">arguments</span>
+
+                <span class="n">try</span><span class="p">:</span>
+
+                    <span class="n">sys</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="k">write</span><span class="p">(</span><span class="s1">&#39;Message: %r\n&#39;</span>
+
+                                     <span class="s1">&#39;Arguments: %s\n&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">msg</span><span class="p">,</span>
+
+                                                          <span class="n">record</span><span class="p">.</span><span class="n">args</span><span class="p">))</span>
+
+                <span class="k">except</span> <span class="n">RecursionError</span><span class="p">:</span>  <span class="o">#</span> <span class="n">See</span> <span class="n">issue</span> <span class="mi">36272</span>
+
+                    <span class="n">raise</span>
+
+                <span class="k">except</span> <span class="k">Exception</span><span class="p">:</span>
+
+                    <span class="n">sys</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="k">write</span><span class="p">(</span><span class="s1">&#39;Unable to print the message and arguments&#39;</span>
+
+                                     <span class="s1">&#39; - possible formatting error.\nUse the&#39;</span>
+
+                                     <span class="s1">&#39; traceback above to help find the error.\n&#39;</span>
+
+                                    <span class="p">)</span>
+
+            <span class="k">except</span> <span class="n">OSError</span><span class="p">:</span> <span class="o">#</span><span class="n">pragma</span><span class="p">:</span> <span class="k">no</span> <span class="n">cover</span>
+
+                <span class="n">pass</span>    <span class="o">#</span> <span class="n">see</span> <span class="n">issue</span> <span class="mi">5971</span>
+
+            <span class="n">finally</span><span class="p">:</span>
+
+                <span class="n">del</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">tb</span>
+</code></pre></div>
+
+</details>
+<h4 id="readlines">readlines</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">readlines</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">hint</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">readlines</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">hint</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="k">self</span><span class="p">.</span><span class="n">stream</span><span class="p">.</span><span class="n">readlines</span><span class="p">(</span><span class="n">hint</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="release">release</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">release</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Release the I/O thread lock.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">release</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Release the I/O thread lock.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="k">self</span><span class="p">.</span><span class="k">lock</span><span class="p">:</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="k">lock</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h4 id="removefilter">removeFilter</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">removeFilter</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="nb">filter</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Remove the specified filter from this handler.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">removeFilter</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">filter</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Remove the specified filter from this handler.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">filter</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="n">filters</span><span class="p">:</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="n">filters</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">filter</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="seek">seek</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">seek</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">offset</span><span class="p">,</span>
+    <span class="n">whence</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">seek</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">offset</span><span class="p">,</span> <span class="n">whence</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="k">self</span><span class="p">.</span><span class="n">stream</span><span class="p">.</span><span class="n">seek</span><span class="p">(</span><span class="k">offset</span><span class="p">,</span> <span class="n">whence</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="seek_end">seek_end</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">seek_end</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">seek_end</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">stream</span><span class="p">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">io</span><span class="p">.</span><span class="n">SEEK_END</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="seek_start">seek_start</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">seek_start</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">seek_start</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">stream</span><span class="p">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="setformatter">setFormatter</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">setFormatter</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">fmt</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Set the formatter for this handler.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">setFormatter</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">fmt</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Set the formatter for this handler.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">formatter</span> <span class="o">=</span> <span class="n">fmt</span>
+</code></pre></div>
+
+</details>
+<h4 id="setlevel">setLevel</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">setLevel</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">level</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Set the logging level of this handler.  level must be an int or a str.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">setLevel</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="k">level</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Set the logging level of this handler.  level must be an int or a str.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="k">level</span> <span class="o">=</span> <span class="n">_checkLevel</span><span class="p">(</span><span class="k">level</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="setstream">setStream</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">setStream</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">stream</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Sets the StreamHandler&rsquo;s stream to the specified value,
+if it is different.</p>
+<p>Returns the old stream, if the stream was changed, or None
+if it wasn&rsquo;t.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">setStream</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Sets the StreamHandler&#39;s stream to the specified value,</span>
+
+<span class="ss">        if it is different.</span>
+
+<span class="ss">        Returns the old stream, if the stream was changed, or None</span>
+
+<span class="ss">        if it wasn&#39;t.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">stream</span> <span class="k">is</span> <span class="k">self</span><span class="p">.</span><span class="n">stream</span><span class="p">:</span>
+
+            <span class="k">result</span> <span class="o">=</span> <span class="k">None</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">result</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">stream</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="n">acquire</span><span class="p">()</span>
+
+            <span class="n">try</span><span class="p">:</span>
+
+                <span class="k">self</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
+
+                <span class="k">self</span><span class="p">.</span><span class="n">stream</span> <span class="o">=</span> <span class="n">stream</span>
+
+            <span class="n">finally</span><span class="p">:</span>
+
+                <span class="k">self</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="k">result</span>
+</code></pre></div>
+
+</details>
+<h4 id="set_name">set_name</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">set_name</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">name</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">set_name</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">_acquireLock</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_name</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">_handlers</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">del</span><span class="w"> </span><span class="n">_handlers</span><span class="o">[</span><span class="n">self._name</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nl">name</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">_handlers</span><span class="o">[</span><span class="n">name</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">finally</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">_releaseLock</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../markdown_handler/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Markdown handler
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../tpm/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Index
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright (c) Microsoft.  All rights reserved
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../../js/version-select.js"></script>
+      
+    
+  </body>
+</html>

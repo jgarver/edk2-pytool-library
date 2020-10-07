@@ -1,0 +1,2502 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Project Mu Documentation">
+      
+      
+        <link rel="canonical" href="https://matthewc.dev/edk2-pytool-library/master/edk2toollib/gitignore_parser/">
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Gitignore parser - EDK2 Pytool Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/version-select.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-edk2toollibgitignore_parser" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://matthewc.dev/edk2-pytool-library/master/" title="EDK2 Pytool Library" class="md-header-nav__button md-logo" aria-label="EDK2 Pytool Library">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            EDK2 Pytool Library
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Gitignore parser
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/matthewfcarlson/edk2-pytool-library/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://matthewc.dev/edk2-pytool-library/master/" title="EDK2 Pytool Library" class="md-nav__button md-logo" aria-label="EDK2 Pytool Library">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    EDK2 Pytool Library
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/matthewfcarlson/edk2-pytool-library/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../developing/" class="md-nav__link">
+      Developing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../publishing/" class="md-nav__link">
+      Publishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../using/" class="md-nav__link">
+      Using
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/logging.ansi_handler/" class="md-nav__link">
+      Logging.ansi handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/utility_functions.GetHostInfo/" class="md-nav__link">
+      Utility functions.get host info
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../features/windows_firmware_policy/" class="md-nav__link">
+      Windows firmware policy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bin/" class="md-nav__link">
+      Bin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Gitignore parser
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Gitignore parser
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fnmatch_pathname_to_regex" class="md-nav__link">
+    fnmatch_pathname_to_regex
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_gitignore_file" class="md-nav__link">
+    parse_gitignore_file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_gitignore_lines" class="md-nav__link">
+    parse_gitignore_lines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule_from_pattern" class="md-nav__link">
+    rule_from_pattern
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ignorerule" class="md-nav__link">
+    IgnoreRule
+  </a>
+  
+    <nav class="md-nav" aria-label="IgnoreRule">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    index
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match" class="md-nav__link">
+    match
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../utility_functions/" class="md-nav__link">
+      Utility functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
+    
+    <label class="md-nav__link" for="nav-6-5">
+      Acpi
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Acpi" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-5">
+        <span class="md-nav__icon md-icon"></span>
+        Acpi
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../acpi/dmar_parser/" class="md-nav__link">
+      Dmar parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../acpi/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../acpi/ivrs_parser/" class="md-nav__link">
+      Ivrs parser
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-6" type="checkbox" id="nav-6-6">
+    
+    <label class="md-nav__link" for="nav-6-6">
+      Log
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Log" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-6">
+        <span class="md-nav__icon md-icon"></span>
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../log/ansi_handler/" class="md-nav__link">
+      Ansi handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../log/file_handler/" class="md-nav__link">
+      File handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../log/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../log/junit_report_format/" class="md-nav__link">
+      Junit report format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../log/markdown_handler/" class="md-nav__link">
+      Markdown handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../log/string_handler/" class="md-nav__link">
+      String handler
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-7" type="checkbox" id="nav-6-7">
+    
+    <label class="md-nav__link" for="nav-6-7">
+      Tpm
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tpm" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-7">
+        <span class="md-nav__icon md-icon"></span>
+        Tpm
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tpm/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tpm/tpm2_defs/" class="md-nav__link">
+      Tpm2 defs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tpm/tpm2_policy_calc/" class="md-nav__link">
+      Tpm2 policy calc
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tpm/tpm2_simulator/" class="md-nav__link">
+      Tpm2 simulator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tpm/tpm2_stream/" class="md-nav__link">
+      Tpm2 stream
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8" type="checkbox" id="nav-6-8">
+    
+    <label class="md-nav__link" for="nav-6-8">
+      Uefi
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Uefi" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-8">
+        <span class="md-nav__icon md-icon"></span>
+        Uefi
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/authenticated_variables_structure_support/" class="md-nav__link">
+      Authenticated variables structure support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/bmp_object/" class="md-nav__link">
+      Bmp object
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/fmp_auth_header/" class="md-nav__link">
+      Fmp auth header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/fmp_capsule_header/" class="md-nav__link">
+      Fmp capsule header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/pi_firmware_file/" class="md-nav__link">
+      Pi firmware file
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/pi_firmware_volume/" class="md-nav__link">
+      Pi firmware volume
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/status_codes/" class="md-nav__link">
+      Status codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/uefi_capsule_header/" class="md-nav__link">
+      Uefi capsule header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/uefi_multi_phase/" class="md-nav__link">
+      Uefi multi phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/wincert/" class="md-nav__link">
+      Wincert
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12" type="checkbox" id="nav-6-8-12">
+    
+    <label class="md-nav__link" for="nav-6-8-12">
+      Edk2
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Edk2" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-8-12">
+        <span class="md-nav__icon md-icon"></span>
+        Edk2
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/fmp_payload_header/" class="md-nav__link">
+      Fmp payload header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/ftw_working_block_format/" class="md-nav__link">
+      Ftw working block format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/guid_list/" class="md-nav__link">
+      Guid list
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/path_utilities/" class="md-nav__link">
+      Path utilities
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/variablestore_manulipulations/" class="md-nav__link">
+      Variablestore manulipulations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/variable_format/" class="md-nav__link">
+      Variable format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12-8" type="checkbox" id="nav-6-8-12-8">
+    
+    <label class="md-nav__link" for="nav-6-8-12-8">
+      Build objects
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Build objects" data-md-level="4">
+      <label class="md-nav__title" for="nav-6-8-12-8">
+        <span class="md-nav__icon md-icon"></span>
+        Build objects
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/build_objects/dsc/" class="md-nav__link">
+      Dsc
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/build_objects/dsc_translator/" class="md-nav__link">
+      Dsc translator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/build_objects/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12-9" type="checkbox" id="nav-6-8-12-9">
+    
+    <label class="md-nav__link" for="nav-6-8-12-9">
+      Parsers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Parsers" data-md-level="4">
+      <label class="md-nav__title" for="nav-6-8-12-9">
+        <span class="md-nav__icon md-icon"></span>
+        Parsers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/parsers/base_parser/" class="md-nav__link">
+      Base parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/parsers/buildreport_parser/" class="md-nav__link">
+      Buildreport parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/parsers/dec_parser/" class="md-nav__link">
+      Dec parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/parsers/dsc_parser/" class="md-nav__link">
+      Dsc parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/parsers/fdf_parser/" class="md-nav__link">
+      Fdf parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/parsers/guid_parser/" class="md-nav__link">
+      Guid parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/parsers/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/parsers/inf_parser/" class="md-nav__link">
+      Inf parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/parsers/override_parser/" class="md-nav__link">
+      Override parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi/edk2/parsers/targettxt_parser/" class="md-nav__link">
+      Targettxt parser
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9" type="checkbox" id="nav-6-9">
+    
+    <label class="md-nav__link" for="nav-6-9">
+      Windows
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Windows" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-9">
+        <span class="md-nav__icon md-icon"></span>
+        Windows
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../windows/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../windows/locate_tools/" class="md-nav__link">
+      Locate tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9-3" type="checkbox" id="nav-6-9-3">
+    
+    <label class="md-nav__link" for="nav-6-9-3">
+      Capsule
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Capsule" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-9-3">
+        <span class="md-nav__icon md-icon"></span>
+        Capsule
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../windows/capsule/cat_generator/" class="md-nav__link">
+      Cat generator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../windows/capsule/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../windows/capsule/inf_generator/" class="md-nav__link">
+      Inf generator
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9-4" type="checkbox" id="nav-6-9-4">
+    
+    <label class="md-nav__link" for="nav-6-9-4">
+      Policy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Policy" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-9-4">
+        <span class="md-nav__icon md-icon"></span>
+        Policy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../windows/policy/firmware_policy/" class="md-nav__link">
+      Firmware policy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../windows/policy/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fnmatch_pathname_to_regex" class="md-nav__link">
+    fnmatch_pathname_to_regex
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_gitignore_file" class="md-nav__link">
+    parse_gitignore_file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse_gitignore_lines" class="md-nav__link">
+    parse_gitignore_lines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule_from_pattern" class="md-nav__link">
+    rule_from_pattern
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ignorerule" class="md-nav__link">
+    IgnoreRule
+  </a>
+  
+    <nav class="md-nav" aria-label="IgnoreRule">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    index
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match" class="md-nav__link">
+    match
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/matthewfcarlson/edk2-pytool-library/edit/master/docs/edk2toollib/gitignore_parser.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-edk2toollibgitignore_parser">Module edk2toollib.gitignore_parser</h1>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="s s-Atom">from</span> <span class="s s-Atom">pathlib</span> <span class="s s-Atom">import</span> <span class="nv">Path</span>
+
+<span class="s s-Atom">from</span> <span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span> <span class="s s-Atom">import</span> <span class="s s-Atom">dirname</span><span class="p">,</span> <span class="s s-Atom">abspath</span>
+
+<span class="s s-Atom">import</span> <span class="s s-Atom">re</span>
+
+<span class="s s-Atom">import</span> <span class="s s-Atom">os</span>
+
+<span class="s s-Atom">import</span> <span class="s s-Atom">collections</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">gitignore parser configured to work for edk2-pytool-library</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s s-Atom">#</span> <span class="nv">Copyright</span> <span class="p">(</span><span class="s s-Atom">c</span><span class="p">)</span> <span class="nv">Microsoft</span> <span class="nv">Corporation</span>
+
+<span class="s s-Atom">#</span>
+
+<span class="s s-Atom">#</span> <span class="nv">SPDX</span><span class="o">-</span><span class="nv">License</span><span class="o">-</span><span class="nv">Identifier</span><span class="s s-Atom">:</span> <span class="nv">BSD</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="nv">Clause</span><span class="o">-</span><span class="nv">Patent</span>
+
+<span class="s s-Atom">&#39;&#39;&#39; Original file is from</span>
+
+<span class="s s-Atom">https://github.com/mherrmann/gitignore_parser/blob/master/gitignore_parser.py</span>
+
+<span class="s s-Atom">sha hash: 31407327e4a10d122632c5f03c7a705b010e5fbd</span>
+
+<span class="s s-Atom">Original License:</span>
+
+<span class="s s-Atom">MIT License</span>
+
+<span class="s s-Atom">Copyright (c) 2018 Michael Herrmann</span>
+
+<span class="s s-Atom">Copyright (c) 2015 Steve Cook</span>
+
+<span class="s s-Atom">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+
+<span class="s s-Atom">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+
+<span class="s s-Atom">in the Software without restriction, including without limitation the rights</span>
+
+<span class="s s-Atom">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+
+<span class="s s-Atom">copies of the Software, and to permit persons to whom the Software is</span>
+
+<span class="s s-Atom">furnished to do so, subject to the following conditions:</span>
+
+<span class="s s-Atom">The above copyright notice and this permission notice shall be included in all</span>
+
+<span class="s s-Atom">copies or substantial portions of the Software.</span>
+
+<span class="s s-Atom">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+
+<span class="s s-Atom">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+
+<span class="s s-Atom">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+
+<span class="s s-Atom">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+
+<span class="s s-Atom">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+
+<span class="s s-Atom">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+
+<span class="s s-Atom">SOFTWARE.</span>
+
+<span class="s s-Atom">&#39;&#39;&#39;</span>
+
+<span class="s s-Atom">def</span> <span class="nf">parse_gitignore_file</span><span class="p">(</span><span class="s s-Atom">full_path</span><span class="p">,</span> <span class="s s-Atom">base_dir</span><span class="o">=</span><span class="nv">None</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+    <span class="s2">&quot;&quot;&quot; parse a gitignore file</span>
+
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">base_dir</span> <span class="o">is</span> <span class="nv">None</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">base_dir</span> <span class="o">=</span> <span class="nf">dirname</span><span class="p">(</span><span class="s s-Atom">full_path</span><span class="p">)</span>
+
+    <span class="s s-Atom">with</span> <span class="nf">open</span><span class="p">(</span><span class="s s-Atom">full_path</span><span class="p">)</span> <span class="s s-Atom">as</span> <span class="s s-Atom">ignore_file:</span>
+
+        <span class="s s-Atom">lines</span> <span class="o">=</span> <span class="s s-Atom">ignore_file</span><span class="p">.</span><span class="nf">readlines</span><span class="p">()</span>
+
+    <span class="s s-Atom">return</span> <span class="nf">parse_gitignore_lines</span><span class="p">(</span><span class="s s-Atom">lines</span><span class="p">,</span> <span class="s s-Atom">full_path</span><span class="p">,</span> <span class="s s-Atom">base_dir</span><span class="p">)</span>
+
+<span class="s s-Atom">def</span> <span class="nf">parse_gitignore_lines</span><span class="p">(</span><span class="nn">lines</span><span class="p">:</span> <span class="s s-Atom">list</span><span class="p">,</span> <span class="s s-Atom">full_path:</span> <span class="s s-Atom">str</span><span class="p">,</span> <span class="s s-Atom">base_dir:</span> <span class="s s-Atom">str</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+    <span class="s2">&quot;&quot;&quot; parse a list of lines matching gitignore syntax</span>
+
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="s s-Atom">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="s s-Atom">rules</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">line</span> <span class="s s-Atom">in</span> <span class="nn">lines</span><span class="p">:</span>
+
+        <span class="s s-Atom">counter</span> <span class="s s-Atom">+=</span> <span class="mi">1</span>
+
+        <span class="s s-Atom">line</span> <span class="o">=</span> <span class="s s-Atom">line</span><span class="p">.</span><span class="nf">rstrip</span><span class="p">(</span><span class="s s-Atom">&#39;\n&#39;</span><span class="p">)</span>
+
+        <span class="s s-Atom">rule</span> <span class="o">=</span> <span class="nf">rule_from_pattern</span><span class="p">(</span><span class="s s-Atom">line</span><span class="p">,</span> <span class="nf">abspath</span><span class="p">(</span><span class="s s-Atom">base_dir</span><span class="p">),</span>
+
+                                 <span class="s s-Atom">source=</span><span class="p">(</span><span class="s s-Atom">full_path</span><span class="p">,</span> <span class="s s-Atom">counter</span><span class="p">))</span>
+
+        <span class="s s-Atom">if</span> <span class="nn">rule</span><span class="p">:</span>
+
+            <span class="s s-Atom">rules</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="s s-Atom">rule</span><span class="p">)</span>
+
+    <span class="s s-Atom">return</span> <span class="s s-Atom">lambda</span> <span class="s s-Atom">file_path:</span> <span class="nf">any</span><span class="p">(</span><span class="s s-Atom">r</span><span class="p">.</span><span class="nf">match</span><span class="p">(</span><span class="s s-Atom">file_path</span><span class="p">)</span> <span class="s s-Atom">for</span> <span class="s s-Atom">r</span> <span class="s s-Atom">in</span> <span class="s s-Atom">rules</span><span class="p">)</span>
+
+<span class="s s-Atom">def</span> <span class="nf">rule_from_pattern</span><span class="p">(</span><span class="s s-Atom">pattern</span><span class="p">,</span> <span class="s s-Atom">base_path</span><span class="o">=</span><span class="nv">None</span><span class="p">,</span> <span class="s s-Atom">source</span><span class="o">=</span><span class="nv">None</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+    <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">    Take a .gitignore match pattern, such as &quot;</span><span class="s s-Atom">*.py</span><span class="p">[</span><span class="s s-Atom">cod</span><span class="p">]</span><span class="s2">&quot; or &quot;</span><span class="s s-Atom">**/*.bak</span><span class="s2">&quot;,</span>
+
+<span class="s2">    and return an IgnoreRule suitable for matching against files and</span>
+
+<span class="s2">    directories. Patterns which do not match files, such as comments</span>
+
+<span class="s2">    and blank lines, will return None.</span>
+
+<span class="s2">    Because git allows for nested .gitignore files, a base_path value</span>
+
+<span class="s2">    is required for correct behavior. The base path should be absolute.</span>
+
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">base_path</span> <span class="s s-Atom">and</span> <span class="s s-Atom">base_path</span> <span class="p">!</span><span class="o">=</span> <span class="nf">abspath</span><span class="p">(</span><span class="s s-Atom">base_path</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">raise</span> <span class="nv">ValueError</span><span class="p">(</span><span class="s s-Atom">&#39;base_path must be absolute&#39;</span><span class="p">)</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Store</span> <span class="s s-Atom">the</span> <span class="s s-Atom">exact</span> <span class="s s-Atom">pattern</span> <span class="s s-Atom">for</span> <span class="s s-Atom">our</span> <span class="s s-Atom">repr</span> <span class="s s-Atom">and</span> <span class="s s-Atom">string</span> <span class="s s-Atom">functions</span>
+
+    <span class="s s-Atom">orig_pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Early</span> <span class="s s-Atom">returns</span> <span class="s s-Atom">follow</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Discard</span> <span class="s s-Atom">comments</span> <span class="s s-Atom">and</span> <span class="s s-Atom">seperators</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s s-Atom">&#39;&#39;</span> <span class="s s-Atom">or</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;#&#39;:</span>
+
+        <span class="s s-Atom">return</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Discard</span> <span class="s s-Atom">anything</span> <span class="s s-Atom">with</span> <span class="s s-Atom">more</span> <span class="s s-Atom">than</span> <span class="s s-Atom">two</span> <span class="s s-Atom">consecutive</span> <span class="s s-Atom">asterisks</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s s-Atom">&#39;***&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">return</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Strip</span> <span class="s s-Atom">leading</span> <span class="s s-Atom">bang</span> <span class="s s-Atom">before</span> <span class="s s-Atom">examining</span> <span class="s s-Atom">double</span> <span class="s s-Atom">asterisks</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;!&#39;:</span>
+
+        <span class="s s-Atom">negation</span> <span class="o">=</span> <span class="nv">True</span>
+
+        <span class="s s-Atom">pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">1</span><span class="s s-Atom">:</span><span class="p">]</span>
+
+    <span class="nn">else</span><span class="p">:</span>
+
+        <span class="s s-Atom">negation</span> <span class="o">=</span> <span class="nv">False</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Discard</span> <span class="s s-Atom">anything</span> <span class="s s-Atom">with</span> <span class="s s-Atom">invalid</span> <span class="s s-Atom">double</span><span class="o">-</span><span class="s s-Atom">asterisks</span> <span class="s s-Atom">--</span> <span class="s s-Atom">they</span> <span class="s s-Atom">can</span> <span class="s s-Atom">appear</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">at</span> <span class="s s-Atom">the</span> <span class="s s-Atom">start</span> <span class="s s-Atom">or</span> <span class="s s-Atom">the</span> <span class="s s-Atom">end</span><span class="p">,</span> <span class="s s-Atom">or</span> <span class="s s-Atom">be</span> <span class="s s-Atom">surrounded</span> <span class="s s-Atom">by</span> <span class="s s-Atom">slashes</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">m</span> <span class="s s-Atom">in</span> <span class="s s-Atom">re</span><span class="p">.</span><span class="nf">finditer</span><span class="p">(</span><span class="s s-Atom">r&#39;\*\*&#39;</span><span class="p">,</span> <span class="s s-Atom">pattern</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">start_index</span> <span class="o">=</span> <span class="s s-Atom">m</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+
+        <span class="nf">if</span> <span class="p">(</span><span class="s s-Atom">start_index</span> <span class="p">!</span><span class="o">=</span> <span class="mi">0</span> <span class="s s-Atom">and</span> <span class="s s-Atom">start_index</span> <span class="p">!</span><span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="s s-Atom">pattern</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+
+            <span class="nf">and</span> <span class="p">(</span><span class="s s-Atom">pattern</span><span class="p">[</span><span class="s s-Atom">start_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="p">!</span><span class="o">=</span> <span class="s s-Atom">&#39;/&#39;</span> <span class="s s-Atom">or</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="s s-Atom">start_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="p">!</span><span class="o">=</span> <span class="s s-Atom">&#39;/&#39;</span><span class="p">))</span><span class="s s-Atom">:</span> <span class="s s-Atom">#</span> <span class="s s-Atom">noqa</span>
+
+            <span class="s s-Atom">return</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Special</span><span class="o">-</span><span class="s s-Atom">casing</span> <span class="s s-Atom">&#39;/&#39;</span><span class="p">,</span> <span class="s s-Atom">which</span> <span class="s s-Atom">doesn&#39;t match any files or directories</span>
+
+<span class="s s-Atom">    if pattern.rstrip() == &#39;/&#39;:</span>
+
+<span class="s s-Atom">        return</span>
+
+<span class="s s-Atom">    directory_only = pattern[-1] == &#39;/&#39;</span>
+
+<span class="s s-Atom">    # A slash is a sign that we&#39;re</span> <span class="s s-Atom">tied</span> <span class="s s-Atom">to</span> <span class="s s-Atom">the</span> <span class="s s-Atom">base_path</span> <span class="s s-Atom">of</span> <span class="s s-Atom">our</span> <span class="s s-Atom">rule</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">set</span><span class="p">.</span>
+
+    <span class="s s-Atom">anchored</span> <span class="o">=</span> <span class="s s-Atom">&#39;/&#39;</span> <span class="s s-Atom">in</span> <span class="s s-Atom">pattern</span><span class="p">[:-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;/&#39;:</span>
+
+        <span class="s s-Atom">pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">1</span><span class="s s-Atom">:</span><span class="p">]</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;*&#39;</span> <span class="s s-Atom">and</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;*&#39;:</span>
+
+        <span class="s s-Atom">pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">:</span><span class="p">]</span>
+
+        <span class="s s-Atom">anchored</span> <span class="o">=</span> <span class="nv">False</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;/&#39;:</span>
+
+        <span class="s s-Atom">pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">1</span><span class="s s-Atom">:</span><span class="p">]</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;/&#39;:</span>
+
+        <span class="s s-Atom">pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span><span class="p">[:-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="s s-Atom">regex</span> <span class="o">=</span> <span class="nf">fnmatch_pathname_to_regex</span><span class="p">(</span>
+
+        <span class="s s-Atom">pattern</span>
+
+    <span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nn">anchored</span><span class="p">:</span>
+
+        <span class="s s-Atom">regex</span> <span class="o">=</span> <span class="s s-Atom">&#39;&#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span><span class="s s-Atom">&#39;^&#39;</span><span class="p">,</span> <span class="s s-Atom">regex</span><span class="p">])</span>
+
+    <span class="s s-Atom">return</span> <span class="nv">IgnoreRule</span><span class="p">(</span>
+
+        <span class="s s-Atom">pattern</span><span class="o">=</span><span class="s s-Atom">orig_pattern</span><span class="p">,</span>
+
+        <span class="s s-Atom">regex</span><span class="o">=</span><span class="s s-Atom">regex</span><span class="p">,</span>
+
+        <span class="s s-Atom">negation</span><span class="o">=</span><span class="s s-Atom">negation</span><span class="p">,</span>
+
+        <span class="s s-Atom">directory_only</span><span class="o">=</span><span class="s s-Atom">directory_only</span><span class="p">,</span>
+
+        <span class="s s-Atom">anchored</span><span class="o">=</span><span class="s s-Atom">anchored</span><span class="p">,</span>
+
+        <span class="s s-Atom">base_path</span><span class="o">=</span><span class="nv">Path</span><span class="p">(</span><span class="s s-Atom">base_path</span><span class="p">)</span> <span class="s s-Atom">if</span> <span class="s s-Atom">base_path</span> <span class="s s-Atom">else</span> <span class="nv">None</span><span class="p">,</span>
+
+        <span class="s s-Atom">source</span><span class="o">=</span><span class="s s-Atom">source</span>
+
+    <span class="p">)</span>
+
+<span class="s s-Atom">whitespace_re</span> <span class="o">=</span> <span class="s s-Atom">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="s s-Atom">r&#39;(\\ )+$&#39;</span><span class="p">)</span>
+
+<span class="nv">IGNORE_RULE_FIELDS</span> <span class="o">=</span> <span class="p">[</span>
+
+    <span class="s s-Atom">&#39;pattern&#39;</span><span class="p">,</span> <span class="s s-Atom">&#39;regex&#39;</span><span class="p">,</span>  <span class="s s-Atom">#</span> <span class="nv">Basic</span> <span class="s s-Atom">values</span>
+
+    <span class="s s-Atom">&#39;negation&#39;</span><span class="p">,</span> <span class="s s-Atom">&#39;directory_only&#39;</span><span class="p">,</span> <span class="s s-Atom">&#39;anchored&#39;</span><span class="p">,</span>  <span class="s s-Atom">#</span> <span class="nv">Behavior</span> <span class="s s-Atom">flags</span>
+
+    <span class="s s-Atom">&#39;base_path&#39;</span><span class="p">,</span>  <span class="s s-Atom">#</span> <span class="nv">Meaningful</span> <span class="s s-Atom">for</span> <span class="s s-Atom">gitignore</span><span class="o">-</span><span class="s s-Atom">style</span> <span class="s s-Atom">behavior</span>
+
+    <span class="s s-Atom">&#39;source&#39;</span>  <span class="s s-Atom">#</span> <span class="p">(</span><span class="s s-Atom">file</span><span class="p">,</span> <span class="s s-Atom">line</span><span class="p">)</span> <span class="s s-Atom">tuple</span> <span class="s s-Atom">for</span> <span class="s s-Atom">reporting</span>
+
+<span class="p">]</span>
+
+<span class="s s-Atom">class</span> <span class="nv">IgnoreRule</span><span class="p">(</span><span class="s s-Atom">collections</span><span class="p">.</span><span class="nf">namedtuple</span><span class="p">(</span><span class="s s-Atom">&#39;IgnoreRule_&#39;</span><span class="p">,</span> <span class="nv">IGNORE_RULE_FIELDS</span><span class="p">))</span><span class="s s-Atom">:</span>
+
+    <span class="s s-Atom">def</span> <span class="k">__</span><span class="nf">str__</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">return</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="s s-Atom">pattern</span>
+
+    <span class="s s-Atom">def</span> <span class="k">__</span><span class="nf">repr__</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">return</span> <span class="s s-Atom">&#39;&#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span><span class="s s-Atom">&#39;IgnoreRule(\&#39;&#39;, self.pattern, &#39;\&#39;)&#39;</span><span class="p">])</span>
+
+    <span class="s s-Atom">def</span> <span class="nf">match</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">,</span> <span class="s s-Atom">abs_path</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">matched</span> <span class="o">=</span> <span class="nv">False</span>
+
+        <span class="s s-Atom">if</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="s s-Atom">base_path:</span>
+
+            <span class="s s-Atom">rel_path</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="nv">Path</span><span class="p">(</span><span class="s s-Atom">abs_path</span><span class="p">).</span><span class="nf">relative_to</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="s s-Atom">base_path</span><span class="p">))</span>
+
+        <span class="nn">else</span><span class="p">:</span>
+
+            <span class="s s-Atom">rel_path</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="nv">Path</span><span class="p">(</span><span class="s s-Atom">abs_path</span><span class="p">))</span>
+
+        <span class="s s-Atom">if</span> <span class="s s-Atom">rel_path</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="s s-Atom">&#39;./&#39;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">rel_path</span> <span class="o">=</span> <span class="s s-Atom">rel_path</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">:</span><span class="p">]</span>
+
+        <span class="s s-Atom">if</span> <span class="s s-Atom">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="s s-Atom">regex</span><span class="p">,</span> <span class="s s-Atom">rel_path</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">matched</span> <span class="o">=</span> <span class="nv">True</span>
+
+        <span class="s s-Atom">return</span> <span class="s s-Atom">matched</span>
+
+<span class="s s-Atom">#</span> <span class="nv">Frustratingly</span><span class="p">,</span> <span class="s s-Atom">python&#39;s fnmatch doesn&#39;t</span> <span class="s s-Atom">provide</span> <span class="s s-Atom">the</span> <span class="nv">FNM_PATHNAME</span>
+
+<span class="s s-Atom">#</span> <span class="s s-Atom">option</span> <span class="s s-Atom">that</span> <span class="p">.</span><span class="s s-Atom">gitignore&#39;s behavior depends on.</span>
+
+<span class="s s-Atom">def fnmatch_pathname_to_regex(pattern):</span>
+
+<span class="s s-Atom">    &quot;&quot;&quot;</span>
+
+<span class="s s-Atom">    Implements fnmatch style-behavior, as though with FNM_PATHNAME flagged;</span>
+
+<span class="s s-Atom">    the path seperator will not match shell-style &#39;*&#39; and &#39;</span><span class="p">.</span><span class="s s-Atom">&#39; wildcards.</span>
+
+<span class="s s-Atom">    &quot;&quot;&quot;</span>
+
+<span class="s s-Atom">    i, n = 0, len(pattern)</span>
+
+<span class="s s-Atom">    seps = [re.escape(os.sep)]</span>
+
+<span class="s s-Atom">    if os.altsep is not None:</span>
+
+<span class="s s-Atom">        seps.append(re.escape(os.altsep))</span>
+
+<span class="s s-Atom">    seps_group = &#39;</span><span class="p">[</span><span class="s s-Atom">&#39; + &#39;</span><span class="p">|</span><span class="s s-Atom">&#39;.join(seps) + &#39;</span><span class="p">]</span><span class="s s-Atom">&#39;</span>
+
+<span class="s s-Atom">    nonsep = r&#39;</span><span class="p">[</span><span class="s s-Atom">^</span><span class="p">{}]</span><span class="s s-Atom">&#39;.format(&#39;</span><span class="p">|</span><span class="s s-Atom">&#39;.join(seps))</span>
+
+<span class="s s-Atom">    res = []</span>
+
+<span class="s s-Atom">    while i &lt; n:</span>
+
+<span class="s s-Atom">        c = pattern[i]</span>
+
+<span class="s s-Atom">        i += 1</span>
+
+<span class="s s-Atom">        if c == &#39;*&#39;:</span>
+
+<span class="s s-Atom">            try:</span>
+
+<span class="s s-Atom">                if pattern[i] == &#39;*&#39;:</span>
+
+<span class="s s-Atom">                    i += 1</span>
+
+<span class="s s-Atom">                    res.append(&#39;</span><span class="p">.</span><span class="s s-Atom">*&#39;)</span>
+
+<span class="s s-Atom">                    if pattern[i] == &#39;/&#39;:</span>
+
+<span class="s s-Atom">                        i += 1</span>
+
+<span class="s s-Atom">                        res.append(&#39;&#39;.join([seps_group, &#39;?&#39;]))</span>
+
+<span class="s s-Atom">                else:</span>
+
+<span class="s s-Atom">                    res.append(&#39;&#39;.join([nonsep, &#39;*&#39;]))</span>
+
+<span class="s s-Atom">            except IndexError:</span>
+
+<span class="s s-Atom">                res.append(&#39;&#39;.join([nonsep, &#39;*&#39;]))</span>
+
+<span class="s s-Atom">        elif c == &#39;?&#39;:</span>
+
+<span class="s s-Atom">            res.append(nonsep)</span>
+
+<span class="s s-Atom">        elif c == &#39;/&#39;:</span>
+
+<span class="s s-Atom">            res.append(seps_group)</span>
+
+<span class="s s-Atom">        elif c == &#39;</span><span class="p">[</span><span class="s s-Atom">&#39;:</span>
+
+<span class="s s-Atom">            j = i</span>
+
+<span class="s s-Atom">            if j &lt; n and pattern[j] == &#39;</span><span class="p">!</span><span class="s s-Atom">&#39;:</span>
+
+<span class="s s-Atom">                j += 1</span>
+
+<span class="s s-Atom">            if j &lt; n and pattern[j] == &#39;</span><span class="p">]</span><span class="s s-Atom">&#39;:</span>
+
+<span class="s s-Atom">                j += 1</span>
+
+<span class="s s-Atom">            while j &lt; n and pattern[j] != &#39;</span><span class="p">]</span><span class="s s-Atom">&#39;:</span>
+
+<span class="s s-Atom">                j += 1</span>
+
+<span class="s s-Atom">            if j &gt;= n:</span>
+
+<span class="s s-Atom">                res.append(&#39;\\</span><span class="p">[</span><span class="s s-Atom">&#39;)</span>
+
+<span class="s s-Atom">            else:</span>
+
+<span class="s s-Atom">                stuff = pattern[i:j].replace(&#39;\\&#39;, &#39;\\\\&#39;)</span>
+
+<span class="s s-Atom">                i = j + 1</span>
+
+<span class="s s-Atom">                if stuff[0] == &#39;</span><span class="p">!</span><span class="s s-Atom">&#39;:</span>
+
+<span class="s s-Atom">                    stuff = &#39;&#39;.join([&#39;^&#39;, stuff[1:]])</span>
+
+<span class="s s-Atom">                elif stuff[0] == &#39;^&#39;:</span>
+
+<span class="s s-Atom">                    stuff = &#39;&#39;.join(&#39;\\&#39; + stuff)</span>
+
+<span class="s s-Atom">                res.append(&#39;</span><span class="p">[{}]</span><span class="s s-Atom">&#39;.format(stuff))</span>
+
+<span class="s s-Atom">        else:</span>
+
+<span class="s s-Atom">            res.append(re.escape(c))</span>
+
+<span class="s s-Atom">    res.insert(0, &#39;</span><span class="p">(</span><span class="s s-Atom">?ms</span><span class="p">)</span><span class="s s-Atom">&#39;)</span>
+
+<span class="s s-Atom">    res.append(&#39;</span><span class="err">$</span><span class="s s-Atom">&#39;)</span>
+
+<span class="s s-Atom">    return &#39;</span><span class="err">&#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">res</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h2 id="variables">Variables</h2>
+<div class="python3 codehilite"><pre><span></span><code><span class="n">IGNORE_RULE_FIELDS</span>
+</code></pre></div>
+
+<div class="python3 codehilite"><pre><span></span><code><span class="n">whitespace_re</span>
+</code></pre></div>
+
+<h2 id="functions">Functions</h2>
+<h4 id="fnmatch_pathname_to_regex">fnmatch_pathname_to_regex</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fnmatch_pathname_to_regex</span><span class="p">(</span>
+    <span class="n">pattern</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Implements fnmatch style-behavior, as though with FNM_PATHNAME flagged;
+the path seperator will not match shell-style &lsquo;*&rsquo; and &lsquo;.&rsquo; wildcards.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">fnmatch_pathname_to_regex</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Implements fnmatch style-behavior, as though with FNM_PATHNAME flagged;</span>
+
+<span class="ss">    the path seperator will not match shell-style &#39;*&#39; and &#39;.&#39; wildcards.</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">seps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">re.escape(os.sep)</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="n">altsep</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">seps</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="k">escape</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">altsep</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">seps_group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">seps</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;]&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">nonsep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="s1">&#39;[^{}]&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">seps</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nl">n</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">pattern</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;.*&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="n">pattern</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                        </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">                        </span><span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="o">[</span><span class="n">seps_group, &#39;?&#39;</span><span class="o">]</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="o">[</span><span class="n">nonsep, &#39;*&#39;</span><span class="o">]</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">            </span><span class="ow">except</span><span class="w"> </span><span class="nl">IndexError</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="o">[</span><span class="n">nonsep, &#39;*&#39;</span><span class="o">]</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;?&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nonsep</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">seps_group</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">pattern</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;!&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">pattern</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;]&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">pattern</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;]&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nl">n</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;\\[&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="nf">stuff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="o">[</span><span class="n">i:j</span><span class="o">]</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="s1">&#39;\\&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;\\\\&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="nf">stuff</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;!&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="nf">stuff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="o">[</span><span class="n">&#39;^&#39;, stuff[1:</span><span class="o">]</span><span class="err">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">elif</span><span class="w"> </span><span class="nf">stuff</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;^&#39;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="nf">stuff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="s1">&#39;\\&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">stuff</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;[{}]&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="nf">stuff</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="k">escape</span><span class="p">(</span><span class="n">c</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="k">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(?ms)&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h4 id="parse_gitignore_file">parse_gitignore_file</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_gitignore_file</span><span class="p">(</span>
+    <span class="n">full_path</span><span class="p">,</span>
+    <span class="n">base_dir</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>parse a gitignore file</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">parse_gitignore_file</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="n">base_dir</span><span class="o">=</span><span class="k">None</span><span class="p">):</span>
+
+    <span class="ss">&quot;&quot;&quot; parse a gitignore file</span>
+
+<span class="ss">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">base_dir</span> <span class="k">is</span> <span class="k">None</span><span class="p">:</span>
+
+        <span class="n">base_dir</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="k">open</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">ignore_file</span><span class="p">:</span>
+
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">ignore_file</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">parse_gitignore_lines</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">full_path</span><span class="p">,</span> <span class="n">base_dir</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="parse_gitignore_lines">parse_gitignore_lines</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_gitignore_lines</span><span class="p">(</span>
+    <span class="n">lines</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+    <span class="n">full_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">base_dir</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>parse a list of lines matching gitignore syntax</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">parse_gitignore_lines</span><span class="p">(</span><span class="n">lines</span><span class="p">:</span> <span class="n">list</span><span class="p">,</span> <span class="n">full_path</span><span class="p">:</span> <span class="n">str</span><span class="p">,</span> <span class="n">base_dir</span><span class="p">:</span> <span class="n">str</span><span class="p">):</span>
+
+    <span class="ss">&quot;&quot;&quot; parse a list of lines matching gitignore syntax</span>
+
+<span class="ss">    &quot;&quot;&quot;</span>
+
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">rules</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">lines</span><span class="p">:</span>
+
+        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;\n&#39;</span><span class="p">)</span>
+
+        <span class="k">rule</span> <span class="o">=</span> <span class="n">rule_from_pattern</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">abspath</span><span class="p">(</span><span class="n">base_dir</span><span class="p">),</span>
+
+                                 <span class="k">source</span><span class="o">=</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="n">counter</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="k">rule</span><span class="p">:</span>
+
+            <span class="n">rules</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="k">rule</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">lambda</span> <span class="n">file_path</span><span class="p">:</span> <span class="k">any</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="k">match</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="k">in</span> <span class="n">rules</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="rule_from_pattern">rule_from_pattern</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">rule_from_pattern</span><span class="p">(</span>
+    <span class="n">pattern</span><span class="p">,</span>
+    <span class="n">base_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">source</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Take a .gitignore match pattern, such as &ldquo;<em>.py[cod]&rdquo; or &ldquo;*</em>/*.bak&rdquo;,
+and return an IgnoreRule suitable for matching against files and
+directories. Patterns which do not match files, such as comments
+and blank lines, will return None.
+Because git allows for nested .gitignore files, a base_path value
+is required for correct behavior. The base path should be absolute.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="s s-Atom">def</span> <span class="nf">rule_from_pattern</span><span class="p">(</span><span class="s s-Atom">pattern</span><span class="p">,</span> <span class="s s-Atom">base_path</span><span class="o">=</span><span class="nv">None</span><span class="p">,</span> <span class="s s-Atom">source</span><span class="o">=</span><span class="nv">None</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+    <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">    Take a .gitignore match pattern, such as &quot;</span><span class="s s-Atom">*.py</span><span class="p">[</span><span class="s s-Atom">cod</span><span class="p">]</span><span class="s2">&quot; or &quot;</span><span class="s s-Atom">**/*.bak</span><span class="s2">&quot;,</span>
+
+<span class="s2">    and return an IgnoreRule suitable for matching against files and</span>
+
+<span class="s2">    directories. Patterns which do not match files, such as comments</span>
+
+<span class="s2">    and blank lines, will return None.</span>
+
+<span class="s2">    Because git allows for nested .gitignore files, a base_path value</span>
+
+<span class="s2">    is required for correct behavior. The base path should be absolute.</span>
+
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">base_path</span> <span class="s s-Atom">and</span> <span class="s s-Atom">base_path</span> <span class="p">!</span><span class="o">=</span> <span class="nf">abspath</span><span class="p">(</span><span class="s s-Atom">base_path</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">raise</span> <span class="nv">ValueError</span><span class="p">(</span><span class="s s-Atom">&#39;base_path must be absolute&#39;</span><span class="p">)</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Store</span> <span class="s s-Atom">the</span> <span class="s s-Atom">exact</span> <span class="s s-Atom">pattern</span> <span class="s s-Atom">for</span> <span class="s s-Atom">our</span> <span class="s s-Atom">repr</span> <span class="s s-Atom">and</span> <span class="s s-Atom">string</span> <span class="s s-Atom">functions</span>
+
+    <span class="s s-Atom">orig_pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Early</span> <span class="s s-Atom">returns</span> <span class="s s-Atom">follow</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Discard</span> <span class="s s-Atom">comments</span> <span class="s s-Atom">and</span> <span class="s s-Atom">seperators</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s s-Atom">&#39;&#39;</span> <span class="s s-Atom">or</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;#&#39;:</span>
+
+        <span class="s s-Atom">return</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Discard</span> <span class="s s-Atom">anything</span> <span class="s s-Atom">with</span> <span class="s s-Atom">more</span> <span class="s s-Atom">than</span> <span class="s s-Atom">two</span> <span class="s s-Atom">consecutive</span> <span class="s s-Atom">asterisks</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s s-Atom">&#39;***&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">return</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Strip</span> <span class="s s-Atom">leading</span> <span class="s s-Atom">bang</span> <span class="s s-Atom">before</span> <span class="s s-Atom">examining</span> <span class="s s-Atom">double</span> <span class="s s-Atom">asterisks</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;!&#39;:</span>
+
+        <span class="s s-Atom">negation</span> <span class="o">=</span> <span class="nv">True</span>
+
+        <span class="s s-Atom">pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">1</span><span class="s s-Atom">:</span><span class="p">]</span>
+
+    <span class="nn">else</span><span class="p">:</span>
+
+        <span class="s s-Atom">negation</span> <span class="o">=</span> <span class="nv">False</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Discard</span> <span class="s s-Atom">anything</span> <span class="s s-Atom">with</span> <span class="s s-Atom">invalid</span> <span class="s s-Atom">double</span><span class="o">-</span><span class="s s-Atom">asterisks</span> <span class="s s-Atom">--</span> <span class="s s-Atom">they</span> <span class="s s-Atom">can</span> <span class="s s-Atom">appear</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">at</span> <span class="s s-Atom">the</span> <span class="s s-Atom">start</span> <span class="s s-Atom">or</span> <span class="s s-Atom">the</span> <span class="s s-Atom">end</span><span class="p">,</span> <span class="s s-Atom">or</span> <span class="s s-Atom">be</span> <span class="s s-Atom">surrounded</span> <span class="s s-Atom">by</span> <span class="s s-Atom">slashes</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">m</span> <span class="s s-Atom">in</span> <span class="s s-Atom">re</span><span class="p">.</span><span class="nf">finditer</span><span class="p">(</span><span class="s s-Atom">r&#39;\*\*&#39;</span><span class="p">,</span> <span class="s s-Atom">pattern</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">start_index</span> <span class="o">=</span> <span class="s s-Atom">m</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+
+        <span class="nf">if</span> <span class="p">(</span><span class="s s-Atom">start_index</span> <span class="p">!</span><span class="o">=</span> <span class="mi">0</span> <span class="s s-Atom">and</span> <span class="s s-Atom">start_index</span> <span class="p">!</span><span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="s s-Atom">pattern</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+
+            <span class="nf">and</span> <span class="p">(</span><span class="s s-Atom">pattern</span><span class="p">[</span><span class="s s-Atom">start_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="p">!</span><span class="o">=</span> <span class="s s-Atom">&#39;/&#39;</span> <span class="s s-Atom">or</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="s s-Atom">start_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="p">!</span><span class="o">=</span> <span class="s s-Atom">&#39;/&#39;</span><span class="p">))</span><span class="s s-Atom">:</span> <span class="s s-Atom">#</span> <span class="s s-Atom">noqa</span>
+
+            <span class="s s-Atom">return</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">Special</span><span class="o">-</span><span class="s s-Atom">casing</span> <span class="s s-Atom">&#39;/&#39;</span><span class="p">,</span> <span class="s s-Atom">which</span> <span class="s s-Atom">doesn&#39;t match any files or directories</span>
+
+<span class="s s-Atom">    if pattern.rstrip() == &#39;/&#39;:</span>
+
+<span class="s s-Atom">        return</span>
+
+<span class="s s-Atom">    directory_only = pattern[-1] == &#39;/&#39;</span>
+
+<span class="s s-Atom">    # A slash is a sign that we&#39;re</span> <span class="s s-Atom">tied</span> <span class="s s-Atom">to</span> <span class="s s-Atom">the</span> <span class="s s-Atom">base_path</span> <span class="s s-Atom">of</span> <span class="s s-Atom">our</span> <span class="s s-Atom">rule</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">set</span><span class="p">.</span>
+
+    <span class="s s-Atom">anchored</span> <span class="o">=</span> <span class="s s-Atom">&#39;/&#39;</span> <span class="s s-Atom">in</span> <span class="s s-Atom">pattern</span><span class="p">[:-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;/&#39;:</span>
+
+        <span class="s s-Atom">pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">1</span><span class="s s-Atom">:</span><span class="p">]</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;*&#39;</span> <span class="s s-Atom">and</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;*&#39;:</span>
+
+        <span class="s s-Atom">pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">:</span><span class="p">]</span>
+
+        <span class="s s-Atom">anchored</span> <span class="o">=</span> <span class="nv">False</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;/&#39;:</span>
+
+        <span class="s s-Atom">pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="mi">1</span><span class="s s-Atom">:</span><span class="p">]</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">pattern</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s s-Atom">&#39;/&#39;:</span>
+
+        <span class="s s-Atom">pattern</span> <span class="o">=</span> <span class="s s-Atom">pattern</span><span class="p">[:-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="s s-Atom">regex</span> <span class="o">=</span> <span class="nf">fnmatch_pathname_to_regex</span><span class="p">(</span>
+
+        <span class="s s-Atom">pattern</span>
+
+    <span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nn">anchored</span><span class="p">:</span>
+
+        <span class="s s-Atom">regex</span> <span class="o">=</span> <span class="s s-Atom">&#39;&#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">([</span><span class="s s-Atom">&#39;^&#39;</span><span class="p">,</span> <span class="s s-Atom">regex</span><span class="p">])</span>
+
+    <span class="s s-Atom">return</span> <span class="nv">IgnoreRule</span><span class="p">(</span>
+
+        <span class="s s-Atom">pattern</span><span class="o">=</span><span class="s s-Atom">orig_pattern</span><span class="p">,</span>
+
+        <span class="s s-Atom">regex</span><span class="o">=</span><span class="s s-Atom">regex</span><span class="p">,</span>
+
+        <span class="s s-Atom">negation</span><span class="o">=</span><span class="s s-Atom">negation</span><span class="p">,</span>
+
+        <span class="s s-Atom">directory_only</span><span class="o">=</span><span class="s s-Atom">directory_only</span><span class="p">,</span>
+
+        <span class="s s-Atom">anchored</span><span class="o">=</span><span class="s s-Atom">anchored</span><span class="p">,</span>
+
+        <span class="s s-Atom">base_path</span><span class="o">=</span><span class="nv">Path</span><span class="p">(</span><span class="s s-Atom">base_path</span><span class="p">)</span> <span class="s s-Atom">if</span> <span class="s s-Atom">base_path</span> <span class="s s-Atom">else</span> <span class="nv">None</span><span class="p">,</span>
+
+        <span class="s s-Atom">source</span><span class="o">=</span><span class="s s-Atom">source</span>
+
+    <span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="ignorerule">IgnoreRule</h3>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">IgnoreRule</span><span class="p">(</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>IgnoreRule_(pattern, regex, negation, directory_only, anchored, base_path, source)</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">IgnoreRule</span>(<span class="n">collections</span>.<span class="n">namedtuple</span>(<span class="s">&#39;IgnoreRule_&#39;</span>, <span class="n">IGNORE_RULE_FIELDS</span>)):
+
+    <span class="n">def</span> <span class="n">__str__</span>(<span class="nb">self</span>):
+
+        <span class="k">return</span> <span class="nb">self</span>.<span class="n">pattern</span>
+
+    <span class="n">def</span> <span class="n">__repr__</span>(<span class="nb">self</span>):
+
+        <span class="k">return</span> <span class="s">&#39;&#39;</span>.<span class="nb">join</span>([<span class="s">&#39;IgnoreRule(\&#39;&#39;</span>, <span class="nb">self</span>.<span class="n">pattern</span>, <span class="s">&#39;\&#39;)&#39;</span>])
+
+    <span class="n">def</span> <span class="nb">match</span>(<span class="nb">self</span>, <span class="n">abs_path</span>):
+
+        <span class="n">matched</span> = <span class="nb">False</span>
+
+        <span class="k">if</span> <span class="nb">self</span>.<span class="n">base_path:</span>
+
+            <span class="n">rel_path</span> = <span class="n">str</span>(<span class="n">Path</span>(<span class="n">abs_path</span>).<span class="n">relative_to</span>(<span class="nb">self</span>.<span class="n">base_path</span>))
+
+        <span class="n">else:</span>
+
+            <span class="n">rel_path</span> = <span class="n">str</span>(<span class="n">Path</span>(<span class="n">abs_path</span>))
+
+        <span class="k">if</span> <span class="n">rel_path</span>.<span class="n">startswith</span>(<span class="s">&#39;./&#39;</span>):
+
+            <span class="n">rel_path</span> = <span class="n">rel_path</span>[<span class="mi">2</span>:]
+
+        <span class="k">if</span> <span class="nb">re</span>.<span class="n">search</span>(<span class="nb">self</span>.<span class="k">regex</span>, <span class="n">rel_path</span>):
+
+            <span class="n">matched</span> = <span class="nb">True</span>
+
+        <span class="k">return</span> <span class="n">matched</span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="ancestors-in-mro">Ancestors (in MRO)</h4>
+<ul>
+<li>edk2toollib.gitignore_parser.IgnoreRule_</li>
+<li>builtins.tuple</li>
+</ul>
+<h4 id="class-variables">Class variables</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="n">anchored</span>
+</code></pre></div>
+
+<div class="python3 codehilite"><pre><span></span><code><span class="n">base_path</span>
+</code></pre></div>
+
+<div class="python3 codehilite"><pre><span></span><code><span class="n">directory_only</span>
+</code></pre></div>
+
+<div class="python3 codehilite"><pre><span></span><code><span class="n">negation</span>
+</code></pre></div>
+
+<div class="python3 codehilite"><pre><span></span><code><span class="n">pattern</span>
+</code></pre></div>
+
+<div class="python3 codehilite"><pre><span></span><code><span class="n">regex</span>
+</code></pre></div>
+
+<div class="python3 codehilite"><pre><span></span><code><span class="n">source</span>
+</code></pre></div>
+
+<h4 id="methods">Methods</h4>
+<h4 id="count">count</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">count</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="o">/</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Return number of occurrences of value.</p>
+<h4 id="index">index</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">index</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">stop</span><span class="o">=</span><span class="mi">9223372036854775807</span><span class="p">,</span>
+    <span class="o">/</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Return first index of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+<h4 id="match">match</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">match</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">abs_path</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="k">match</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">abs_path</span><span class="p">):</span>
+
+        <span class="n">matched</span> <span class="o">=</span> <span class="k">False</span>
+
+        <span class="k">if</span> <span class="k">self</span><span class="p">.</span><span class="n">base_path</span><span class="p">:</span>
+
+            <span class="n">rel_path</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">abs_path</span><span class="p">).</span><span class="n">relative_to</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">base_path</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">rel_path</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">abs_path</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">rel_path</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">):</span>
+
+            <span class="n">rel_path</span> <span class="o">=</span> <span class="n">rel_path</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+
+        <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="k">search</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">regex</span><span class="p">,</span> <span class="n">rel_path</span><span class="p">):</span>
+
+            <span class="n">matched</span> <span class="o">=</span> <span class="k">True</span>
+
+        <span class="k">return</span> <span class="n">matched</span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../bin/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Bin
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Index
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright (c) Microsoft.  All rights reserved
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/version-select.js"></script>
+      
+    
+  </body>
+</html>

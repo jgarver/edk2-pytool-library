@@ -1,0 +1,3120 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Project Mu Documentation">
+      
+      
+        <link rel="canonical" href="https://matthewc.dev/edk2-pytool-library/master/edk2toollib/uefi/fmp_capsule_header/">
+      
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+    
+    
+      
+        <title>Fmp capsule header - EDK2 Pytool Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.38780c08.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f72e892.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../css/version-select.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-edk2toollibuefifmp_capsule_header" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://matthewc.dev/edk2-pytool-library/master/" title="EDK2 Pytool Library" class="md-header-nav__button md-logo" aria-label="EDK2 Pytool Library">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            EDK2 Pytool Library
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Fmp capsule header
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/matthewfcarlson/edk2-pytool-library/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://matthewc.dev/edk2-pytool-library/master/" title="EDK2 Pytool Library" class="md-nav__button md-logo" aria-label="EDK2 Pytool Library">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    EDK2 Pytool Library
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/matthewfcarlson/edk2-pytool-library/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../developing/" class="md-nav__link">
+      Developing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../publishing/" class="md-nav__link">
+      Publishing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../using/" class="md-nav__link">
+      Using
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Features
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Features" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../features/logging.ansi_handler/" class="md-nav__link">
+      Logging.ansi handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../features/utility_functions.GetHostInfo/" class="md-nav__link">
+      Utility functions.get host info
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../features/windows_firmware_policy/" class="md-nav__link">
+      Windows firmware policy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../bin/" class="md-nav__link">
+      Bin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../gitignore_parser/" class="md-nav__link">
+      Gitignore parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utility_functions/" class="md-nav__link">
+      Utility functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
+    
+    <label class="md-nav__link" for="nav-6-5">
+      Acpi
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Acpi" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-5">
+        <span class="md-nav__icon md-icon"></span>
+        Acpi
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../acpi/dmar_parser/" class="md-nav__link">
+      Dmar parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../acpi/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../acpi/ivrs_parser/" class="md-nav__link">
+      Ivrs parser
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-6" type="checkbox" id="nav-6-6">
+    
+    <label class="md-nav__link" for="nav-6-6">
+      Log
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Log" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-6">
+        <span class="md-nav__icon md-icon"></span>
+        Log
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/ansi_handler/" class="md-nav__link">
+      Ansi handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/file_handler/" class="md-nav__link">
+      File handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/junit_report_format/" class="md-nav__link">
+      Junit report format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/markdown_handler/" class="md-nav__link">
+      Markdown handler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../log/string_handler/" class="md-nav__link">
+      String handler
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-7" type="checkbox" id="nav-6-7">
+    
+    <label class="md-nav__link" for="nav-6-7">
+      Tpm
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tpm" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-7">
+        <span class="md-nav__icon md-icon"></span>
+        Tpm
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tpm/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tpm/tpm2_defs/" class="md-nav__link">
+      Tpm2 defs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tpm/tpm2_policy_calc/" class="md-nav__link">
+      Tpm2 policy calc
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tpm/tpm2_simulator/" class="md-nav__link">
+      Tpm2 simulator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tpm/tpm2_stream/" class="md-nav__link">
+      Tpm2 stream
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8" type="checkbox" id="nav-6-8" checked>
+    
+    <label class="md-nav__link" for="nav-6-8">
+      Uefi
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Uefi" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-8">
+        <span class="md-nav__icon md-icon"></span>
+        Uefi
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../authenticated_variables_structure_support/" class="md-nav__link">
+      Authenticated variables structure support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bmp_object/" class="md-nav__link">
+      Bmp object
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fmp_auth_header/" class="md-nav__link">
+      Fmp auth header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Fmp capsule header
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Fmp capsule header
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fmpcapsuleheaderclass" class="md-nav__link">
+    FmpCapsuleHeaderClass
+  </a>
+  
+    <nav class="md-nav" aria-label="FmpCapsuleHeaderClass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addembeddeddriver" class="md-nav__link">
+    AddEmbeddedDriver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addfmpcapsuleimageheader" class="md-nav__link">
+    AddFmpCapsuleImageHeader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decode" class="md-nav__link">
+    Decode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dumpinfo" class="md-nav__link">
+    DumpInfo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encode" class="md-nav__link">
+    Encode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getembeddeddriver" class="md-nav__link">
+    GetEmbeddedDriver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getfmpcapsuleimageheader" class="md-nav__link">
+    GetFmpCapsuleImageHeader
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fmpcapsuleimageheaderclass" class="md-nav__link">
+    FmpCapsuleImageHeaderClass
+  </a>
+  
+    <nav class="md-nav" aria-label="FmpCapsuleImageHeaderClass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-variables_1" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decode_1" class="md-nav__link">
+    Decode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dumpinfo_1" class="md-nav__link">
+    DumpInfo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encode_1" class="md-nav__link">
+    Encode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pi_firmware_file/" class="md-nav__link">
+      Pi firmware file
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pi_firmware_volume/" class="md-nav__link">
+      Pi firmware volume
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../status_codes/" class="md-nav__link">
+      Status codes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi_capsule_header/" class="md-nav__link">
+      Uefi capsule header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uefi_multi_phase/" class="md-nav__link">
+      Uefi multi phase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../wincert/" class="md-nav__link">
+      Wincert
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12" type="checkbox" id="nav-6-8-12">
+    
+    <label class="md-nav__link" for="nav-6-8-12">
+      Edk2
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Edk2" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-8-12">
+        <span class="md-nav__icon md-icon"></span>
+        Edk2
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/fmp_payload_header/" class="md-nav__link">
+      Fmp payload header
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/ftw_working_block_format/" class="md-nav__link">
+      Ftw working block format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/guid_list/" class="md-nav__link">
+      Guid list
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/path_utilities/" class="md-nav__link">
+      Path utilities
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/variablestore_manulipulations/" class="md-nav__link">
+      Variablestore manulipulations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/variable_format/" class="md-nav__link">
+      Variable format
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12-8" type="checkbox" id="nav-6-8-12-8">
+    
+    <label class="md-nav__link" for="nav-6-8-12-8">
+      Build objects
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Build objects" data-md-level="4">
+      <label class="md-nav__title" for="nav-6-8-12-8">
+        <span class="md-nav__icon md-icon"></span>
+        Build objects
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/build_objects/dsc/" class="md-nav__link">
+      Dsc
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/build_objects/dsc_translator/" class="md-nav__link">
+      Dsc translator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/build_objects/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8-12-9" type="checkbox" id="nav-6-8-12-9">
+    
+    <label class="md-nav__link" for="nav-6-8-12-9">
+      Parsers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Parsers" data-md-level="4">
+      <label class="md-nav__title" for="nav-6-8-12-9">
+        <span class="md-nav__icon md-icon"></span>
+        Parsers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/parsers/base_parser/" class="md-nav__link">
+      Base parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/parsers/buildreport_parser/" class="md-nav__link">
+      Buildreport parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/parsers/dec_parser/" class="md-nav__link">
+      Dec parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/parsers/dsc_parser/" class="md-nav__link">
+      Dsc parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/parsers/fdf_parser/" class="md-nav__link">
+      Fdf parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/parsers/guid_parser/" class="md-nav__link">
+      Guid parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/parsers/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/parsers/inf_parser/" class="md-nav__link">
+      Inf parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/parsers/override_parser/" class="md-nav__link">
+      Override parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../edk2/parsers/targettxt_parser/" class="md-nav__link">
+      Targettxt parser
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9" type="checkbox" id="nav-6-9">
+    
+    <label class="md-nav__link" for="nav-6-9">
+      Windows
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Windows" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-9">
+        <span class="md-nav__icon md-icon"></span>
+        Windows
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/locate_tools/" class="md-nav__link">
+      Locate tools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9-3" type="checkbox" id="nav-6-9-3">
+    
+    <label class="md-nav__link" for="nav-6-9-3">
+      Capsule
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Capsule" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-9-3">
+        <span class="md-nav__icon md-icon"></span>
+        Capsule
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/capsule/cat_generator/" class="md-nav__link">
+      Cat generator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/capsule/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/capsule/inf_generator/" class="md-nav__link">
+      Inf generator
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9-4" type="checkbox" id="nav-6-9-4">
+    
+    <label class="md-nav__link" for="nav-6-9-4">
+      Policy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Policy" data-md-level="3">
+      <label class="md-nav__title" for="nav-6-9-4">
+        <span class="md-nav__icon md-icon"></span>
+        Policy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/policy/firmware_policy/" class="md-nav__link">
+      Firmware policy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../windows/policy/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fmpcapsuleheaderclass" class="md-nav__link">
+    FmpCapsuleHeaderClass
+  </a>
+  
+    <nav class="md-nav" aria-label="FmpCapsuleHeaderClass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addembeddeddriver" class="md-nav__link">
+    AddEmbeddedDriver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addfmpcapsuleimageheader" class="md-nav__link">
+    AddFmpCapsuleImageHeader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decode" class="md-nav__link">
+    Decode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dumpinfo" class="md-nav__link">
+    DumpInfo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encode" class="md-nav__link">
+    Encode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getembeddeddriver" class="md-nav__link">
+    GetEmbeddedDriver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getfmpcapsuleimageheader" class="md-nav__link">
+    GetFmpCapsuleImageHeader
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fmpcapsuleimageheaderclass" class="md-nav__link">
+    FmpCapsuleImageHeaderClass
+  </a>
+  
+    <nav class="md-nav" aria-label="FmpCapsuleImageHeaderClass">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-variables_1" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decode_1" class="md-nav__link">
+    Decode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dumpinfo_1" class="md-nav__link">
+    DumpInfo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encode_1" class="md-nav__link">
+    Encode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/matthewfcarlson/edk2-pytool-library/edit/master/docs/edk2toollib/uefi/fmp_capsule_header.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-edk2toollibuefifmp_capsule_header">Module edk2toollib.uefi.fmp_capsule_header</h1>
+<p>FmpCapsuleHeader</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="c1">## @file</span>
+
+<span class="c1"># Module that encodes and decodes a EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER with</span>
+
+<span class="c1"># a payload.</span>
+
+<span class="c1">#</span>
+
+<span class="c1"># Copyright (c) 2018 - 2019, Intel Corporation. All rights reserved.&lt;BR&gt;</span>
+
+<span class="c1"># SPDX-License-Identifier: BSD-2-Clause-Patent</span>
+
+<span class="c1">#</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">FmpCapsuleHeader</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">struct</span>
+
+<span class="kn">import</span> <span class="nn">uuid</span>
+
+<span class="kn">from</span> <span class="nn">edk2toollib.uefi.fmp_auth_header</span> <span class="kn">import</span> <span class="n">FmpAuthHeaderClass</span>
+
+<span class="k">class</span> <span class="nc">FmpCapsuleImageHeaderClass</span> <span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="c1"># typedef struct {</span>
+
+    <span class="c1">#   UINT32   Version;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// Used to identify device firmware targeted by this update. This guid is matched by</span>
+
+    <span class="c1">#   /// system firmware against ImageTypeId field within a EFI_FIRMWARE_IMAGE_DESCRIPTOR</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   EFI_GUID UpdateImageTypeId;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// Passed as ImageIndex in call to EFI_FIRMWARE_MANAGEMENT_PROTOCOL.SetImage ()</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   UINT8    UpdateImageIndex;</span>
+
+    <span class="c1">#   UINT8    reserved_bytes[3];</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// Size of the binary update image which immediately follows this structure</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   UINT32   UpdateImageSize;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// Size of the VendorCode bytes which optionally immediately follow binary update image in the capsule</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   UINT32   UpdateVendorCodeSize;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// The HardwareInstance to target with this update. If value is zero it means match all</span>
+
+    <span class="c1">#   /// HardwareInstances. This field allows update software to target only a single device in</span>
+
+    <span class="c1">#   /// cases where there are more than one device with the same ImageTypeId GUID.</span>
+
+    <span class="c1">#   /// This header is outside the signed data of the Authentication Info structure and</span>
+
+    <span class="c1">#   /// therefore can be modified without changing the Auth data.</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   UINT64   UpdateHardwareInstance;</span>
+
+    <span class="c1"># } EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#  #define EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER_INIT_VERSION 0x00000002</span>
+
+    <span class="n">_StructFormat</span> <span class="o">=</span> <span class="s1">&#39;&lt;I16sB3BIIQ&#39;</span>  <span class="c1"># spell-checker: disable-line</span>
+
+    <span class="n">_StructSize</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">calcsize</span><span class="p">(</span><span class="n">_StructFormat</span><span class="p">)</span>
+
+    <span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER_INIT_VERSION</span> <span class="o">=</span> <span class="mh">0x00000002</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER_INIT_VERSION</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="s1">&#39;00000000-0000-0000-0000-000000000000&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span> <span class="o">=</span> <span class="mh">0x0000000000000000</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">Encode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># If we have an FmpAuthHeader, let&#39;s collapse that now.</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span><span class="o">.</span><span class="n">Encode</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span><span class="p">)</span>
+
+        <span class="n">FmpCapsuleImageHeader</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_StructFormat</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span><span class="o">.</span><span class="n">bytes_le</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span><span class="p">,</span>
+
+            <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span>
+
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">FmpCapsuleImageHeader</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span>
+
+    <span class="k">def</span> <span class="nf">Decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Buffer</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:</span>
+
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="p">(</span><span class="n">Version</span><span class="p">,</span> <span class="n">UpdateImageTypeId</span><span class="p">,</span> <span class="n">UpdateImageIndex</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span>
+
+            <span class="n">UpdateImageSize</span><span class="p">,</span> <span class="n">UpdateVendorCodeSize</span><span class="p">,</span> <span class="n">UpdateHardwareInstance</span><span class="p">)</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">_StructFormat</span><span class="p">,</span>
+
+                <span class="n">Buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">]</span>
+
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">Version</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER_INIT_VERSION</span><span class="p">:</span>
+
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="k">if</span> <span class="n">UpdateImageIndex</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="k">if</span> <span class="n">UpdateImageSize</span> <span class="o">+</span> <span class="n">UpdateVendorCodeSize</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:]):</span>
+
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Version</span> <span class="o">=</span> <span class="n">Version</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="n">bytes_le</span><span class="o">=</span><span class="n">UpdateImageTypeId</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span> <span class="o">=</span> <span class="n">UpdateImageIndex</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span> <span class="o">=</span> <span class="n">UpdateImageSize</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span> <span class="o">=</span> <span class="n">UpdateVendorCodeSize</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span> <span class="o">=</span> <span class="n">UpdateHardwareInstance</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">=</span> <span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span> <span class="o">+</span> <span class="n">UpdateImageSize</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="o">=</span> <span class="n">FmpAuthHeaderClass</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span><span class="o">.</span><span class="n">Decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span> <span class="o">=</span> <span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span> <span class="o">+</span> <span class="n">UpdateImageSize</span><span class="p">:]</span>
+
+        <span class="k">return</span> <span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:]</span>
+
+    <span class="k">def</span> <span class="nf">DumpInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.Version                = {Version:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="p">))</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateImageTypeId      = {UpdateImageTypeId}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateImageTypeId</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateImageIndex       = {UpdateImageIndex:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateImageIndex</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span><span class="p">))</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateImageSize        = {UpdateImageSize:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateImageSize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span><span class="p">))</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateVendorCodeSize   = {UpdateVendorCodeSize:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateVendorCodeSize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span><span class="p">))</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateHardwareInstance = {UpdateHardwareInstance:016X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateHardwareInstance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span><span class="p">))</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;sizeof (Payload)                                                    = {Size:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)))</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;sizeof (VendorCodeBytes)                                            = {Size:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span><span class="o">.</span><span class="n">DumpInfo</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">FmpCapsuleHeaderClass</span> <span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="c1"># typedef struct {</span>
+
+    <span class="c1">#   UINT32 Version;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// The number of drivers included in the capsule and the number of corresponding</span>
+
+    <span class="c1">#   /// offsets stored in ItemOffsetList array.</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   UINT16 EmbeddedDriverCount;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// The number of payload items included in the capsule and the number of</span>
+
+    <span class="c1">#   /// corresponding offsets stored in the ItemOffsetList array.</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   UINT16 PayloadItemCount;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// Variable length array of dimension [EmbeddedDriverCount + PayloadItemCount]</span>
+
+    <span class="c1">#   /// containing offsets of each of the drivers and payload items contained within the capsule</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   // UINT64 ItemOffsetList[];</span>
+
+    <span class="c1"># } EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#  #define EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER_INIT_VERSION       0x00000001</span>
+
+    <span class="n">_StructFormat</span> <span class="o">=</span> <span class="s1">&#39;&lt;IHH&#39;</span>
+
+    <span class="n">_StructSize</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">calcsize</span><span class="p">(</span><span class="n">_StructFormat</span><span class="p">)</span>
+
+    <span class="n">_ItemOffsetFormat</span> <span class="o">=</span> <span class="s1">&#39;&lt;Q&#39;</span>
+
+    <span class="n">_ItemOffsetSize</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">calcsize</span><span class="p">(</span><span class="n">_ItemOffsetFormat</span><span class="p">)</span>
+
+    <span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER_INIT_VERSION</span> <span class="o">=</span> <span class="mh">0x00000001</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER_INIT_VERSION</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_EmbeddedDriverList</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">AddEmbeddedDriver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">EmbeddedDriver</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_EmbeddedDriverList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EmbeddedDriver</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">GetEmbeddedDriver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Index</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_EmbeddedDriverList</span><span class="p">[</span><span class="n">Index</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">AddFmpCapsuleImageHeader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FmpCapsuleHeader</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FmpCapsuleHeader</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">GetFmpCapsuleImageHeader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Index</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="p">[</span><span class="n">Index</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">Encode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_EmbeddedDriverList</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="p">)</span>
+
+        <span class="n">FmpCapsuleHeader</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_StructFormat</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span>
+
+        <span class="p">)</span>
+
+        <span class="n">FmpCapsuleData</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+
+        <span class="n">offset_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">Offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ItemOffsetSize</span>
+
+        <span class="k">for</span> <span class="n">EmbeddedDriver</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_EmbeddedDriverList</span><span class="p">:</span>
+
+            <span class="n">FmpCapsuleData</span> <span class="o">=</span> <span class="n">FmpCapsuleData</span> <span class="o">+</span> <span class="n">EmbeddedDriver</span>
+
+            <span class="n">offset_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Offset</span><span class="p">)</span>
+
+            <span class="n">Offset</span> <span class="o">=</span> <span class="n">Offset</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">EmbeddedDriver</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">FmpCapsuleImageHeader</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="p">:</span>
+
+            <span class="n">FmpCapsuleImage</span> <span class="o">=</span> <span class="n">FmpCapsuleImageHeader</span><span class="o">.</span><span class="n">Encode</span><span class="p">()</span>
+
+            <span class="n">FmpCapsuleData</span> <span class="o">=</span> <span class="n">FmpCapsuleData</span> <span class="o">+</span> <span class="n">FmpCapsuleImage</span>
+
+            <span class="n">offset_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Offset</span><span class="p">)</span>
+
+            <span class="n">Offset</span> <span class="o">=</span> <span class="n">Offset</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">FmpCapsuleImage</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">Offset</span> <span class="ow">in</span> <span class="n">offset_list</span><span class="p">:</span>
+
+            <span class="n">FmpCapsuleHeader</span> <span class="o">=</span> <span class="n">FmpCapsuleHeader</span> <span class="o">+</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ItemOffsetFormat</span><span class="p">,</span> <span class="n">Offset</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">FmpCapsuleHeader</span> <span class="o">+</span> <span class="n">FmpCapsuleData</span>
+
+    <span class="k">def</span> <span class="nf">Decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Buffer</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:</span>
+
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="p">(</span><span class="n">Version</span><span class="p">,</span> <span class="n">EmbeddedDriverCount</span><span class="p">,</span> <span class="n">PayloadItemCount</span><span class="p">)</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_StructFormat</span><span class="p">,</span>
+
+            <span class="n">Buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">]</span>
+
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">Version</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER_INIT_VERSION</span><span class="p">:</span>
+
+            <span class="k">raise</span> <span class="ne">ValueError</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Version</span> <span class="o">=</span> <span class="n">Version</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span> <span class="o">=</span> <span class="n">EmbeddedDriverCount</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span> <span class="o">=</span> <span class="n">PayloadItemCount</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_EmbeddedDriverList</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">offset_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1">#</span>
+
+        <span class="c1"># Parse the ItemOffsetList values</span>
+
+        <span class="c1">#</span>
+
+        <span class="n">Offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span>
+
+        <span class="k">for</span> <span class="n">Index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">EmbeddedDriverCount</span> <span class="o">+</span> <span class="n">PayloadItemCount</span><span class="p">):</span>
+
+            <span class="n">ItemOffset</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ItemOffsetFormat</span><span class="p">,</span> <span class="n">Buffer</span><span class="p">[</span><span class="n">Offset</span><span class="p">:</span><span class="n">Offset</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ItemOffsetSize</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">ItemOffset</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">):</span>
+
+                <span class="k">raise</span> <span class="ne">ValueError</span>
+
+            <span class="n">offset_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ItemOffset</span><span class="p">)</span>
+
+            <span class="n">Offset</span> <span class="o">=</span> <span class="n">Offset</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ItemOffsetSize</span>
+
+        <span class="n">Result</span> <span class="o">=</span> <span class="n">Buffer</span><span class="p">[</span><span class="n">Offset</span><span class="p">:]</span>
+
+        <span class="c1">#</span>
+
+        <span class="c1"># Parse the EmbeddedDrivers</span>
+
+        <span class="c1">#</span>
+
+        <span class="k">for</span> <span class="n">Index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">EmbeddedDriverCount</span><span class="p">):</span>
+
+            <span class="n">Offset</span> <span class="o">=</span> <span class="n">offset_list</span><span class="p">[</span><span class="n">Index</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">Index</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">offset_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+
+                <span class="n">Length</span> <span class="o">=</span> <span class="n">offset_list</span><span class="p">[</span><span class="n">Index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Offset</span>
+
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="n">Length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span> <span class="o">-</span> <span class="n">Offset</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">AddEmbeddedDriver</span><span class="p">(</span><span class="n">Buffer</span><span class="p">[</span><span class="n">Offset</span><span class="p">:</span><span class="n">Offset</span> <span class="o">+</span> <span class="n">Length</span><span class="p">])</span>
+
+        <span class="c1">#</span>
+
+        <span class="c1"># Parse the Payloads that are FMP Capsule Images</span>
+
+        <span class="c1">#</span>
+
+        <span class="k">for</span> <span class="n">Index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EmbeddedDriverCount</span><span class="p">,</span> <span class="n">EmbeddedDriverCount</span> <span class="o">+</span> <span class="n">PayloadItemCount</span><span class="p">):</span>
+
+            <span class="n">Offset</span> <span class="o">=</span> <span class="n">offset_list</span><span class="p">[</span><span class="n">Index</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">Index</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">offset_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+
+                <span class="n">Length</span> <span class="o">=</span> <span class="n">offset_list</span><span class="p">[</span><span class="n">Index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Offset</span>
+
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="n">Length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span> <span class="o">-</span> <span class="n">Offset</span>
+
+            <span class="n">FmpCapsuleImageHeader</span> <span class="o">=</span> <span class="n">FmpCapsuleImageHeaderClass</span><span class="p">()</span>
+
+            <span class="n">FmpCapsuleImageHeader</span><span class="o">.</span><span class="n">Decode</span><span class="p">(</span><span class="n">Buffer</span><span class="p">[</span><span class="n">Offset</span><span class="p">:</span><span class="n">Offset</span> <span class="o">+</span> <span class="n">Length</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">AddFmpCapsuleImageHeader</span><span class="p">(</span><span class="n">FmpCapsuleImageHeader</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Result</span>
+
+    <span class="k">def</span> <span class="nf">DumpInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.Version             = {Version:08X}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="p">))</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.EmbeddedDriverCount = {EmbeddedDriverCount:08X}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+
+            <span class="n">EmbeddedDriverCount</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">EmbeddedDriver</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_EmbeddedDriverList</span><span class="p">:</span>
+
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;  sizeof (EmbeddedDriver)                                  = {Size:08X}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+
+                <span class="n">Size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">EmbeddedDriver</span><span class="p">)))</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.PayloadItemCount    = {PayloadItemCount:08X}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+
+            <span class="n">PayloadItemCount</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span><span class="p">))</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.ItemOffsetList      = &#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">FmpCapsuleImageHeader</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="p">:</span>
+
+            <span class="n">FmpCapsuleImageHeader</span><span class="o">.</span><span class="n">DumpInfo</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="fmpcapsuleheaderclass">FmpCapsuleHeaderClass</h3>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FmpCapsuleHeaderClass</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="n">FmpCapsuleHeaderClass</span><span class="w"> </span><span class="p">(</span><span class="k">object</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">typedef</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="n">UINT32</span><span class="w"> </span><span class="n">Version</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">drivers</span><span class="w"> </span><span class="n">included</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">capsule</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">corresponding</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"> </span><span class="k">offsets</span><span class="w"> </span><span class="n">stored</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ItemOffsetList</span><span class="w"> </span><span class="k">array</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="n">UINT16</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">payload</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="n">included</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">capsule</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"> </span><span class="k">corresponding</span><span class="w"> </span><span class="k">offsets</span><span class="w"> </span><span class="n">stored</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ItemOffsetList</span><span class="w"> </span><span class="k">array</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="n">UINT16</span><span class="w"> </span><span class="n">PayloadItemCount</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"> </span><span class="k">Variable</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">dimension</span><span class="w"> </span><span class="o">[</span><span class="n">EmbeddedDriverCount + PayloadItemCount</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"> </span><span class="n">containing</span><span class="w"> </span><span class="k">offsets</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">drivers</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">payload</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="n">contained</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">capsule</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">///</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">   </span><span class="o">//</span><span class="w"> </span><span class="n">UINT64</span><span class="w"> </span><span class="n">ItemOffsetList</span><span class="err">[]</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">}</span><span class="w"> </span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w">  </span><span class="n">#define</span><span class="w"> </span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER_INIT_VERSION</span><span class="w">       </span><span class="mh">0x00000001</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">_StructFormat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;IHH&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">_StructSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">struct</span><span class="p">.</span><span class="n">calcsize</span><span class="p">(</span><span class="n">_StructFormat</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">_ItemOffsetFormat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;Q&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">_ItemOffsetSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">struct</span><span class="p">.</span><span class="n">calcsize</span><span class="p">(</span><span class="n">_ItemOffsetFormat</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER_INIT_VERSION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00000001</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">Version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER_INIT_VERSION</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">EmbeddedDriverCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">PayloadItemCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_EmbeddedDriverList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">AddEmbeddedDriver</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">EmbeddedDriver</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_EmbeddedDriverList</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">EmbeddedDriver</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">EmbeddedDriverCount</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">GetEmbeddedDriver</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">Index</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_EmbeddedDriverList</span><span class="o">[</span><span class="n">Index</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">AddFmpCapsuleImageHeader</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">FmpCapsuleHeader</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">FmpCapsuleHeader</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">PayloadItemCount</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">GetFmpCapsuleImageHeader</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">Index</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="o">[</span><span class="n">Index</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">Encode</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">EmbeddedDriverCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">_EmbeddedDriverList</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">PayloadItemCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">FmpCapsuleHeader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">struct</span><span class="p">.</span><span class="n">pack</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">_StructFormat</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">Version</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">EmbeddedDriverCount</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">PayloadItemCount</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">FmpCapsuleData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="s1">&#39;&#39;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">offset_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_StructSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">EmbeddedDriverCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">PayloadItemCount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_ItemOffsetSize</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">EmbeddedDriver</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">_EmbeddedDriverList</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">FmpCapsuleData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FmpCapsuleData</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">EmbeddedDriver</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">offset_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Offset</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">EmbeddedDriver</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">FmpCapsuleImageHeader</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">_FmpCapsuleImageHeaderList</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">FmpCapsuleImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FmpCapsuleImageHeader</span><span class="p">.</span><span class="n">Encode</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">FmpCapsuleData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FmpCapsuleData</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">FmpCapsuleImage</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">offset_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Offset</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">FmpCapsuleImage</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">Offset</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">offset_list</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">FmpCapsuleHeader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FmpCapsuleHeader</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">struct</span><span class="p">.</span><span class="n">pack</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">_ItemOffsetFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Offset</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FmpCapsuleHeader</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">FmpCapsuleData</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">Decode</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">_StructSize</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">ValueError</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">(</span><span class="n">Version</span><span class="p">,</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="p">,</span><span class="w"> </span><span class="n">PayloadItemCount</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">struct</span><span class="p">.</span><span class="n">unpack</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">_StructFormat</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Buffer</span><span class="o">[</span><span class="n">0:self._StructSize</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">Version</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER_INIT_VERSION</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">ValueError</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">Version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Version</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">EmbeddedDriverCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">PayloadItemCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PayloadItemCount</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_EmbeddedDriverList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">offset_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">Parse</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ItemOffsetList</span><span class="w"> </span><span class="k">values</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_StructSize</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="k">Index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">PayloadItemCount</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">ItemOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">struct</span><span class="p">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">_ItemOffsetFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="o">[</span><span class="n">Offset:Offset + self._ItemOffsetSize</span><span class="o">]</span><span class="p">)</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">ItemOffset</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">raise</span><span class="w"> </span><span class="n">ValueError</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">offset_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">ItemOffset</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_ItemOffsetSize</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Buffer</span><span class="o">[</span><span class="n">Offset:</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">Parse</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">EmbeddedDrivers</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="k">Index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset_list</span><span class="o">[</span><span class="n">Index</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="k">Index</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">offset_list</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">Length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset_list</span><span class="o">[</span><span class="n">Index + 1</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Offset</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">Length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Offset</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">AddEmbeddedDriver</span><span class="p">(</span><span class="n">Buffer</span><span class="o">[</span><span class="n">Offset:Offset + Length</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">Parse</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Payloads</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">FMP</span><span class="w"> </span><span class="n">Capsule</span><span class="w"> </span><span class="n">Images</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="k">Index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">EmbeddedDriverCount</span><span class="p">,</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">PayloadItemCount</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset_list</span><span class="o">[</span><span class="n">Index</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="k">Index</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">offset_list</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">Length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset_list</span><span class="o">[</span><span class="n">Index + 1</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Offset</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">Length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Offset</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">FmpCapsuleImageHeader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FmpCapsuleImageHeaderClass</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">FmpCapsuleImageHeader</span><span class="p">.</span><span class="n">Decode</span><span class="p">(</span><span class="n">Buffer</span><span class="o">[</span><span class="n">Offset:Offset + Length</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">AddFmpCapsuleImageHeader</span><span class="p">(</span><span class="n">FmpCapsuleImageHeader</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">Result</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">DumpInfo</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.Version             = {Version:08X}&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">Version</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">Version</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.EmbeddedDriverCount = {EmbeddedDriverCount:08X}&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">EmbeddedDriverCount</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">EmbeddedDriverCount</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">EmbeddedDriver</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">_EmbeddedDriverList</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;  sizeof (EmbeddedDriver)                                  = {Size:08X}&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">Size</span><span class="o">=</span><span class="nf">len</span><span class="p">(</span><span class="n">EmbeddedDriver</span><span class="p">)))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.PayloadItemCount    = {PayloadItemCount:08X}&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">PayloadItemCount</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">PayloadItemCount</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.ItemOffsetList      = &#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">FmpCapsuleImageHeader</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">_FmpCapsuleImageHeaderList</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">FmpCapsuleImageHeader</span><span class="p">.</span><span class="n">DumpInfo</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="class-variables">Class variables</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER_INIT_VERSION</span>
+</code></pre></div>
+
+<h4 id="methods">Methods</h4>
+<h4 id="addembeddeddriver">AddEmbeddedDriver</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">AddEmbeddedDriver</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">EmbeddedDriver</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">AddEmbeddedDriver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">EmbeddedDriver</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">_EmbeddedDriverList</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">EmbeddedDriver</span><span class="p">)</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">EmbeddedDriverCount</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+
+</details>
+<h4 id="addfmpcapsuleimageheader">AddFmpCapsuleImageHeader</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">AddFmpCapsuleImageHeader</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">FmpCapsuleHeader</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">AddFmpCapsuleImageHeader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">FmpCapsuleHeader</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FmpCapsuleHeader</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+
+</details>
+<h4 id="decode">Decode</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">Decode</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">Buffer</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">Decode</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">_StructSize</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">ValueError</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">(</span><span class="n">Version</span><span class="p">,</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="p">,</span><span class="w"> </span><span class="n">PayloadItemCount</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">struct</span><span class="p">.</span><span class="n">unpack</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">_StructFormat</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Buffer</span><span class="o">[</span><span class="n">0:self._StructSize</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">Version</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER_INIT_VERSION</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">ValueError</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">Version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Version</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">EmbeddedDriverCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">PayloadItemCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PayloadItemCount</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_EmbeddedDriverList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">offset_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">Parse</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ItemOffsetList</span><span class="w"> </span><span class="k">values</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_StructSize</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="k">Index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">PayloadItemCount</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">ItemOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">struct</span><span class="p">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">_ItemOffsetFormat</span><span class="p">,</span><span class="w"> </span><span class="n">Buffer</span><span class="o">[</span><span class="n">Offset:Offset + self._ItemOffsetSize</span><span class="o">]</span><span class="p">)</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">ItemOffset</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">raise</span><span class="w"> </span><span class="n">ValueError</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">offset_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">ItemOffset</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Offset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_ItemOffsetSize</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">Result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Buffer</span><span class="o">[</span><span class="n">Offset:</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">Parse</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">EmbeddedDrivers</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="k">Index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset_list</span><span class="o">[</span><span class="n">Index</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="k">Index</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">offset_list</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">Length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset_list</span><span class="o">[</span><span class="n">Index + 1</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Offset</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">Length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Offset</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">AddEmbeddedDriver</span><span class="p">(</span><span class="n">Buffer</span><span class="o">[</span><span class="n">Offset:Offset + Length</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nf">Parse</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Payloads</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">FMP</span><span class="w"> </span><span class="n">Capsule</span><span class="w"> </span><span class="n">Images</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="k">Index</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">EmbeddedDriverCount</span><span class="p">,</span><span class="w"> </span><span class="n">EmbeddedDriverCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">PayloadItemCount</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset_list</span><span class="o">[</span><span class="n">Index</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="k">Index</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">offset_list</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">Length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">offset_list</span><span class="o">[</span><span class="n">Index + 1</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Offset</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">Length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Offset</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">FmpCapsuleImageHeader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FmpCapsuleImageHeaderClass</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">FmpCapsuleImageHeader</span><span class="p">.</span><span class="n">Decode</span><span class="p">(</span><span class="n">Buffer</span><span class="o">[</span><span class="n">Offset:Offset + Length</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">AddFmpCapsuleImageHeader</span><span class="p">(</span><span class="n">FmpCapsuleImageHeader</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">Result</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h4 id="dumpinfo">DumpInfo</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">DumpInfo</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">DumpInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.Version             = {Version:08X}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.EmbeddedDriverCount = {EmbeddedDriverCount:08X}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+
+            <span class="n">EmbeddedDriverCount</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">EmbeddedDriver</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_EmbeddedDriverList</span><span class="p">:</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  sizeof (EmbeddedDriver)                                  = {Size:08X}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+
+                <span class="n">Size</span><span class="o">=</span><span class="n">len</span><span class="p">(</span><span class="n">EmbeddedDriver</span><span class="p">)))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.PayloadItemCount    = {PayloadItemCount:08X}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+
+            <span class="n">PayloadItemCount</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_HEADER.ItemOffsetList      = &#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">FmpCapsuleImageHeader</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="p">:</span>
+
+            <span class="n">FmpCapsuleImageHeader</span><span class="o">.</span><span class="n">DumpInfo</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h4 id="encode">Encode</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">Encode</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">Encode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_EmbeddedDriverList</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="p">)</span>
+
+        <span class="n">FmpCapsuleHeader</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_StructFormat</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span>
+
+        <span class="p">)</span>
+
+        <span class="n">FmpCapsuleData</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+
+        <span class="n">offset_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">Offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EmbeddedDriverCount</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">PayloadItemCount</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ItemOffsetSize</span>
+
+        <span class="k">for</span> <span class="n">EmbeddedDriver</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_EmbeddedDriverList</span><span class="p">:</span>
+
+            <span class="n">FmpCapsuleData</span> <span class="o">=</span> <span class="n">FmpCapsuleData</span> <span class="o">+</span> <span class="n">EmbeddedDriver</span>
+
+            <span class="n">offset_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Offset</span><span class="p">)</span>
+
+            <span class="n">Offset</span> <span class="o">=</span> <span class="n">Offset</span> <span class="o">+</span> <span class="n">len</span><span class="p">(</span><span class="n">EmbeddedDriver</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">FmpCapsuleImageHeader</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="p">:</span>
+
+            <span class="n">FmpCapsuleImage</span> <span class="o">=</span> <span class="n">FmpCapsuleImageHeader</span><span class="o">.</span><span class="n">Encode</span><span class="p">()</span>
+
+            <span class="n">FmpCapsuleData</span> <span class="o">=</span> <span class="n">FmpCapsuleData</span> <span class="o">+</span> <span class="n">FmpCapsuleImage</span>
+
+            <span class="n">offset_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Offset</span><span class="p">)</span>
+
+            <span class="n">Offset</span> <span class="o">=</span> <span class="n">Offset</span> <span class="o">+</span> <span class="n">len</span><span class="p">(</span><span class="n">FmpCapsuleImage</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">Offset</span> <span class="ow">in</span> <span class="n">offset_list</span><span class="p">:</span>
+
+            <span class="n">FmpCapsuleHeader</span> <span class="o">=</span> <span class="n">FmpCapsuleHeader</span> <span class="o">+</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ItemOffsetFormat</span><span class="p">,</span> <span class="n">Offset</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">FmpCapsuleHeader</span> <span class="o">+</span> <span class="n">FmpCapsuleData</span>
+</code></pre></div>
+
+</details>
+<h4 id="getembeddeddriver">GetEmbeddedDriver</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">GetEmbeddedDriver</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">Index</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">GetEmbeddedDriver</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">Index</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_EmbeddedDriverList</span><span class="o">[</span><span class="n">Index</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h4 id="getfmpcapsuleimageheader">GetFmpCapsuleImageHeader</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">GetFmpCapsuleImageHeader</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">Index</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">GetFmpCapsuleImageHeader</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">Index</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_FmpCapsuleImageHeaderList</span><span class="o">[</span><span class="n">Index</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="fmpcapsuleimageheaderclass">FmpCapsuleImageHeaderClass</h3>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FmpCapsuleImageHeaderClass</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">FmpCapsuleImageHeaderClass</span> <span class="p">(</span><span class="n">object</span><span class="p">):</span>
+
+    <span class="c1"># typedef struct {</span>
+
+    <span class="c1">#   UINT32   Version;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// Used to identify device firmware targeted by this update. This guid is matched by</span>
+
+    <span class="c1">#   /// system firmware against ImageTypeId field within a EFI_FIRMWARE_IMAGE_DESCRIPTOR</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   EFI_GUID UpdateImageTypeId;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// Passed as ImageIndex in call to EFI_FIRMWARE_MANAGEMENT_PROTOCOL.SetImage ()</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   UINT8    UpdateImageIndex;</span>
+
+    <span class="c1">#   UINT8    reserved_bytes[3];</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// Size of the binary update image which immediately follows this structure</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   UINT32   UpdateImageSize;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// Size of the VendorCode bytes which optionally immediately follow binary update image in the capsule</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   UINT32   UpdateVendorCodeSize;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   /// The HardwareInstance to target with this update. If value is zero it means match all</span>
+
+    <span class="c1">#   /// HardwareInstances. This field allows update software to target only a single device in</span>
+
+    <span class="c1">#   /// cases where there are more than one device with the same ImageTypeId GUID.</span>
+
+    <span class="c1">#   /// This header is outside the signed data of the Authentication Info structure and</span>
+
+    <span class="c1">#   /// therefore can be modified without changing the Auth data.</span>
+
+    <span class="c1">#   ///</span>
+
+    <span class="c1">#   UINT64   UpdateHardwareInstance;</span>
+
+    <span class="c1"># } EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER;</span>
+
+    <span class="c1">#</span>
+
+    <span class="c1">#  #define EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER_INIT_VERSION 0x00000002</span>
+
+    <span class="n">_StructFormat</span> <span class="o">=</span> <span class="s1">&#39;&lt;I16sB3BIIQ&#39;</span>  <span class="c1"># spell-checker: disable-line</span>
+
+    <span class="n">_StructSize</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">calcsize</span><span class="p">(</span><span class="n">_StructFormat</span><span class="p">)</span>
+
+    <span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER_INIT_VERSION</span> <span class="o">=</span> <span class="mh">0x00000002</span>
+
+    <span class="n">def</span> <span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER_INIT_VERSION</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="s1">&#39;00000000-0000-0000-0000-000000000000&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span> <span class="o">=</span> <span class="mh">0x0000000000000000</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="o">=</span> <span class="n">None</span>
+
+    <span class="n">def</span> <span class="n">Encode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># If we have an FmpAuthHeader, let&#39;s collapse that now.</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">None</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span><span class="o">.</span><span class="n">Encode</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span><span class="p">)</span>
+
+        <span class="n">FmpCapsuleImageHeader</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_StructFormat</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span><span class="o">.</span><span class="n">bytes_le</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span><span class="p">,</span>
+
+            <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span>
+
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">FmpCapsuleImageHeader</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span>
+
+    <span class="n">def</span> <span class="n">Decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Buffer</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:</span>
+
+            <span class="n">raise</span> <span class="n">ValueError</span>
+
+        <span class="p">(</span><span class="n">Version</span><span class="p">,</span> <span class="n">UpdateImageTypeId</span><span class="p">,</span> <span class="n">UpdateImageIndex</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span>
+
+            <span class="n">UpdateImageSize</span><span class="p">,</span> <span class="n">UpdateVendorCodeSize</span><span class="p">,</span> <span class="n">UpdateHardwareInstance</span><span class="p">)</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">_StructFormat</span><span class="p">,</span>
+
+                <span class="n">Buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">]</span>
+
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">Version</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER_INIT_VERSION</span><span class="p">:</span>
+
+            <span class="n">raise</span> <span class="n">ValueError</span>
+
+        <span class="k">if</span> <span class="n">UpdateImageIndex</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+
+            <span class="n">raise</span> <span class="n">ValueError</span>
+
+        <span class="k">if</span> <span class="n">UpdateImageSize</span> <span class="o">+</span> <span class="n">UpdateVendorCodeSize</span> <span class="o">!=</span> <span class="n">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:]):</span>
+
+            <span class="n">raise</span> <span class="n">ValueError</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Version</span> <span class="o">=</span> <span class="n">Version</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="n">bytes_le</span><span class="o">=</span><span class="n">UpdateImageTypeId</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span> <span class="o">=</span> <span class="n">UpdateImageIndex</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span> <span class="o">=</span> <span class="n">UpdateImageSize</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span> <span class="o">=</span> <span class="n">UpdateVendorCodeSize</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span> <span class="o">=</span> <span class="n">UpdateHardwareInstance</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">=</span> <span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span> <span class="o">+</span> <span class="n">UpdateImageSize</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="o">=</span> <span class="n">FmpAuthHeaderClass</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span><span class="o">.</span><span class="n">Decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span> <span class="o">=</span> <span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span> <span class="o">+</span> <span class="n">UpdateImageSize</span><span class="p">:]</span>
+
+        <span class="k">return</span> <span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:]</span>
+
+    <span class="n">def</span> <span class="n">DumpInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.Version                = {Version:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateImageTypeId      = {UpdateImageTypeId}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateImageTypeId</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateImageIndex       = {UpdateImageIndex:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateImageIndex</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateImageSize        = {UpdateImageSize:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateImageSize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateVendorCodeSize   = {UpdateVendorCodeSize:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateVendorCodeSize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateHardwareInstance = {UpdateHardwareInstance:016X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateHardwareInstance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sizeof (Payload)                                                    = {Size:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Size</span><span class="o">=</span><span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sizeof (VendorCodeBytes)                                            = {Size:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Size</span><span class="o">=</span><span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">None</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span><span class="o">.</span><span class="n">DumpInfo</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="class-variables_1">Class variables</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER_INIT_VERSION</span>
+</code></pre></div>
+
+<h4 id="methods_1">Methods</h4>
+<h4 id="decode_1">Decode</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">Decode</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">Buffer</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">Decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Buffer</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:</span>
+
+            <span class="n">raise</span> <span class="n">ValueError</span>
+
+        <span class="p">(</span><span class="n">Version</span><span class="p">,</span> <span class="n">UpdateImageTypeId</span><span class="p">,</span> <span class="n">UpdateImageIndex</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span>
+
+            <span class="n">UpdateImageSize</span><span class="p">,</span> <span class="n">UpdateVendorCodeSize</span><span class="p">,</span> <span class="n">UpdateHardwareInstance</span><span class="p">)</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">_StructFormat</span><span class="p">,</span>
+
+                <span class="n">Buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">]</span>
+
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">Version</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER_INIT_VERSION</span><span class="p">:</span>
+
+            <span class="n">raise</span> <span class="n">ValueError</span>
+
+        <span class="k">if</span> <span class="n">UpdateImageIndex</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+
+            <span class="n">raise</span> <span class="n">ValueError</span>
+
+        <span class="k">if</span> <span class="n">UpdateImageSize</span> <span class="o">+</span> <span class="n">UpdateVendorCodeSize</span> <span class="o">!=</span> <span class="n">len</span><span class="p">(</span><span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:]):</span>
+
+            <span class="n">raise</span> <span class="n">ValueError</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Version</span> <span class="o">=</span> <span class="n">Version</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="n">bytes_le</span><span class="o">=</span><span class="n">UpdateImageTypeId</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span> <span class="o">=</span> <span class="n">UpdateImageIndex</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span> <span class="o">=</span> <span class="n">UpdateImageSize</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span> <span class="o">=</span> <span class="n">UpdateVendorCodeSize</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span> <span class="o">=</span> <span class="n">UpdateHardwareInstance</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">=</span> <span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span> <span class="o">+</span> <span class="n">UpdateImageSize</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="o">=</span> <span class="n">FmpAuthHeaderClass</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span><span class="o">.</span><span class="n">Decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span> <span class="o">=</span> <span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span> <span class="o">+</span> <span class="n">UpdateImageSize</span><span class="p">:]</span>
+
+        <span class="k">return</span> <span class="n">Buffer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_StructSize</span><span class="p">:]</span>
+</code></pre></div>
+
+</details>
+<h4 id="dumpinfo_1">DumpInfo</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">DumpInfo</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">DumpInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.Version                = {Version:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateImageTypeId      = {UpdateImageTypeId}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateImageTypeId</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateImageIndex       = {UpdateImageIndex:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateImageIndex</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateImageSize        = {UpdateImageSize:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateImageSize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateVendorCodeSize   = {UpdateVendorCodeSize:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateVendorCodeSize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;EFI_FIRMWARE_MANAGEMENT_CAPSULE_IMAGE_HEADER.UpdateHardwareInstance = {UpdateHardwareInstance:016X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UpdateHardwareInstance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sizeof (Payload)                                                    = {Size:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Size</span><span class="o">=</span><span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sizeof (VendorCodeBytes)                                            = {Size:08X}&#39;</span>
+
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Size</span><span class="o">=</span><span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">None</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span><span class="o">.</span><span class="n">DumpInfo</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h4 id="encode_1">Encode</h4>
+<div class="python3 codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">Encode</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">Encode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># If we have an FmpAuthHeader, let&#39;s collapse that now.</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">None</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FmpAuthHeader</span><span class="o">.</span><span class="n">Encode</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Payload</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span><span class="p">)</span>
+
+        <span class="n">FmpCapsuleImageHeader</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_StructFormat</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">Version</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageTypeId</span><span class="o">.</span><span class="n">bytes_le</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageIndex</span><span class="p">,</span>
+
+            <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateImageSize</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateVendorCodeSize</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">UpdateHardwareInstance</span>
+
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">FmpCapsuleImageHeader</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Payload</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">VendorCodeBytes</span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../fmp_auth_header/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Fmp auth header
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Index
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright (c) Microsoft.  All rights reserved
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.77e55a48.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../../js/version-select.js"></script>
+      
+    
+  </body>
+</html>
