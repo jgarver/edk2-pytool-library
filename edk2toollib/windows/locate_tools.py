@@ -25,6 +25,7 @@ import subprocess
 from edk2toollib.utility_functions import RunCmd
 from edk2toollib.utility_functions import GetHostInfo
 import re
+import typing
 try:
     from StringIO import StringIO
 except ImportError:
@@ -145,26 +146,14 @@ def FindWithVsWhere(products: str = "*", vs_version: str = None):
     return (ret, None)
 
 
-# Run visual studio batch file and collect the
-# interesting environment values
-#
-#  Inspiration taken from cpython for this method of env collection
-#
-# keys: enumerable list with names of env variables to collect after bat run
-# arch: arch to run.  amd64, x86, ??
-# product: value defined by vswhere.exe
-# vs_version: helper to find version of supported VS version (example vs2019).
-# returns a dictionary of the interesting environment variables
-def QueryVcVariables(keys: list, arch: str = None, product: str = None, vs_version: str = None):
+def _GetVcVariables(arch: str = None, product: str = None, vs_version: str = None):
     """Launch vcvarsall.bat and read the settings from its environment.  This is a windows only function
     and Windows is case insensitive for the keys"""
-
     if product is None:
         product = "*"
     if arch is None:
         # TODO: look up host architecture?
         arch = "amd64"
-    interesting = set(x.upper() for x in keys)
     result = {}
     ret, vs_path = FindWithVsWhere(product, vs_version)
     if ret != 0 or vs_path is None:
@@ -183,24 +172,52 @@ def QueryVcVariables(keys: list, arch: str = None, product: str = None, vs_versi
                 continue
             line = line.strip()
             key, value = line.split('=', 1)
-            if key.upper() in interesting:
-                if value.endswith(os.pathsep):
-                    value = value[:-1]
-                result[key] = value
+            if value.endswith(os.pathsep):
+                value = value[:-1]
+            result[key] = value
     finally:
         popen.stdout.close()
         popen.stderr.close()
 
-    if len(result) != len(interesting):
-        logging.debug("Input: " + str(sorted(interesting)))
-        logging.debug("Result: " + str(sorted(list(result.keys()))))
-        result_set = set(list(result.keys()))
-        difference = list(interesting.difference(result_set))
+    return result
 
-        logging.error("We were not able to find on the keys requested from vcvarsall.")
+def _DictFilterCI(keys: list, root: dict) -> typing.Tuple[dict, list]:
+    root_upper = {key.upper(): value for key, value in root.items()}
+    missing_keys = []
+    result = {}
+    for k in keys:
+        k_upper = k.upper()
+        if k_upper in root_upper:
+            result[k] = root_upper[k_upper]
+        else:
+            missing_keys.append(k)
+
+    return result, missing_keys
+
+# Run visual studio batch file and collect the
+# interesting environment values
+#
+#  Inspiration taken from cpython for this method of env collection
+#
+# keys: enumerable list with names of env variables to collect after bat run
+# arch: arch to run.  amd64, x86, ??
+# product: value defined by vswhere.exe
+# vs_version: helper to find version of supported VS version (example vs2019).
+# returns a dictionary of the interesting environment variables
+def QueryVcVariables(keys: list, arch: str = None, product: str = None, vs_version: str = None):
+    interesting = set(keys)
+    all_keys = _GetVcVariables(arch, product, vs_version)
+    found, missing = _DictFilterCI(interesting, all_keys)
+
+    if len(missing) > 0:
+        logging.debug("Input: " + str(sorted(interesting)))
+        logging.debug("Result: " + str(sorted(list(found.keys()))))
+        difference = sorted(missing)
+
+        logging.error("We were not able to find all of the keys requested from vcvarsall.")
         logging.error("We didn't find: %s" % str(difference))
         raise ValueError("Missing keys when querying vcvarsall: " + str(difference))
-    return result
+    return found
 
 
 # return 1 if a > b
